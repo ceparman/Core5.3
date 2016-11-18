@@ -37,15 +37,7 @@ authBasic<-function(coreApi,useVerbose=FALSE)
   }
 
 
-  #need special URL for login
-
-  #login_url<-paste(coreApi$coreUrl,"/sdklogin",sep="")
-
-#  response<-httr::POST(login_url,body = request, encode="json",
-#                       httr::verbose(data_out = useVerbose, data_in = useVerbose, info = useVerbose, ssl = useVerbose))
-
-
-  response<- CoreAPI::apiCall(coreApi,request,"json",useVerbose=useVerbose,special="login")
+  response<- CoreAPIV2::apiCall(coreApi,request,"json",useVerbose=useVerbose,special="login")
 
 
 

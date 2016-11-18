@@ -11,8 +11,8 @@
 #' @examples
 #'\dontrun{
 #' api<-CoreAPI("PATH TO JSON FILE")
-#' login<- CoreAPI::authBasic(api)
-#' response <-CoreAPI::apiCall(login$coreApi,body,"json",,special=NULL,useVerbose=FALSE)
+#' login<- CoreAPIV2::authBasic(api)
+#' response <-CoreAPIV2::apiCall(login$coreApi,body,"json",,special=NULL,useVerbose=FALSE)
 #' logOut(login$coreApi )
 #' }
 #'@author Craig Parman
@@ -25,7 +25,7 @@ apiCall<-function(coreApi,body,encode,special=NULL,useVerbose=FALSE)
 
    if ( !(encode %in% c("multipart", "form", "json", "raw"))) {
         stop(
-          {print("encode parameter not recognised")
+          {print("encode parameter not recognized")
             print( httr::http_status(response))
           },
           call.=FALSE
@@ -35,7 +35,7 @@ apiCall<-function(coreApi,body,encode,special=NULL,useVerbose=FALSE)
 
 
 
-sdk_url<-  CoreAPI::buildUrl(coreApi,special,useVerbose=useVerbose)
+sdk_url<-  CoreAPIV2::buildUrl(coreApi,special=special,useVerbose=useVerbose)
 
 
 response<-invisible(httr::POST(sdk_url,body = body, encode=encode,
