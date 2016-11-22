@@ -2,12 +2,17 @@
 % Please edit documentation in R/buildUrl.R
 \name{buildUrl}
 \alias{buildUrl}
-\title{buildUrl - build URL for call to Core REST API.}
+\title{buildUrl - build URL for call to Core ODATA API.}
 \usage{
-buildUrl(coreApi, special = NULL, useVerbose = FALSE)
+buildUrl(coreApi, resource = NULL, query = NULL, special = NULL,
+  useVerbose = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
+
+\item{resource}{resource path (required except for special requests)}
+
+\item{query}{and additional property options (optional)}
 
 \item{special}{flag for special sdk endpoints}
 
