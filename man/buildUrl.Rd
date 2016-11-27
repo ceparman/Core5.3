@@ -29,9 +29,9 @@ RETURN Core REST URL
 }
 \examples{
 \dontrun{
-api<-CoreAPI("PATH TO JSON FILE")
-login<- CoreAPI::authBasic(api)
-response <-CoreAPI::apiCall(login$coreApi,body,"json",useVerbose=FALSE)
+api<-CoreAPIV2("PATH TO JSON FILE")
+login<- CoreAPIV2::authBasic(api)
+response <-CoreAPIV2::apiCall(login$coreApi,body,"json",useVerbose=FALSE)
 logOut(login$coreApi )
 }
 }

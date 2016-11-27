@@ -10,8 +10,8 @@
 #'@export
 #'@examples
 #'\dontrun{
-#' api<-CoreAPI("PATH TO JSON FILE")
-#' response<- CoreAPI::authBasic(api)
+#' api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
+#' response<- CoreAPIV2::authBasic(api)
 #' logOut(response$coreApi,useVerbose=TRUE )
 #'}
 #'@author Craig Parman
@@ -37,13 +37,13 @@ authBasic<-function(coreApi,useVerbose=FALSE)
   }
 
 
-  response<- CoreAPIV2::apiCall(coreApi,request,"json",useVerbose=useVerbose,special="login")
+  response<- CoreAPIV2::apiPOST(coreApi,request,"json",useVerbose=useVerbose,special="login")
 
 
 
 getSession<-function(response){
 
-  #jsessionid<-  httr::cookies(response)[which(httr::cookies(response)[,6] == "JSESSIONID"),7]
+
   jsessionid<-  httr::content(response)$response$data$jsessionid
   awselb<- httr::cookies(response)[which(httr::cookies(response)[,6] == "AWSELB"),7]
   if (length(awselb) == 0) {awselb <- NULL}

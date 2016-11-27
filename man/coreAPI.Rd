@@ -18,7 +18,7 @@ coreAPI Creates a object of class coreAPI that contains user and connection info
 \details{
 { Creates a object of class coreAPI that contains user name,
          password base url, account, port.
-         It has slots for account, jsessionID, AWSELB, and base URL.
+         It has slots for account, jsessionId, AWSELB, and base URL.
          Requires a json file that is a POSTMAN environment file. 
         \code{#'Creates a object of class coreAPI that contains account information}
         \code{coreAPI("path to json")}.
@@ -91,7 +91,7 @@ Example json object.
 }
 \examples{
 \dontrun{
-api<-coreApi("/home")
+api<-CoreAPIV2::coreApi("/home")
 }
 }
 

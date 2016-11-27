@@ -26,10 +26,10 @@ returns a list $entity contains entity information, $response contains the entir
 }
 \examples{
 \dontrun{
-api<-CoreAPI("PATH TO JSON FILE")
-login<- CoreAPI::authBasic(api)
-item<-getEntityByBarcode(login$coreApi,"entityType","barcode")
-logOut(login$coreApi)
+api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
+login<- CoreAPIV2::authBasic(api)
+item<-CoreAPIV2::getEntityByBarcode(login$coreApi,"entityType","barcode")
+CoreAPIV2::logOut(login$coreApi)
 }
 }
 \author{

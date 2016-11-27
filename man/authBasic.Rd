@@ -24,8 +24,8 @@ returns a list with coreApi which returns the passed coreApi object with  jsessi
 }
 \examples{
 \dontrun{
-api<-CoreAPI("PATH TO JSON FILE")
-response<- CoreAPI::authBasic(api)
+api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
+response<- CoreAPIV2::authBasic(api)
 logOut(response$coreApi,useVerbose=TRUE )
 }
 }
