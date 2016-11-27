@@ -10,10 +10,10 @@
 #'@export
 #'@examples
 #'\dontrun{
-#' api<-CoreAPI("PATH TO JSON FILE")
-#' login<- CoreAPI::authBasic(api)
-#' item<-getEntityByBarcode(login$coreApi,"entityType","barcode")
-#' logOut(login$coreApi)
+#' api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
+#' login<- CoreAPIV2::authBasic(api)
+#' item<-CoreAPIV2::getEntityByBarcode(login$coreApi,"entityType","barcode")
+#' CoreAPIV2::logOut(login$coreApi)
 #' }
 #'@author Craig Parman
 #'@description \code{getEntityByBarcode} Get an entity from the LIMS by barcode and entityType.
@@ -24,7 +24,9 @@ getEntityByBarcode<-function (coreApi,entityType,barcode,useVerbose=FALSE)
 
 {
 
-
+ resource <- entityType
+  
+ query   <- paste0("('",barcode,"')")
 
   request<-list(request=list(sdkCmd=jsonlite::unbox("get"),
                              data=list(entityRef=list(name=jsonlite::unbox(""),entitiyID=jsonlite::unbox(""),barcode=jsonlite::unbox(barcode))),
@@ -34,11 +36,11 @@ getEntityByBarcode<-function (coreApi,entityType,barcode,useVerbose=FALSE)
                     ))
 
 
-  response<- CoreAPI::apiCall(coreApi,request,"json",useVerbose=useVerbose)
+  response<- CoreAPIV2::apiGET(coreApi,resource =resource, query = query,useVerbose=useVerbose)
 
+  
 
-
-  list(entity=httr::content(response)$response$data,response=response)
+  list(entity=httr::content(response),response=response)
 
   }
 
