@@ -10,9 +10,9 @@
 #' @return RETURN Core REST URL
 #' @examples
 #'\dontrun{
-#' api<-CoreAPI("PATH TO JSON FILE")
-#' login<- CoreAPI::authBasic(api)
-#' response <-CoreAPI::apiCall(login$coreApi,body,"json",useVerbose=FALSE)
+#' api<-CoreAPIV2("PATH TO JSON FILE")
+#' login<- CoreAPIV2::authBasic(api)
+#' response <-CoreAPIV2::apiCall(login$coreApi,body,"json",useVerbose=FALSE)
 #' logOut(login$coreApi )
 #' }
 #'@author Craig Parman
@@ -24,12 +24,12 @@ buildUrl<-function(coreApi,resource=NULL,query=NULL,special=NULL,useVerbose=FALS
 {
 
 if (is.null(special)){
-  sdk_url<-paste(api$scheme,"://",api$coreUrl,":",api$port,"/odata/",resource,query,sep="")
+  sdk_url<-paste(coreApi$scheme,"://",coreApi$coreUrl,":",coreApi$port,"/odata/",resource,query,sep="")
 
   } else {
 
   switch(special,
-         login = sdk_url<-paste(api$scheme,"://",api$coreUrl,":",api$port,"/odatalogin",sep="")
+         login = sdk_url<-paste(coreApi$scheme,"://",coreApi$coreUrl,":",coreApi$port,"/odatalogin",sep="")
 
   )
   }
