@@ -28,19 +28,14 @@ getEntityByBarcode<-function (coreApi,entityType,barcode,useVerbose=FALSE)
   
  query   <- paste0("('",barcode,"')")
 
-  request<-list(request=list(sdkCmd=jsonlite::unbox("get"),
-                             data=list(entityRef=list(name=jsonlite::unbox(""),entitiyID=jsonlite::unbox(""),barcode=jsonlite::unbox(barcode))),
-                             responseOptions=c("CONTEXT_GET","MESSAGE_LEVEL_WARN"),
-                             typeParam = jsonlite::unbox(entityType),
-                             logicOptions=list()
-                    ))
+ header<-httr::add_headers(accept="application/json;odata.metadata=full")
+ 
 
-
-  response<- CoreAPIV2::apiGET(coreApi,resource =resource, query = query,useVerbose=useVerbose)
+response<- CoreAPIV2::apiGET(coreApi,resource =resource, query = query,headers = header,useVerbose=useVerbose)
 
   
 
-  list(entity=httr::content(response),response=response)
+list(entity=httr::content(response),response=response)
 
   }
 

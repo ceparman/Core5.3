@@ -22,12 +22,13 @@ logOut<-function(coreApi, useVerbose = FALSE)
 
 {
 
-  log_out_url<-paste(coreApi$coreUrl,"/sdklogin",";jsessionid=",coreApi$jsessionId,sep="")
+ 
 
+  request<-list(request=list(sdkCmd =jsonlite::unbox("sdk-logout"), typeParam =jsonlite::unbox("*"),data= NULL ),
+                responseOptions = list())
 
-  request<-list(request=list(data=list(),typeParam =jsonlite::unbox("*"), sdkCmd =jsonlite::unbox("sdk-logout")))
-
-  response<- CoreAPI::apiCall(coreApi,request,"json",useVerbose=useVerbose)
+  
+  response<- CoreAPIV2::apiPOST(coreApi,request,"json",special="login",useVerbose=useVerbose)
 
 
   list(success= httr::http_status(response)$category,response=response)
