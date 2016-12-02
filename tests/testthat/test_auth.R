@@ -25,13 +25,15 @@ for (i in 1:length(environments))
               api <- CoreAPIV2::coreAPI(environments[i])
 
           
-
               con<- CoreAPIV2::authBasic(api,useVerbose=verbose)
-
-              print(con)
-
+        
               expect_match(api$coreUrl,con$coreApi$coreUrl,all=verbose)
               expect_that(is.null(con$coreApi$jsessionId),equals(FALSE))
+              
+              
+              
+              
+              
               logout<-CoreAPIV2::logOut(api,useVerbose = verbose)
               expect_match(logout$success,"Success")
 
