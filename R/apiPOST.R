@@ -1,6 +1,6 @@
-#' apiCall - Base call to Core REST API.
+#' apiPOST - Do a POST to the Core REST API.
 #'
-#' \code{apiCall}  Base call to Core REST API.
+#' \code{apiPOST}  BDo a POST to the Core REST API.
 #' @param coreApi coreApi object with valid jsessionid
 #' @param body body for request
 #' @param encode encoding to use for request option are "multipart", "form", "json", "raw"
@@ -10,16 +10,16 @@
 #' @return RETURN return the entire http response
 #' @examples
 #'\dontrun{
-#' api<-CoreAPI("PATH TO JSON FILE")
+#' api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 #' login<- CoreAPIV2::authBasic(api)
-#' response <-CoreAPIV2::apiCall(login$coreApi,body,"json",,special=NULL,useVerbose=FALSE)
+#' response <-CoreAPIV2::apiPOST(login$coreApi,body,"json",,special=NULL,useVerbose=FALSE)
 #' logOut(login$coreApi )
 #' }
 #'@author Craig Parman
-#'@description \code{apiCall}  Base call to Core REST API.
+#'@description \code{apiPOST}  Base call to Core REST API.
 
 
-apiCall<-function(coreApi,body,encode,special=NULL,useVerbose=FALSE)
+apiPOST<-function(coreApi,body=NULL,encode,special=NULL,useVerbose=FALSE)
 {
 #Check that encode parameter is proper
 
@@ -39,9 +39,14 @@ sdk_url<-  CoreAPIV2::buildUrl(coreApi,special=special,useVerbose=useVerbose)
 
 
 response<-invisible(httr::POST(sdk_url,body = body, encode=encode,
-                     httr::verbose(data_out = useVerbose, data_in = useVerbose,
-                                   info = useVerbose, ssl = useVerbose))
-                    )
+                                        httr::verbose(data_out = useVerbose, data_in = useVerbose,
+                                                      info = useVerbose, ssl = useVerbose))
+                      )
+    
+       
+
+
+
 
 #check for general HTTP error in response
 
