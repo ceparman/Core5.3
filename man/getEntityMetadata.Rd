@@ -15,7 +15,7 @@ getEntityMetadata(coreApi, entityType, useVerbose = FALSE)
 }
 \value{
 returns a list $entity contains entity information; $description - a list containing $attributes for attribute properties, 
-and $association for association properties; $response contains the entire http response
+and $association for association properties; $template contains a list that can be converted to JSON for object creation.
 }
 \description{
 \code{getEntityMetadata} Get an entity metadata by entityType. Returns a list with two data frames

@@ -6,7 +6,7 @@
 #'@param entityType entity type to get metadata for
 #'@param useVerbose TRUE or FALSE to indicate if verbose options should be used in http POST
 #'@return returns a list $entity contains entity information; $description - a list containing $attributes for attribute properties, 
-#'and $association for association properties; $response contains the entire http response
+#'and $association for association properties; $template contains a list that can be converted to JSON for object creation.
 #'@export
 #'@examples
 #'\dontrun{
@@ -53,7 +53,6 @@ attributes<-data.frame(names = names, types = types, defaults=defaults,stringsAs
 #Get Associations
 
 
-#NavigationProperty 
 
 navigation <-entity[names(entity) == "NavigationProperty"]
 
@@ -66,8 +65,23 @@ partners<-sapply(lapply(navigation, XML::xmlAttrs), function(x) x["Partner"])
 associations<-data.frame(names = names, types = types, partners=partners,stringsAsFactors = FALSE)
 
 
+#Create list oblect that can be used for create
 
-list(attributes=attributes,associations=associations)
+atttribute_values<-as.list(rep("",nrow(attributes)))
+
+names(atttribute_values) <- attributes$names
+
+
+
+forward_associations <- associations[!startsWith(associations$names,"REV_"),] 
+
+association_values<-as.list(rep("",nrow(forward_associations)))
+
+names(association_values) <- forward_associations$names
+
+template <- c(atttribute_values,association_values)
+
+list(attributes=attributes,associations=associations,template=template)
 }
 
 
