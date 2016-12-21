@@ -5,7 +5,7 @@ context("Tests for authentication")
 
 rm(list=ls())
 
-verbose <<- FALSE
+verbose <- FALSE
 
 
 #setup to test against multiple environments
@@ -18,9 +18,9 @@ for (i in 1:length(environments))
 
 
 
-     test_that(paste("test login parameters for environment", environments[1]),
+     test_that(paste("test login parameters for environment", environments[i]),
             {
-
+              verbose <- FALSE
              
               api <- CoreAPIV2::coreAPI(environments[i])
 
@@ -43,6 +43,7 @@ for (i in 1:length(environments))
   
   test_that("single account with bad password returns error",
                        {
+                         verbose <- FALSE
                          api <- CoreAPIV2::coreAPI(environments[i])
                         bapi<- api
                         bapi$pwd <-"badpassword"

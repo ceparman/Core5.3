@@ -37,7 +37,7 @@ authBasic<-function(coreApi,useVerbose=FALSE)
   }
 
 
-  response<- CoreAPIV2::apiPOST(coreApi,request,"json",useVerbose=useVerbose,special="login")
+  response<- CoreAPIV2::apiPOST(coreApi,body=request,encode="json",useVerbose=useVerbose,special="login")
 
 
 

@@ -62,7 +62,7 @@ response<-CoreAPIV2::apiPOST(coreApi,resource=entityType,body=body,encode = "jso
 
  #response<- CoreAPI::apiCall(coreApi,request,"json",useVerbose=useVerbose)
 
-list(entity=httr::content(response)$response$data,response=response)
+list(entity=httr::content(response),response=response)
 
 }
 

@@ -28,7 +28,7 @@ logOut<-function(coreApi, useVerbose = FALSE)
                 responseOptions = list())
 
   
-  response<- CoreAPIV2::apiPOST(coreApi,request,"json",special="login",useVerbose=useVerbose)
+  response<- CoreAPIV2::apiPOST(coreApi=coreApi,body=request,headers = httr::content_type_json(),encode="json",special="login",useVerbose=useVerbose)
 
 
   list(success= httr::http_status(response)$category,response=response)
