@@ -26,7 +26,7 @@ instance <<- "test_environments/Test%205.2.postman_environment.json"
               expect_that(is.null(con$coreApi$jsessionId),equals(FALSE))
               
               
-              out<-CoreAPIV2::getEntityMetadata(con$coreApi,"PATIENT_SAMPLE",useVerbose = TRUE)
+              out<-CoreAPIV2::getEntityMetadata(con$coreApi,"PATIENT_SAMPLE",useVerbose = FALSE)
               
               
               body<-out$template

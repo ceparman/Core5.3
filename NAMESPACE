@@ -2,10 +2,13 @@
 
 export(apiGET)
 export(apiPOST)
+export(attachFile)
 export(authBasic)
+export(buildJsonUrl)
 export(buildUrl)
 export(coreAPI)
 export(createEntity)
 export(getEntityByBarcode)
 export(getEntityMetadata)
+export(jsonApiCall)
 export(logOut)
