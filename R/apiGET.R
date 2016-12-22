@@ -26,14 +26,14 @@ apiGET<-function(coreApi,resource,query,headers=NULL,special=NULL,useVerbose=FAL
 
  
   
-
-     sdk_url<- CoreAPIV2::buildUrl(coreApi,resource=resource,query=query,special=special,useVerbose=useVerbose)
+    sdk_url<- CoreAPIV2::buildUrl(coreApi,resource=resource,query=query,special=special,useVerbose=useVerbose)
+    
    response<-invisible(httr::GET(sdk_url,headers,httr::verbose(data_out = useVerbose, data_in = useVerbose,
                                                      info = useVerbose, ssl = useVerbose))
                       )
  
        
-        
+  
 
 
 

@@ -4,7 +4,8 @@
 \alias{getEntityByBarcode}
 \title{getEntityByBarcode - Get an entity from the LIMS by barcode.}
 \usage{
-getEntityByBarcode(coreApi, entityType, barcode, useVerbose = FALSE)
+getEntityByBarcode(coreApi, entityType, barcode, fullMetadata = TRUE,
+  useVerbose = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -12,6 +13,8 @@ getEntityByBarcode(coreApi, entityType, barcode, useVerbose = FALSE)
 \item{entityType}{entity type to get}
 
 \item{barcode}{barcode of entity to get}
+
+\item{fullMetadata}{- get full metadata}
 
 \item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http POST}
 }

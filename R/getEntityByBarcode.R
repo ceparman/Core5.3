@@ -5,6 +5,7 @@
 #'@param coreApi coreApi object with valid jsessionid
 #'@param entityType entity type to get
 #'@param barcode barcode of entity to get
+#'@param fullMetadata - get full metadata
 #'@param useVerbose TRUE or FALSE to indicate if verbose options should be used in http POST
 #'@return returns a list $entity contains entity information, $response contains the entire http response
 #'@export
@@ -20,7 +21,7 @@
 
 
 
-getEntityByBarcode<-function (coreApi,entityType,barcode,useVerbose=FALSE)
+getEntityByBarcode<-function (coreApi,entityType,barcode,fullMetadata=TRUE,useVerbose=FALSE)
 
 {
 
@@ -28,8 +29,12 @@ getEntityByBarcode<-function (coreApi,entityType,barcode,useVerbose=FALSE)
   
  query   <- paste0("('",barcode,"')")
 
- header<-httr::add_headers(accept="application/json;odata.metadata=full")
  
+ if(fullMetadata) header<-httr::add_headers(Accept="application/json;odata.metadata=full") else {
+   header<-httr::add_headers(Accept="application/json;odata.metadata=minimal")  
+   
+ }
+
 
 response<- CoreAPIV2::apiGET(coreApi,resource =resource, query = query,headers = header,useVerbose=useVerbose)
 
