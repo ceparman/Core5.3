@@ -1,5 +1,5 @@
 #' createEntity - Create a new instance of a entity.
-#'
+#' 
 #' \code{createEntity} Creates a new instance of an entity.
 #' @param coreApi coreApi object with valid jsessionid
 #' @param entityType entity type to get as character string
@@ -12,10 +12,10 @@
 #' @return RETURN returns a list $entity contains entity information, $response contains the entire http response
 #' @examples
 #'\dontrun{
-#' api<-CoreAPI("PATH TO JSON FILE")
+#' api<-CoreAPIV2::coreApi("PATH TO JSON FILE")
 #' login<- CoreAPI::authBasic(api)
 #' item<-CoreAPI::createEntity(login$coreApi,"Entity_Type")
-#' logOut(login$coreApi )
+#' CoreAPI::logOut(login$coreApi )
 #' }
 #'@author Craig Parman
 #'@description \code{createEntity} Creates a new entity instance. Required inputs are url, jsessionId and entityType.
@@ -26,41 +26,11 @@ createEntity<-function (coreApi,entityType,body,
 
 {
 
-  ##Notes
-  ## locationId not required but would need to be looked up if only location barcode is known.
-  #Should add functionality to look pass location barcode and look up ID
-  #todo asscociations,xxx-locations, xxxx- project, xxxx-barcode
-
-
-
-##these need to be udated 
-## does the new API  support project, location, and user supplied barcodes  
- # 
- #  if(!is.null(locationId))
- #  {
- #  data[["locationId"]]<- locationId
- #  }
- # 
- # 
- # if(!is.null(projectIds))
- # {
- #   data[["projectIds"]]<- projectIds
- # }
- # 
- # if(!is.null(barcode))
- # {
- #   data[["barcode"]]<- barcode
- # }
- # 
-
  
-
  
 response<-CoreAPIV2::apiPOST(coreApi,resource=entityType,body=body,encode = "json",headers =httr::content_type_json(),special=NULL,useVerbose=TRUE)
  
- 
 
- #response<- CoreAPI::apiCall(coreApi,request,"json",useVerbose=useVerbose)
 
 list(entity=httr::content(response),response=response)
 

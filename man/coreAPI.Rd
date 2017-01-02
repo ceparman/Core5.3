@@ -91,7 +91,7 @@ Example json object.
 }
 \examples{
 \dontrun{
-api<-CoreAPIV2::coreApi("/home")
+api<-CoreAPIV2::coreAPI("/home")
 }
 }
 

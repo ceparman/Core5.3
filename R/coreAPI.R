@@ -4,7 +4,7 @@
 #'@export
 #'@examples
 #'\dontrun{
-#'api<-CoreAPIV2::coreApi("/home")
+#'api<-CoreAPIV2::coreAPI("/home")
 #'}
 #'@details{ Creates a object of class coreAPI that contains user name,
 #'          password base url, account, port.

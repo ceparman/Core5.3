@@ -1,6 +1,6 @@
 #' logOut -Log user out of the LIMS.
 #'
-#'\code{logOut} logs user out of the LIMS using Core API
+#'\code{logOut} logs user out of the Core API
 #'
 #'@param coreApi coreApi object returned during log in
 #'@param useVerbose use verbose option for debuggin in http POST
@@ -8,12 +8,12 @@
 #'@export
 #'@examples
 #'\dontrun{
-#' api<-CoreAPI("PATH TO JSON FILE")
-#' response<- CoreAPI::authBasic(api)
-#' logOut(response$coreApi,useVerbose=TRUE )
+#' api<-CoreAPIV2::coreAPI("PATH TO JSON FILE")
+#' response<- CoreAPIV2::authBasic(api)
+#' CoreAPIV2::logOut(response$coreApi,useVerbose=TRUE )
 #' }
 #'@author Craig Parman
-#'@description \code{logOut} logs out of the current jsession.
+#'@description \code{logOut} logs out of the current session.
 
 
 ### Log out

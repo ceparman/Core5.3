@@ -2,7 +2,7 @@
 % Please edit documentation in R/apiPOST.R
 \name{apiPOST}
 \alias{apiPOST}
-\title{apiPOST - Do a POST to the Core REST API.}
+\title{apiPOST - Do a POST to the Core ODATA REST API.}
 \usage{
 apiPOST(coreApi, resource = NULL, body = NULL, encode, headers = NULL,
   special = NULL, useVerbose = FALSE)
@@ -14,29 +14,29 @@ apiPOST(coreApi, resource = NULL, body = NULL, encode, headers = NULL,
 
 \item{body}{body for request}
 
-\item{encode}{encoding to use for request option are "multipart", "form", "json", "raw"}
+\item{encode}{encode type must be "multipart", "form", "json", "raw"}
 
 \item{headers}{headers to be added to get.}
 
-\item{special}{- passed to buildUrl for special sdk endpoints}
+\item{special}{passed to buildUrl for special sdk endpoints}
 
 \item{useVerbose}{Use verbose communication for debugging}
 }
 \value{
-RETURN return the entire http response
+Returns the entire http response
 }
 \description{
-\code{apiPOST}  Base call to Core REST API.
+\code{apiPOST} - Base call to Core ODATA REST API.
 }
 \details{
-\code{apiPOST}  Do a POST to the Core REST API.
+\code{apiPOST}  Do a POST to the Core ODATA REST API.
 }
 \examples{
 \dontrun{
 api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 login<- CoreAPIV2::authBasic(api)
-response <-CoreAPIV2::apiPOST(login$coreApi,"SAMPLE",body,"json",,special=NULL,useVerbose=FALSE)
-logOut(login$coreApi )
+response <-CoreAPIV2::apiPOST(login$coreApi,"SAMPLE",body,"json",special=NULL,useVerbose=FALSE)
+CoreAPIV2::logOut(login$coreApi )
 }
 }
 \author{

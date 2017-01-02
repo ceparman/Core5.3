@@ -27,7 +27,7 @@ getEntityMetadata<-function (coreApi,entityType,useVerbose=FALSE)
   
 ## get all metadata  
 
-m<- CoreAPIV2::apiGET(coreApi,resource=NULL,headers=httr::accept_xml(),query="$metadata",useVerbose = useVerbose)  
+m<- CoreAPIV2::apiGET(coreApi,resource=NULL,headers=httr::accept_xml(),query="$metadata",useVerbose = useVerbose)$response  
 
 doc<-XML::xmlTreeParse(m)
 

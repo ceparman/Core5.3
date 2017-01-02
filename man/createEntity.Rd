@@ -33,10 +33,10 @@ RETURN returns a list $entity contains entity information, $response contains th
 }
 \examples{
 \dontrun{
-api<-CoreAPI("PATH TO JSON FILE")
+api<-CoreAPIV2::coreApi("PATH TO JSON FILE")
 login<- CoreAPI::authBasic(api)
 item<-CoreAPI::createEntity(login$coreApi,"Entity_Type")
-logOut(login$coreApi )
+CoreAPI::logOut(login$coreApi )
 }
 }
 \author{

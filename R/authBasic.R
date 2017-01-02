@@ -1,6 +1,6 @@
-#'authBasic - Authenticates against the LIMS using basic authentication.
+#'authBasic - Authenticates against the ODATA REST API using basic authentication.
 #'
-#'\code{authBasic} Authenticates to Core API
+#'\code{authBasic} Authenticates against the ODATA REST API using basic authentication.
 #'
 #'@param coreApi object of class coreApi that contains user, password,  baseURL and
 #'        account. account is required if user has access to multiple tenants.
@@ -12,7 +12,7 @@
 #'\dontrun{
 #' api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 #' response<- CoreAPIV2::authBasic(api)
-#' logOut(response$coreApi,useVerbose=TRUE )
+#' CoreAPIV2::logOut(response$coreApi,useVerbose=TRUE )
 #'}
 #'@author Craig Parman
 #'@description \code{authBasic} Logs in and returns a fully populated coreApi object in $coreAPI.

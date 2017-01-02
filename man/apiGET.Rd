@@ -2,7 +2,7 @@
 % Please edit documentation in R/apiGET.R
 \name{apiGET}
 \alias{apiGET}
-\title{apiGET - Do a get to the Core REST API.}
+\title{apiGET - Do a get to the Core ODATA REST API.}
 \usage{
 apiGET(coreApi, resource, query, headers = NULL, special = NULL,
   useVerbose = FALSE)
@@ -16,17 +16,16 @@ apiGET(coreApi, resource, query, headers = NULL, special = NULL,
 
 \item{headers}{headers to be added to get.}
 
-\item{special}{- passed to buildUrl for special sdk endpoints}
+\item{special}{passed to buildUrl for special sdk endpoints}
 
 \item{useVerbose}{Use verbose communication for debugging}
-
-\item{encode}{encoding to use for request option are "multipart", "form", "json", "raw"}
 }
 \value{
-RETURN return the entire http response
+Returns the content, concatenated if a chunked response, and the entire http response for the last 
+get if cunked content.
 }
 \description{
-\code{apiGET}   Do a get to the Core REST API.
+\code{apiGET} - Do a get to the Core ODATA REST API.
 }
 \details{
 \code{apiGET}  Base call to Core REST API.
@@ -36,7 +35,7 @@ RETURN return the entire http response
 api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 login<- CoreAPIV2::authBasic(api)
 response <-CoreAPIV2::apiGET(login$coreApi,"json",resource,query)
-logOut(login$coreApi )
+CoreAPIV2::logOut(login$coreApi)
 }
 }
 \author{

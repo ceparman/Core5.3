@@ -2,7 +2,7 @@
 % Please edit documentation in R/authBasic.R
 \name{authBasic}
 \alias{authBasic}
-\title{authBasic - Authenticates against the LIMS using basic authentication.}
+\title{authBasic - Authenticates against the ODATA REST API using basic authentication.}
 \usage{
 authBasic(coreApi, useVerbose = FALSE)
 }
@@ -20,13 +20,13 @@ returns a list with coreApi which returns the passed coreApi object with  jsessi
 \code{authBasic} Logs in and returns a fully populated coreApi object in $coreAPI.
 }
 \details{
-\code{authBasic} Authenticates to Core API
+\code{authBasic} Authenticates against the ODATA REST API using basic authentication.
 }
 \examples{
 \dontrun{
 api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 response<- CoreAPIV2::authBasic(api)
-logOut(response$coreApi,useVerbose=TRUE )
+CoreAPIV2::logOut(response$coreApi,useVerbose=TRUE )
 }
 }
 \author{
