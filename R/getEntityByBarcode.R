@@ -30,13 +30,22 @@ getEntityByBarcode<-function (coreApi,entityType,barcode,fullMetadata=TRUE,useVe
  query   <- paste0("('",barcode,"')")
 
  
- if(fullMetadata) header<-httr::add_headers(Accept="application/json;odata.metadata=full") else {
-   header<-httr::add_headers(Accept="application/json;odata.metadata=minimal")  
+ # if(fullMetadata){ header<-httr::add_headers(Accept="application/json;odata.metadata=full")
+ #   } else {
+ #   header<-httr::add_headers(Accept="application/json;odata.metadata=minimal")  
+ #   
+ # }
+
+
+ 
+ if(fullMetadata){ header<-c(Accept="application/json;odata.metadata=full")
+ } else {
+   header<-c(Accept="application/json;odata.metadata=minimal")  
    
  }
-
-
-out <- CoreAPIV2::apiGET(coreApi,resource =resource, query = query,headers = header,useVerbose=useVerbose)
+ 
+ 
+ out <- CoreAPIV2::apiGET(coreApi,resource =resource, query = query,headers = header,useVerbose=useVerbose)
 
   
 

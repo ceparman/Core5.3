@@ -25,11 +25,12 @@ apiGET<-function(coreApi,resource,query,headers=NULL,special=NULL,useVerbose=FAL
 {
 
  
-    sdk_url<- CoreAPIV2::buildUrl(coreApi,resource=resource,query=query,special=special,useVerbose=useVerbose)
+    sdk_url<- CoreAPIV2::buildUrl(coreApi,resource=resource,query=query,special=NULL,useVerbose=useVerbose)
   
-# deal with chunked reponses best done here 
-
     
+#header string is fomedr by: header <-c(accept = "application/json;odata.metadata=full")
+# this object is then passed to apiGet    
+  
 more_content <- TRUE
 
 content <- list()
@@ -37,10 +38,14 @@ content <- list()
 while (more_content == TRUE)
  {
   
+if (useVerbose){  
+            response<- httr::with_verbose(httr::GET(sdk_url,httr::add_headers(.headers=headers))) 
+                    
+} else  {
+              
+      response<-httr::GET(sdk_url,httr::add_headers(.headers=headers))
   
- response<-invisible(httr::GET(sdk_url,headers,httr::verbose(data_out = useVerbose, data_in = useVerbose,
-                                                              info = useVerbose, ssl = useVerbose))
-                    )
+            }                     
 
 #check for general HTTP error in response
 
@@ -58,7 +63,7 @@ while (more_content == TRUE)
   
 #check for more data 
 
- if(is.null(content(cell3)$`@odata.nextLink`)) {
+ if(is.null(httr::content(response)$`@odata.nextLink`)) {
   
    content <- c(content,httr::content(response))  
   
@@ -71,7 +76,10 @@ while (more_content == TRUE)
   
      tcontent$`@odata.nextLink` <- NULL   #remove more data flag.
      content <- c(content,tcontent) 
-  
+#update sdk_url to next chunk
+   
+      sdk_url<-  httr::content(response)$`@odata.nextLink` 
+     
     }
   
  }

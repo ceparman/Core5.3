@@ -18,12 +18,16 @@
 #'@author Craig Parman
 #'@description \code{getCellContents} - Gets information about container cell contents.
 
-getContaierContents<-function (coreApi,containerType,containerBarcode,useVerbose = FALSE)
+getContainerContents<-function (coreApi,containerType,containerBarcode,useVerbose = FALSE)
 {
 
+#get the container  
+#container<-CoreAPIV2::getEntityByBarcode(con$coreApi,entityType = "_384_WELL_PLATE",barcode='TE1')
 
-##need some code here  
-  
+#get thecontainer cells   
+
+  cells<- CoreAPIV2::apiGET(con$coreApi,resource = "_384_WELL_PLATE",query = "('TE1')/REV_IMPL_CONTAINER_CELL" )  
+    
 list(entity=httr::content(response)$response$data,response=response)
 
 }

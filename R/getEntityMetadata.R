@@ -26,8 +26,11 @@ getEntityMetadata<-function (coreApi,entityType,useVerbose=FALSE)
 {
   
 ## get all metadata  
+header <- c(accept = "application/xml")
 
-m<- CoreAPIV2::apiGET(coreApi,resource=NULL,headers=httr::accept_xml(),query="$metadata",useVerbose = useVerbose)$response  
+
+#need special GEt for XML  
+m<-httr::GET(CoreAPIV2::buildUrl(coreApi,resource=NULL,query="$metadata",special=NULL,useVerbose=TRUE),httr::accept_xml())
 
 doc<-XML::xmlTreeParse(m)
 
