@@ -26,7 +26,7 @@ getEntityMetadata<-function (coreApi,entityType,useVerbose=FALSE)
 {
   
 ## get all metadata  
-header <- c(accept = "application/xml")
+header <- c(Accept = "application/xml")
 
 
 #need special GEt for XML  

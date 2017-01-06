@@ -79,8 +79,10 @@ if (useVerbose){
 #update sdk_url to next chunk
    
       sdk_url<-  httr::content(response)$`@odata.nextLink` 
-     
-    }
+     print("new url")
+     print(sdk_url)
+      
+        }
   
  }
 
