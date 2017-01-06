@@ -25,13 +25,15 @@ apiGET<-function(coreApi,resource,query,headers=NULL,special=NULL,useVerbose=FAL
 {
 
  
-    sdk_url<- CoreAPIV2::buildUrl(coreApi,resource=resource,query=query,special=NULL,useVerbose=useVerbose)
-  
+sdk_url<- CoreAPIV2::buildUrl(coreApi,resource=resource,query=query,special=NULL,useVerbose=useVerbose)
+base_sdk_url <- sdk_url  #need if we need to build url for additional chunks  
     
 #header string is fomedr by: header <-c(accept = "application/json;odata.metadata=full")
 # this object is then passed to apiGet    
   
-more_content <- TRUE
+more_content <- TRUE #flag for more chunks
+
+skiptoken <- 1  #counter for chunks
 
 content <- list()
 
@@ -39,11 +41,11 @@ while (more_content == TRUE)
  {
   
 if (useVerbose){  
-            response<- httr::with_verbose(httr::GET(sdk_url,httr::add_headers(.headers=headers))) 
+            response<- httr::with_verbose(httr::GET(sdk_url,httr::add_headers(headers))) 
                     
 } else  {
               
-      response<-httr::GET(sdk_url,httr::add_headers(.headers=headers))
+      response<-httr::GET(sdk_url,httr::add_headers(headers))
   
             }                     
 
@@ -69,21 +71,23 @@ if (useVerbose){
   
    more_content <- FALSE
   
-   } else {
+ } else {
   
      tcontent <- httr::content(response)
 #remove link to additional data
-  
+
      tcontent$`@odata.nextLink` <- NULL   #remove more data flag.
-     content <- c(content,tcontent) 
+     tcontent$`@odata.nextLink`
+     content <- cbind(content,tcontent)
 #update sdk_url to next chunk
-   
-      sdk_url<-  httr::content(response)$`@odata.nextLink` 
-     print("new url")
-     print(sdk_url)
-      
+# So not so fast.  If seems the links embedded does not have the port which seems to be required
+    
+     sdk_url<-paste0(base_sdk_url,"?$skiptoken=",skiptoken)
+     skiptoken <- skiptoken+1
+     
+    
         }
-  
+
  }
 
 
