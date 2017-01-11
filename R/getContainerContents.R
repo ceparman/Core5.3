@@ -26,7 +26,7 @@ getContainerContents<-function (coreApi,containerType,containerBarcode,useVerbos
 
 #get thecontainer cells   
 
-  cells<- CoreAPIV2::apiGET(con$coreApi,resource = "_384_WELL_PLATE",query = "('TE1')/REV_IMPL_CONTAINER_CELL" )  
+cells<- CoreAPIV2::apiGET(con$coreApi,resource = "_384_WELL_PLATE",query = "('TE1')/REV_IMPL_CONTAINER_CELL" )  
     
 list(entity=httr::content(response)$response$data,response=response)
 

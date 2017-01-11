@@ -27,31 +27,21 @@ apiGET<-function(coreApi,resource,query,headers=NULL,special=NULL,useVerbose=FAL
  
 sdk_url<- CoreAPIV2::buildUrl(coreApi,resource=resource,query=query,special=NULL,useVerbose=useVerbose)
 base_sdk_url <- sdk_url  #need if we need to build url for additional chunks  
-    
-#header string is fomedr by: header <-c(accept = "application/json;odata.metadata=full")
-# this object is then passed to apiGet    
-  
-more_content <- TRUE #flag for more chunks
+   
+#Get first response
 
-skiptoken <- 1  #counter for chunks
-
-content <- list()
-
-while (more_content == TRUE)
- {
-  
 if (useVerbose){  
-            response<- httr::with_verbose(httr::GET(sdk_url,httr::add_headers(headers))) 
-                    
-} else  {
-              
-      response<-httr::GET(sdk_url,httr::add_headers(headers))
+           response<- httr::with_verbose(httr::GET(sdk_url,httr::add_headers(headers))) 
   
-            }                     
+     } else  {
+     print(sdk_url)    
+     response<-httr::GET(sdk_url,httr::add_headers(headers))
+  
+    }  
 
 #check for general HTTP error in response
 
- if(httr::http_error(response)) {
+if(httr::http_error(response)) {
   
   stop(
     {print("API call failed")
@@ -60,38 +50,68 @@ if (useVerbose){
     call.=FALSE
   )
   
-  
- }
-  
-#check for more data 
-
- if(is.null(httr::content(response)$`@odata.nextLink`)) {
-  
-   content <- c(content,httr::content(response))  
-  
-   more_content <- FALSE
-  
- } else {
-  
-     tcontent <- httr::content(response)
-#remove link to additional data
-
-     tcontent$`@odata.nextLink` <- NULL   #remove more data flag.
-     tcontent$`@odata.nextLink`
-     content <- cbind(content,tcontent)
-#update sdk_url to next chunk
-# So not so fast.  If seems the links embedded does not have the port which seems to be required
-    
-     sdk_url<-paste0(base_sdk_url,"?$skiptoken=",skiptoken)
-     skiptoken <- skiptoken+1
-     
-    
-        }
-
- }
+  }
+#determine if this is a chunked response
 
 
+if(!is.null(httr::headers(response)$'transfer-encoding'))
+{chunked <- (httr::headers(response)$'transfer-encoding' == "chunked")
 
+} else chunked <- FALSE
+
+print(chunked)
+
+#two methods for chunked and not chunked
+
+if(!chunked){
+  #not chunked response
+  content <- httr::content(response)  
+  
+  
+} else
+{
+  #chunked response  
+  more_content <- TRUE #flag for more chunks
+  
+  skiptoken <- 1  #counter for chunks
+  
+  content <- httr::content(response)$value
+  
+     while (more_content)  
+       
+     {
+       #build url for next chunk
+       
+       sdk_url<-paste0(base_sdk_url,"?$skiptoken=",skiptoken)
+       skiptoken <- skiptoken+1
+       
+       #get next data chunk
+       
+       #
+       if (useVerbose){  
+         response<- httr::with_verbose(httr::GET(sdk_url,httr::add_headers(headers))) 
+         
+       } else  {
+         print(sdk_url)    
+         response<-httr::GET(sdk_url,httr::add_headers(headers))
+         
+       }    
+       #add content 
+       
+       content <- c(content,httr::content(response)$value)
+       
+       #Is there more content ?
+       
+       more_content <- !is.null(httr::content(response)$`@odata.nextLink`)
+     }
+   
+  
+  
+  
+}
+
+ 
+      
 out <- list(content = content, response = response)   
    
 return(out)
