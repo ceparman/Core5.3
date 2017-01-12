@@ -34,7 +34,7 @@ if (useVerbose){
            response<- httr::with_verbose(httr::GET(sdk_url,httr::add_headers(headers))) 
   
      } else  {
-     print(sdk_url)    
+       
      response<-httr::GET(sdk_url,httr::add_headers(headers))
   
     }  
@@ -59,7 +59,7 @@ if(!is.null(httr::headers(response)$'transfer-encoding'))
 
 } else chunked <- FALSE
 
-print(chunked)
+
 
 #two methods for chunked and not chunked
 
@@ -92,7 +92,7 @@ if(!chunked){
          response<- httr::with_verbose(httr::GET(sdk_url,httr::add_headers(headers))) 
          
        } else  {
-         print(sdk_url)    
+           
          response<-httr::GET(sdk_url,httr::add_headers(headers))
          
        }    

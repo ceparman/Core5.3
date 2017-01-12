@@ -2,7 +2,6 @@
 context("Tests for gets")
 
 
-
 rm(list=ls())
 
 verbose <- FALSE
@@ -13,7 +12,7 @@ instance <<- "test_environments/Test%205.2.postman_environment.json"
 
 
 
-     test_that(paste("test login parameters for environment", instance),
+     test_that(paste("test log in and get an entity", instance),
             {
 
               verbose <- FALSE
@@ -43,50 +42,83 @@ instance <<- "test_environments/Test%205.2.postman_environment.json"
               logout<-CoreAPIV2::logOut(api,useVerbose = verbose)
               expect_match(logout$success,"Success")
 
-              
-              
-              
-              
-              
+        
               
               })
   
- 
-     # instance <<- "test_environments/Beer.postman_environment.json"
-     # 
-     # 
-     # 
-     # test_that(paste("test login parameters for environment", instance),
-     #           {
-     #             
-     #             verbose <- FALSE
-     #             api <- CoreAPIV2::coreAPI(instance)
-     #             
-     #             
-     #             con<- CoreAPIV2::authBasic(api,useVerbose=verbose)
-     #             
-     #             expect_match(api$coreUrl,con$coreApi$coreUrl,all=verbose)
-     #             expect_that(is.null(con$coreApi$jsessionId),equals(FALSE))
-     #             
-     #             
-     #             b<-CoreAPIV2::getEntityByBarcode(con$coreApi,"BEER","BEER1",fullMetadata=FALSE,useVerbose=verbose)$entity
-     #             
-     #             expect_match(b$Barcode,"BEER1",all=verbose)
-     #             
-     #             expect_match(b$Name,"Sarges Best Dark Lager",all=verbose)
-     #             
-     #             b<-CoreAPIV2::getEntityByBarcode(con$coreApi,"BEER","BEER1",fullMetadata=TRUE,useVerbose=verbose)$entity
-     #             
-     #             expect_match(b$Barcode,"BEER1",all=verbose)
-     #             
-     #             expect_match(b$Name,"Sarges Best Dark Lager",all=verbose)
-     #             
-     #             
-     #             
-     #             logout<-CoreAPIV2::logOut(api,useVerbose = verbose)
-     #             expect_match(logout$success,"Success")
-     #             
-     #           })
-     # 
-     # 
-     # 
+     
+     test_that(paste("test login and get an entity that returns chuned response", instance),
+               {
+                 
+                 verbose <- FALSE
+                 api <- CoreAPIV2::coreAPI(instance)
+                 
+                 
+                 con<- CoreAPIV2::authBasic(api,useVerbose=verbose)
+                 
+                 expect_match(api$coreUrl,con$coreApi$coreUrl,all=verbose)
+                 expect_that(is.null(con$coreApi$jsessionId),equals(FALSE))
+                 
+                 lheader <- c(Accept = "application/json;odata.metadata=full")
+                 
+                 cells<- CoreAPIV2::apiGET(con$coreApi,resource = "_384_WELL_PLATE",query ="('TE1')/REV_IMPL_CONTAINER_CELL" ,headers = lheader,
+                                           useVerbose=FALSE)
+                 
+                 expect_equal(length(cells$content),384,all=verbose)
+                 
+                 expect_equal(length(cells$content[[1]]),12,all=verbose)
+                 
+                 
+                 logout<-CoreAPIV2::logOut(api,useVerbose = verbose)
+                 expect_match(logout$success,"Success")
+                 
+                 
+               })
+     
+     test_that(paste("test login and get container and cell contents", instance),
+               {
+                 
+                 verbose <- FALSE
+                 api <- CoreAPIV2::coreAPI(instance)
+                 
+                 
+                 con<- CoreAPIV2::authBasic(api,useVerbose=verbose)
+                 
+                 expect_match(api$coreUrl,con$coreApi$coreUrl,all=verbose)
+                 expect_that(is.null(con$coreApi$jsessionId),equals(FALSE))
+                 
+                 lheader <- c(Accept = "application/json;odata.metadata=full")
+                 
+                 
+                 container<-CoreAPIV2::getEntityByBarcode(con$coreApi,entityType = "_384_WELL_PLATE",
+                                                          barcode='TE1',fullMetadata = TRUE,useVerbose = TRUE)
+                 expect_match(container$entity$CONTAINER_FORMAT,"384 Well",all=verbose)
+                 
+                 
+                 
+                 cells<- CoreAPIV2::apiGET(con$coreApi,resource = "_384_WELL_PLATE",query ="('TE1')/REV_IMPL_CONTAINER_CELL" ,headers = lheader,
+                                           useVerbose=FALSE)
+                 expect_equal(length(cells$content),384,all=verbose)
+                 expect_equal(cells$content[[1]]$Id,18535076,all=verbose)
+                 
+                 content<- CoreAPIV2::apiGET(con$coreApi,resource = "CELL", query = paste0("(",cells$content[[1]]$Id,")/CONTENT"),headers = lheader,
+                                             useVerbose=FALSE)
+                 
+                 cellId <- as.character(content$content$value[[1]]$Id)
+                 
+                 cell1_lot<- CoreAPIV2::getCellContents(con$coreApi,cellId,useVerbose = TRUE)
+                 
+              
+                 expect_match(cell1_lot$content$value[[1]]$Name,"PS1-1",all=verbose)
+                
+                
+                 
+                 logout<-CoreAPIV2::logOut(api,useVerbose = verbose)
+                 expect_match(logout$success,"Success")
+                 
+                 
+               })
+     
+     
+     
+    
