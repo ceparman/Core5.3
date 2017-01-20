@@ -62,11 +62,13 @@ if(!is.null(httr::headers(response)$'transfer-encoding'))
 
 
 #two methods for chunked and not chunked
+# it appears sometimes we get a content$value and sometimes we get just content 
 
 if(!chunked){
   #not chunked response
+  if(is.null( httr::content(response)[["value"]])){
   content <- httr::content(response)  
-  
+    } else content <- httr::content(response)$value  
   
 } else
 {

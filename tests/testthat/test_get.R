@@ -47,7 +47,7 @@ instance <<- "test_environments/Test%205.2.postman_environment.json"
               })
   
      
-     test_that(paste("test login and get an entity that returns chuned response", instance),
+     test_that(paste("test login and get an entity that returns chunked response", instance),
                {
                  
                  verbose <- FALSE
@@ -101,10 +101,8 @@ instance <<- "test_environments/Test%205.2.postman_environment.json"
                  expect_equal(length(cells$content),384,all=verbose)
                  expect_equal(cells$content[[1]]$Id,18535076,all=verbose)
                  
-                 content<- CoreAPIV2::apiGET(con$coreApi,resource = "CELL", query = paste0("(",cells$content[[1]]$Id,")/CONTENT"),headers = lheader,
-                                             useVerbose=FALSE)
-                 
-                 cellId <- as.character(content$content$value[[1]]$Id)
+                   
+                 cellId <- as.character(cells$content[[1]]$Id)
                  
                  cell1_lot<- CoreAPIV2::getCellContents(con$coreApi,cellId,useVerbose = TRUE)
                  

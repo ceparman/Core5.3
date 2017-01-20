@@ -21,16 +21,41 @@
 getContainerContents<-function (coreApi,containerType,containerBarcode,useVerbose = FALSE)
 {
 
-#get the container  
-#container<-CoreAPIV2::getEntityByBarcode(con$coreApi,entityType = "_384_WELL_PLATE",barcode='TE1')
+  lheader <- c(Accept = "application/json;odata.metadata=full")
+#get the container cells     
+  
+cells<- CoreAPIV2::apiGET(coreApi,resource = containerType,
+                          query =paste0("('",containerBarcode,"')/REV_IMPL_CONTAINER_CELL") ,headers = lheader,
+                          useVerbose=FALSE)
+  
+content<-list()
 
-#get thecontainer cells   
+#build list of cell contents
 
-cells<- CoreAPIV2::apiGET(con$coreApi,resource = "_384_WELL_PLATE",query = "('TE1')/REV_IMPL_CONTAINER_CELL" )  
-    
-list(entity=httr::content(response)$response$data,response=response)
+for ( i in 1:length(cells$content$value))
+{
+  
+cellId <-cells$content$value[[i]]$Id   
+  
+print(i)  
+  
+}
+
+
+
+
+
+#list(entity=httr::content(response)$response$data,response=response)
 
 }
 
+
+#api<- CoreAPIV2::coreAPI("tests/testthat/test_environments/Test%205.2.postman_environment.json")
+
+#con<- CoreAPIV2::authBasic(api,useVerbose=TRUE)
+
+#CoreAPIV2::getContainerContents(con$coreApi,"VIAL","VIA1",useVerbose = FALSE)
+
+#CoreAPIV2::getContainerContents(con$coreApi,"_384_WELL_PLATE","TE1",useVerbose = FALSE)
 
 

@@ -20,9 +20,18 @@
 getCellContents<-function (coreApi,cellId,useVerbose = FALSE)
 {
   
+
 header <- c(Accept = "application/json;odata.metadata=full")
-  
-lotQuery <- paste0("(",cellId,")/IMPL_SAMPLE_LOT")
+ 
+
+
+content<- CoreAPIV2::apiGET(coreApi,resource = "CELL", query = paste0("(",cellId,")/CONTENT"),headers = header,
+                            useVerbose=FALSE)
+
+
+contentId <- as.character(content$content$value[[1]]$Id)
+
+lotQuery <- paste0("(",contentId,")/IMPL_SAMPLE_LOT")
 
 
 response<-CoreAPIV2::apiGET(coreApi,resource = "CELL_CONTENT", query = lotQuery,headers = header,
