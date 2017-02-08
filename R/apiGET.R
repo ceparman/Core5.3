@@ -27,15 +27,21 @@ apiGET<-function(coreApi,resource,query,headers=NULL,special=NULL,useVerbose=FAL
  
 sdk_url<- CoreAPIV2::buildUrl(coreApi,resource=resource,query=query,special=NULL,useVerbose=useVerbose)
 base_sdk_url <- sdk_url  #need if we need to build url for additional chunks  
-   
+ 
+cookie <- c(JSESSIONID = coreApi$jsessionId, AWSELB = coreApi$awselb )
+  
 #Get first response
 
 if (useVerbose){  
-           response<- httr::with_verbose(httr::GET(sdk_url,httr::add_headers(headers))) 
+           response<- httr::with_verbose(httr::GET(sdk_url,httr::add_headers(headers)),
+                                         httr::set_cookies(cookie)
+                                         ) 
   
      } else  {
        
-     response<-httr::GET(sdk_url,httr::add_headers(headers))
+     response<-httr::GET(sdk_url,httr::add_headers(headers),
+                         httr::set_cookies(cookie)
+                     ) 
   
     }  
 
@@ -91,11 +97,13 @@ if(!chunked){
        
        #
        if (useVerbose){  
-         response<- httr::with_verbose(httr::GET(sdk_url,httr::add_headers(headers))) 
+         response<- httr::with_verbose(httr::GET(sdk_url,httr::add_headers(headers)),
+                                       httr::set_cookies(cookie)) 
          
        } else  {
            
-         response<-httr::GET(sdk_url,httr::add_headers(headers))
+         response<-httr::GET(sdk_url,httr::add_headers(headers),
+                             httr::set_cookies(cookie))
          
        }    
        #add content 
@@ -118,3 +126,4 @@ out <- list(content = content, response = response)
    
 return(out)
 }
+

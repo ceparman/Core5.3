@@ -37,7 +37,7 @@ JSONapiCall<-function(coreApi,body,encode,special=NULL,useVerbose=FALSE)
 
 sdk_url<-  CoreAPIV2::JSONbuildUrl(coreApi,special=special,useVerbose=useVerbose)
 
-cookie <- c(JSESSIONID = con$coreApi$jsessionId, AWSELB = con$coreApi$awselb )
+cookie <- c(JSESSIONID = coreApi$jsessionId, AWSELB = coreApi$awselb )
 
         response<-invisible(httr::POST(sdk_url,body = body, encode=encode,httr::set_cookies(cookie),
                                         httr::verbose(data_out = useVerbose, data_in = useVerbose,

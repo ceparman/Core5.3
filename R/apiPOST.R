@@ -40,11 +40,12 @@ apiPOST<-function(coreApi,resource=NULL,body=NULL,encode,headers=NULL,special=NU
 
 sdk_url<-  CoreAPIV2::buildUrl(coreApi,resource=resource,special=special,useVerbose=useVerbose)
 
-
+cookie <- c(JSESSIONID = coreApi$jsessionId, AWSELB = coreApi$awselb )
 
 response<-invisible(httr::POST(sdk_url,resource=resource,body = body, encode=encode,headers=headers,
-                                        httr::verbose(data_out = useVerbose, data_in = useVerbose,
-                                                      info = useVerbose, ssl = useVerbose))
+                               httr::set_cookies(cookie),
+                               httr::verbose(data_out = useVerbose, data_in = useVerbose,
+                                               info = useVerbose, ssl = useVerbose))
                       )
     
        

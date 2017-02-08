@@ -104,10 +104,10 @@ instance <<- "test_environments/Test%205.2.postman_environment.json"
                    
                  cellId <- as.character(cells$content[[1]]$Id)
                  
-                 cell1_lot<- CoreAPIV2::getCellContents(con$coreApi,cellId,useVerbose = TRUE)
+                 p<- CoreAPIV2::getCellContents(con$coreApi,"TE1","1",useVerbose = TRUE)
                  
               
-                 expect_match(cell1_lot$content$value[[1]]$Name,"PS1-1",all=verbose)
+                 expect_match(p$entity$cells[[1]]$cellContents[[1]]$lotBarcode,"PS1-1",all=verbose)
                 
                 
                  

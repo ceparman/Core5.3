@@ -43,9 +43,9 @@ apiPUT<-function(coreApi,resource=NULL,query=NULL,body=NULL,encode,headers=NULL,
 
  sdk_url<-  CoreAPIV2::buildUrl(coreApi,resource=resource,query=query,special=special,useVerbose=useVerbose)
 
-
+ cookie <- c(JSESSIONID = coreApi$jsessionId, AWSELB = coreApi$awselb )
  
- response<-invisible(httr::PUT(sdk_url,config=list(add_headers=headers,
+ response<-invisible(httr::PUT(sdk_url,config=list(add_headers=headers, httr::set_cookies(cookie),
                                                    verbose=httr::verbose(data_out = useVerbose, data_in = useVerbose,
                                                                          info = useVerbose, ssl = useVerbose)
                                                    ),
