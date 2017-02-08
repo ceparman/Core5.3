@@ -2,45 +2,51 @@
 #'
 #' \code{getCellContents} Gets information about container cell contents.
 #' @param coreApi coreApi object with valid jsessionid
-#' @param cellId Cell ID returned in $ID slot of contaner cell, not to be confused with the content ID
+#' @param containerBarcode container barcode
+#' @param containerCellNum container cell number as a string
 #' @param useVerbose  Use verbose communication for debugging
 #' @export
-#' @return RETURN returns a list $entity contains contents information.  This is list with the cell contents 
-#' in cell number order. $response contains the entire http response.
+#' @return RETURN returns a list $entity contains cell information, $response contains the entire http response
 #' @examples
 #'\dontrun{
-#' api<-CoreAPIV2::coreApi("PATH TO JSON FILE")
+#' api<-CoreAPI("PATH TO JSON FILE")
 #' login<- CoreAPIV2::authBasic(api)
-#' cell<-CoreAPIV2::getCellContents(login$coreApi,cellID,useVerbose = TRUE)
+#' cell<-CoreAPIV2::getCellContents(login$coreApi,"VIA9","1")
 #' CoreAPIV2::logOut(login$coreApi )
 #' }
 #'@author Craig Parman
-#'@description \code{getCellContents} - Gets information about container cell contents.
+#'@description \code{getCellContents} - Gets information about container cell contents. This call uses the JSON API.
 
-getCellContents<-function (coreApi,cellId,useVerbose = FALSE)
+
+
+
+
+getCellContents<-function (coreApi, containerBarcode, containerCellNum,useVerbose = FALSE)
 {
-  
 
-header <- c(Accept = "application/json;odata.metadata=full")
- 
+  sdkCmd<-jsonlite::unbox("get")
 
-
-content<- CoreAPIV2::apiGET(coreApi,resource = "CELL", query = paste0("(",cellId,")/CONTENT"),headers = header,
-                            useVerbose=FALSE)
+  data<-list()
 
 
-contentId <- as.character(content$content$value[[1]]$Id)
-
-lotQuery <- paste0("(",contentId,")/IMPL_SAMPLE_LOT")
+  data[["cellRefs"]] <- list(c(list(cellNum = jsonlite::unbox(containerCellNum), containerRef = list(barcode =jsonlite::unbox(containerBarcode))) ) )
 
 
-response<-CoreAPIV2::apiGET(coreApi,resource = "CELL_CONTENT", query = lotQuery,headers = header,
-                         useVerbose=useVerbose)
-  
+  responseOptions<-c("CONTEXT_GET","MESSAGE_LEVEL_WARN","INCLUDE_CONTAINER_CELL_CONTENTS")
+  logicOptions<-list()
+  typeParam <- jsonlite::unbox("CELL")
 
-#list(entity=httr::content(response),response=response)
 
-response
+ request<-list(request=list(sdkCmd=sdkCmd,data=data,typeParam =typeParam,
+                             responseOptions=responseOptions,
+                             logicOptions=logicOptions))
+
+
+response<- CoreAPIV2::JSONapiCall(coreApi,request,"json",useVerbose=useVerbose)
+
+
+list(entity=httr::content(response)$response$data,response=response)
+
 }
 
 

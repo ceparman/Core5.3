@@ -1,4 +1,4 @@
-#' jsonApiCall - Base call to Core REST API.
+#' JSONapiCall - Base call to Core REST API.
 #'
 #' \code{jsonApiCall}  Base call to Core json REST API.
 #' @param coreApi coreApi object with valid jsessionid
@@ -12,14 +12,14 @@
 #'\dontrun{
 #' api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 #' login<- CoreAPIV2::authBasic(api)
-#' response <-CoreAPIV2::apiCall(login$coreApi,body,encode="json",,special=NULL,useVerbose=FALSE)
+#' response <-CoreAPIV2::JSONapiCall(login$coreApi,body,encode="json",,special=NULL,useVerbose=FALSE)
 #' logOut(login$coreApi )
 #' }
 #'@author Craig Parman
-#'@description \code{apiCall}  Base call to Core json REST API.
+#'@description \code{JSONapiCall}  Base call to Core json REST API.
 
 
-jsonApiCall<-function(coreApi,body,encode,special=NULL,useVerbose=FALSE)
+JSONapiCall<-function(coreApi,body,encode,special=NULL,useVerbose=FALSE)
 {
 #Check that encode parameter is proper
 
@@ -35,11 +35,11 @@ jsonApiCall<-function(coreApi,body,encode,special=NULL,useVerbose=FALSE)
 
 
 
-sdk_url<-  CoreAPIV2::buildJsonUrl(coreApi,special=special,useVerbose=useVerbose)
+sdk_url<-  CoreAPIV2::JSONbuildUrl(coreApi,special=special,useVerbose=useVerbose)
 
+cookie <- c(JSESSIONID = con$coreApi$jsessionId, AWSELB = con$coreApi$awselb )
 
-
-        response<-invisible(httr::POST(sdk_url,body = body, encode=encode,
+        response<-invisible(httr::POST(sdk_url,body = body, encode=encode,httr::set_cookies(cookie),
                                         httr::verbose(data_out = useVerbose, data_in = useVerbose,
                                                       info = useVerbose, ssl = useVerbose))
                                   )

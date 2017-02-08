@@ -4,18 +4,20 @@
 \alias{getCellContents}
 \title{getCellContents -  Gets information about container cell contents.}
 \usage{
-getCellContents(coreApi, cellId, useVerbose = FALSE)
+getCellContents(coreApi, containerBarcode, containerCellNum,
+  useVerbose = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
 
-\item{cellId}{Cell ID returned in $ID slot of contaner cell, not to be confused with the content ID}
+\item{containerBarcode}{container barcode}
+
+\item{containerCellNum}{container cell number as a string}
 
 \item{useVerbose}{Use verbose communication for debugging}
 }
 \value{
-RETURN returns a list $entity contains contents information.  This is list with the cell contents 
-in cell number order. $response contains the entire http response.
+RETURN returns a list $entity contains cell information, $response contains the entire http response
 }
 \description{
 \code{getCellContents} - Gets information about container cell contents.
@@ -25,10 +27,10 @@ in cell number order. $response contains the entire http response.
 }
 \examples{
 \dontrun{
-api<-CoreAPIV2::coreApi("PATH TO JSON FILE")
-login<- CoreAPIV2::authBasic(api)
-cell<-CoreAPIV2::getCellContents(login$coreApi,cellID,useVerbose = TRUE)
-CoreAPIV2::logOut(login$coreApi )
+api<-CoreAPI("PATH TO JSON FILE")
+login<- CoreAPI::authBasic(api)
+cell<-getCellContents(login$coreApi,"VIA9","1")
+logOut(login$coreApi )
 }
 }
 \author{

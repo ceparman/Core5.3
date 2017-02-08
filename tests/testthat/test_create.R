@@ -5,7 +5,7 @@ context("Tests for create")
 
 rm(list=ls())
 
-verbose <- FALSE
+verbose <- FALSE   
 
 #setup to work with environment
 

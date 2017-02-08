@@ -1,0 +1,60 @@
+{
+  "id": "c3e550c7-b06a-4897-86a9-ae240ec0104b",
+  "name": "Test 5.2",
+  "values": [
+    {
+      "key": "tenant",
+      "value": "R-Integration_Baseline",
+      "type": "text",
+      "enabled": true
+    },
+    {
+      "key": "scheme",
+      "value": "http",
+      "type": "text",
+      "name": "scheme",
+      "enabled": true,
+      "hovered": false
+    },
+    {
+      "key": "host",
+      "value": "qakms-test.coredev.cloud",
+      "type": "text",
+      "name": "host",
+      "enabled": true,
+      "hovered": false
+    },
+    {
+      "key": "context",
+      "value": "",
+      "type": "text",
+      "enabled": true
+    },
+    {
+      "key": "username",
+      "value": "apitester2",
+      "type": "text",
+      "name": "nameadmin",
+      "enabled": true,
+      "hovered": false
+    },
+    {
+      "key": "password",
+      "value": "passtests",
+      "type": "text",
+      "name": "passwordadmin",
+      "enabled": true,
+      "hovered": false
+    },
+    {
+      "key": "port",
+      "value": "80",
+      "type": "text",
+      "enabled": true
+    }
+  ],
+  "timestamp": 1479400209811,
+  "_postman_variable_scope": "environment",
+  "_postman_exported_at": "2016-11-18T18:29:23.546Z",
+  "_postman_exported_using": "Postman/4.8.3"
+}
