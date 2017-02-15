@@ -24,7 +24,15 @@
 
 apiPOST<-function(coreApi,resource=NULL,body=NULL,encode,headers=NULL,special=NULL,useVerbose=FALSE)
 {
-#Check that encode parameter is proper
+
+  
+  
+#clean the resource name for ODATA
+  
+resource <- CoreAPIV2::ODATAcleanName(resource)  
+  
+  
+  #Check that encode parameter is proper
 
    if ( !(encode %in% c("multipart", "form", "json", "raw"))) {
         stop(

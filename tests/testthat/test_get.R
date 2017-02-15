@@ -61,7 +61,7 @@ instance <<- "test_environments/Test%205.2.postman_environment.json"
                  
                  lheader <- c(Accept = "application/json;odata.metadata=full")
                  
-                 cells<- CoreAPIV2::apiGET(con$coreApi,resource = "_384_WELL_PLATE",query ="('TE1')/REV_IMPL_CONTAINER_CELL" ,headers = lheader,
+                 cells<- CoreAPIV2::apiGET(con$coreApi,resource = "384 WELL PLATE",query ="('TE1')/REV_IMPL_CONTAINER_CELL" ,headers = lheader,
                                            useVerbose=FALSE)
                  
                  expect_equal(length(cells$content),384,all=verbose)
@@ -96,7 +96,7 @@ instance <<- "test_environments/Test%205.2.postman_environment.json"
                  
                  
                  
-                 cells<- CoreAPIV2::apiGET(con$coreApi,resource = "_384_WELL_PLATE",query ="('TE1')/REV_IMPL_CONTAINER_CELL" ,headers = lheader,
+                 cells<- CoreAPIV2::apiGET(con$coreApi,resource = "384 WELL PLATE",query ="('TE1')/REV_IMPL_CONTAINER_CELL" ,headers = lheader,
                                            useVerbose=FALSE)
                  expect_equal(length(cells$content),384,all=verbose)
                  expect_equal(cells$content[[1]]$Id,18535076,all=verbose)

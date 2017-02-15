@@ -55,7 +55,7 @@ instance <<- "test_environments/Test%205.2.postman_environment.json"
                  lheader <- c(Accept = "application/json;odata.metadata=full")
                  
                  
-                 container<-CoreAPIV2::getEntityByBarcode(con$coreApi,entityType = "_384_WELL_PLATE",
+                 container<-CoreAPIV2::getEntityByBarcode(con$coreApi,entityType = "384 WELL PLATE",
                                                           barcode='TE1',fullMetadata = TRUE,useVerbose = TRUE)
                  expect_match(container$entity$CONTAINER_FORMAT,"384 Well",all=verbose)
                  

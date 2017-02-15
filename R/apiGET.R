@@ -24,6 +24,10 @@
 apiGET<-function(coreApi,resource,query,headers=NULL,special=NULL,useVerbose=FALSE)
 {
 
+  
+#clean the resource name for ODATA
+  
+  resource <- CoreAPIV2::ODATAcleanName(resource)
  
 sdk_url<- CoreAPIV2::buildUrl(coreApi,resource=resource,query=query,special=NULL,useVerbose=useVerbose)
 base_sdk_url <- sdk_url  #need if we need to build url for additional chunks  
