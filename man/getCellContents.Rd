@@ -20,7 +20,7 @@ getCellContents(coreApi, containerBarcode, containerCellNum,
 RETURN returns a list $entity contains cell information, $response contains the entire http response
 }
 \description{
-\code{getCellContents} - Gets information about container cell contents.
+\code{getCellContents} - Gets information about container cell contents. This call uses the JSON API.
 }
 \details{
 \code{getCellContents} Gets information about container cell contents.
@@ -28,9 +28,9 @@ RETURN returns a list $entity contains cell information, $response contains the 
 \examples{
 \dontrun{
 api<-CoreAPI("PATH TO JSON FILE")
-login<- CoreAPI::authBasic(api)
-cell<-getCellContents(login$coreApi,"VIA9","1")
-logOut(login$coreApi )
+login<- CoreAPIV2::authBasic(api)
+cell<-CoreAPIV2::getCellContents(login$coreApi,"VIA9","1")
+CoreAPIV2::logOut(login$coreApi )
 }
 }
 \author{

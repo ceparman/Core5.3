@@ -24,7 +24,11 @@
 getEntityMetadata<-function (coreApi,entityType,useVerbose=FALSE)
 
 {
+#clean the name for ODATA
   
+ entityType <- CoreAPIV2::ODATAcleanName(entityType)  
+  
+    
 ## get all metadata  
 header <- c(Accept = "application/xml")
 
@@ -65,14 +69,14 @@ names<-paste0(names,"@odata.bind")
 
 types<-sapply(lapply(navigation, XML::xmlAttrs), function(x) x["Type"])
 partners<-sapply(lapply(navigation, XML::xmlAttrs), function(x) x["Partner"])
+
+  
+ 
+
+
+if(length(types) !=0)
+{
 associations<-data.frame(names = names, types = types, partners=partners,stringsAsFactors = FALSE)
-
-
-#Create list oblect that can be used for create
-
-atttribute_values<-as.list(rep("",nrow(attributes)))
-
-names(atttribute_values) <- attributes$names
 
 
 
@@ -80,7 +84,20 @@ forward_associations <- associations[!startsWith(associations$names,"REV_"),]
 
 association_values<-as.list(rep("",nrow(forward_associations)))
 
-names(association_values) <- forward_associations$names
+names(association_values) <- forward_associations$names } else 
+  {association_values <- list()
+   associations <- list()
+  }
+  
+
+
+#Create list object that can be used for create
+
+atttribute_values<-as.list(rep("",nrow(attributes)))
+
+names(atttribute_values) <- attributes$names
+
+
 
 template <- c(atttribute_values,association_values)
 

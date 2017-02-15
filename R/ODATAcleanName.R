@@ -1,15 +1,15 @@
-
 #' ODATAcleanName - converts names to ODATA compliant version. Used to clean names in ODATA calls.
 #'
 #' \code{ODATAcleanName} Clean a name for ODATA.
-#' @param name  string to clean
+#' @param name  string to clean 
+#' @export
 #' @return Returns name in ODAt compliant form
 #' @examples
 #'\dontrun{
 #' new_name <-CoreAPIV2::ODATAcleanName("384 Well Plate")
 #' new_name
-#' "_384_WELL_PLATE
-#`}`
+#' _384_WELL_PLATE
+#'  }
 #'@author Craig Parman
 #'@description \code{ODATAcleanName} - converts names to ODATA compliant version. Used to clean names in ODATA calls.
 

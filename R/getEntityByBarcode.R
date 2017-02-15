@@ -24,7 +24,11 @@
 getEntityByBarcode<-function (coreApi,entityType,barcode,fullMetadata=TRUE,useVerbose=FALSE)
 
 {
-
+  
+#clean the name for ODATA
+  
+ entityType <- CoreAPIV2::ODATAcleanName(entityType)
+  
  resource <- entityType
   
  query   <- paste0("('",barcode,"')")

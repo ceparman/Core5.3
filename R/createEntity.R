@@ -26,6 +26,9 @@ createEntity<-function (coreApi,entityType,body,
 
 {
 
+  #clean the name for ODATA
+  
+ entityType <- CoreAPIV2::ODATAcleanName(entityType)
  
  
 response<-CoreAPIV2::apiPOST(coreApi,resource=entityType,body=body,encode = "json",headers =httr::content_type_json(),special=NULL,useVerbose=TRUE)

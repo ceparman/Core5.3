@@ -24,6 +24,12 @@
 getContainerContents<-function (coreApi, containerType,containerBarcode,useVerbose = FALSE)
 {
 
+  
+  
+  #clean the name for ODATA
+  
+  containerType <- CoreAPIV2::ODATAcleanName(entityType)
+  
   sdkCmd<-jsonlite::unbox("get")
 
   data<-list()

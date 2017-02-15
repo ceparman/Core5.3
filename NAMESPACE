@@ -3,6 +3,7 @@
 export(JSONapiCall)
 export(JSONauthBasic)
 export(JSONbuildUrl)
+export(ODATAcleanName)
 export(apiGET)
 export(apiPOST)
 export(apiPUT)

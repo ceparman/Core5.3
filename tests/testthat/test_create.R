@@ -57,5 +57,37 @@ instance <<- "test_environments/Test%205.2.postman_environment.json"
               expect_match(logout$success,"Success")
 
               })
+     
+     test_that(paste("create object that requires cleaned name for ODATA", instance),
+               {
+                 
+                 verbose <- FALSE
+                 api <- CoreAPIV2::coreAPI(instance)
+                 
+                 con<- CoreAPIV2::authBasic(api,useVerbose=verbose)
+                 
+                 expect_match(api$coreUrl,con$coreApi$coreUrl,all=verbose)
+                 expect_that(is.null(con$coreApi$jsessionId),equals(FALSE))
+                 
+                 
+                 out<-CoreAPIV2::getEntityMetadata(con$coreApi,"384 WELL PLATE",useVerbose = FALSE)
+                 
+                 
+                 body<-out$template
+                 return<-CoreAPIV2::createEntity(con$coreApi,"384 WELL PLATE",body=body)
+                 
+                 barcode<-return$entity$Barcode
+                 
+                 
+                 b<-CoreAPIV2::getEntityByBarcode(con$coreApi,"384 WELL PLATE",barcode,useVerbose=verbose)$entity
+                 
+                 expect_match(b$Barcode,barcode,all=verbose)
+                 
+               
+                 logout<-CoreAPIV2::logOut(api,useVerbose = verbose)
+                 expect_match(logout$success,"Success")
+                 
+               })
+     
+     
   
- 
