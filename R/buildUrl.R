@@ -29,7 +29,8 @@ if (is.null(special)){
   } else {
 
   switch(special,
-         login = sdk_url<-paste(coreApi$scheme,"://",coreApi$coreUrl,":",coreApi$port,"/odatalogin",sep="")
+         login = sdk_url<-paste(coreApi$scheme,"://",coreApi$coreUrl,":",coreApi$port,"/odatalogin",sep=""),
+         file = sdk_url <-paste0(coreApi$scheme,"://",coreApi$coreUrl,":",coreApi$port,"/sdk")
 
   )
   }

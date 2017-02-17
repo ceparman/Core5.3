@@ -16,15 +16,13 @@ attachFile(coreApi, barcode, filename, filepath, targetAttributeName = "",
 
 \item{filepath}{path to the file to attach}
 
-\item{targetAttributeName}{- if included the name if the attribute to attach the file to.  Must be in all caps.}
-
 \item{useVerbose}{Use verbose communication for debugging}
 }
 \value{
 RETURN returns a list $entity contains entity information, $response contains the entire http response
 }
 \description{
-\code{attachFile} Attaches a file to entity identified by barcode or one of its attributes.
+\code{attachFile} Attaches a file to entity identified by barcode.
 }
 \details{
 \code{attachFile}  Attaches a file to an entity or file attribute.

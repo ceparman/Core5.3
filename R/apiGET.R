@@ -69,7 +69,7 @@ if(!is.null(httr::headers(response)$'transfer-encoding'))
 
 } else chunked <- FALSE
 
-
+chunked <- !is.null(httr::content(response)$`@odata.nextLink`) ### added to account for chunked header when not really chunked
 
 #two methods for chunked and not chunked
 # it appears sometimes we get a content$value and sometimes we get just content 
@@ -88,13 +88,14 @@ if(!chunked){
   skiptoken <- 1  #counter for chunks
   
   content <- httr::content(response)$value
+ 
   
      while (more_content)  
        
      {
        #build url for next chunk
-       
        sdk_url<-paste0(base_sdk_url,"?$skiptoken=",skiptoken)
+       
        skiptoken <- skiptoken+1
        
        #get next data chunk

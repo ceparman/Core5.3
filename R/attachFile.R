@@ -8,7 +8,7 @@
 #' @param barcode User provided barcode as a character string
 #' @param filename name to use for the attached file
 #' @param filepath path to the file to attach
-#' @param targetAttributeName - if included the name if the attribute to attach the file to.  Must be in all caps.
+
 #' @param useVerbose Use verbose communication for debugging
 #' @export
 #' @return RETURN returns a list $entity contains entity information, $response contains the entire http response
@@ -21,10 +21,10 @@
 #' CoreAPIV2::logOut(login$coreApi )
 #' }
 #'@author Craig Parman
-#'@description \code{attachFile} Attaches a file to entity identified by barcode or one of its attributes.
+#'@description \code{attachFile} Attaches a file to entity identified by barcode.
 
 
-
+# @param targetAttributeName - if included the name if the attribute to attach the file to.  Must be in all caps.  NOT WORKING
 
 attachFile<-function (coreApi,barcode,filename,filepath,targetAttributeName="",useVerbose=FALSE)
 
@@ -50,8 +50,9 @@ attachFile<-function (coreApi,barcode,filename,filepath,targetAttributeName="",u
   sdkCmd<-jsonlite::unbox("file-attach")
 
    data<-list(targetEntityBarcode = jsonlite::unbox(barcode),
-             name=jsonlite::unbox(filename),
-             targetAttributeName=jsonlite::unbox(targetAttributeName),
+              targetEntityId=jsonlite::unbox(""),
+              name=jsonlite::unbox(filename),
+             targetAttributeName=jsonlite::unbox(""), #  targetAttributeName=jsonlite::unbox(targetAttributeName),  NOT WORKING
              fileContentTypeOverride=jsonlite::unbox("")
    )
 
@@ -59,7 +60,7 @@ attachFile<-function (coreApi,barcode,filename,filepath,targetAttributeName="",u
 
 
    responseOptions<-c("CONTEXT_GET","MESSAGE_LEVEL_WARN")
-   logicOptions<-jsonlite::unbox("EXECUTE_TRIGGERS")
+   logicOptions<-"EXECUTE_TRIGGERS"
    typeParam <- jsonlite::unbox("FILE")
 
 
@@ -70,19 +71,53 @@ attachFile<-function (coreApi,barcode,filename,filepath,targetAttributeName="",u
                               logicOptions=logicOptions))
 
 
+   
+   headers<-c("Content-Type" = "multipart/related")
+   
+   
+   
 
 
    form<-list(json = jsonlite::toJSON(request),
-              fileData=httr::upload_file(filepath)
+              fileData=httr::upload_file(filepath,type = "image/png")
    )
 
+  
+  
+  body <- list(
+    json = jsonlite::toJSON(request),
+    fileData = httr::upload_file(filepath)
+  )
+  
+  
+    cookie <- c(JSESSIONID = coreApi$jsessionId, AWSELB = coreApi$awselb )
+  
+    
 
-
-
-   #upload file
-   response<- CoreAPIV2::jsonApiCall(coreApi,form,encode = "multipart",useVerbose=useVerbose)
-
-
+   response<- httr::POST("http://qakms-test.coredev.cloud/sdk",
+                          body=body,
+                          httr::verbose(),
+                          httr::add_headers("Content-Type" = "multipart/form-data"),
+                          httr::set_cookies(cookie)
+                         
+   )
+   
+   
+   
+   
+   #check for general HTTP error in response
+   
+   if(httr::http_error(response)) {
+     
+     stop(
+       {print("json API file-attach call failed")
+         print( httr::http_status(response))
+       },
+       call.=FALSE
+     )
+     
+     
+   }
 
   list(entity=httr::content(response)$response$data,response=response)
 
