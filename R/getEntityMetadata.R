@@ -47,6 +47,22 @@ schemachildren<-XML::xmlChildren(topchildren$DataServices)[["Schema"]]
 
 entity<-schemachildren[[which(lapply(XML::xmlSApply(schemachildren,XML::xmlAttrs), function(x) x[["Name"]]) == entityType)]]
 
+
+
+if ( is.null(entity)) {
+  stop(
+    {print(paste("entity name",entityType,"not recognized"))
+      print( httr::http_status(response))
+    },
+    call.=FALSE
+  )
+  
+}
+
+
+
+
+
 #Get Attribues
 
 
@@ -108,10 +124,12 @@ if(length(types) !=0)
 
 #Create list object that can be used for create
 
+if(!is.null(nrow(attributes))) { 
 atttribute_values<-as.list(rep("",nrow(attributes)))
 
 names(atttribute_values) <- attributes$names
-
+} else atttribute_values <- list() 
+  
 
 
 template <- c(atttribute_values,association_values)
