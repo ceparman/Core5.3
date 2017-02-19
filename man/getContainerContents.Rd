@@ -5,7 +5,7 @@
 \title{getContainerContents -  Gets information about container cell contents.}
 \usage{
 getContainerContents(coreApi, containerType, containerBarcode,
-  useVerbose = FALSE)
+  fullMetadata = TRUE, useVerbose = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}

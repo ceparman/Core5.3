@@ -8,7 +8,7 @@ verbose <- FALSE
 
 #setup to work with environment
 
-instance <<- "test_environments/Test%205.2.postman_environment.json"
+instance <- "test_environments/Test%205.2.postman_environment.json"
 
 
 
@@ -29,6 +29,10 @@ instance <<- "test_environments/Test%205.2.postman_environment.json"
 
               expect_match(b$Barcode,"VIA1",all=verbose)
               
+              cc<-CoreAPIV2::getContainerContents(con$coreApi,"VIAL","VIA1")   
+              
+              expect_match(cc$entity$REV_IMPL_CONTAINER_CELL[[1]]$CONTENT[[1]]$IMPL_SAMPLE_LOT$Name,
+                           "PS2-1",all=verbose)
               
               logout<-CoreAPIV2::logOut(api,useVerbose = verbose)
               expect_match(logout$success,"Success")
@@ -40,7 +44,7 @@ instance <<- "test_environments/Test%205.2.postman_environment.json"
      
     
      
-     test_that(paste("test login and get container and cell contents", instance),
+     test_that(paste("test login and get container and cell contents for multi well plate", instance),
                {
                  
                  verbose <- FALSE
@@ -67,7 +71,11 @@ instance <<- "test_environments/Test%205.2.postman_environment.json"
               
                  expect_match(p$entity$cells[[1]]$cellContents[[1]]$lotBarcode,"PS1-1",all=verbose)
                 
-                
+                 cc<-CoreAPIV2::getContainerContents(con$coreApi,"384 WELL PLATE","TE1")   
+                 
+                 expect_match(cc$entity$REV_IMPL_CONTAINER_CELL[[1]]$CONTENT[[1]]$IMPL_SAMPLE_LOT$Name,
+                              "PS1-1",all=verbose)
+                 
                  
                  logout<-CoreAPIV2::logOut(api,useVerbose = verbose)
                  expect_match(logout$success,"Success")

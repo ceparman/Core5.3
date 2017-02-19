@@ -55,7 +55,23 @@ properties<-entity[names(entity) == "Property"]
 names<-sapply(lapply(properties, XML::xmlAttrs), function(x) x["Name"])
 types<-sapply(lapply(properties, XML::xmlAttrs), function(x) x["Type"])
 defaults<-sapply(lapply(properties, XML::xmlAttrs), function(x) x["DefaultValue"])
-attributes<-data.frame(names = names, types = types, defaults=defaults,stringsAsFactors = FALSE)
+
+
+
+if(length(types) !=0)
+{
+  attributes<-data.frame(names = names, types = types, defaults=defaults,stringsAsFactors = FALSE)
+
+} else 
+    
+    
+  {
+  attributes <- list()
+  }
+
+
+
+
 
 #Get Associations
 
@@ -76,15 +92,14 @@ partners<-sapply(lapply(navigation, XML::xmlAttrs), function(x) x["Partner"])
 
 if(length(types) !=0)
 {
-associations<-data.frame(names = names, types = types, partners=partners,stringsAsFactors = FALSE)
+  associations<-data.frame(names = names, types = types, partners=partners,stringsAsFactors = FALSE)
 
+  forward_associations <- associations[!startsWith(associations$names,"REV_"),] 
 
+  association_values<-as.list(rep("",nrow(forward_associations)))
 
-forward_associations <- associations[!startsWith(associations$names,"REV_"),] 
-
-association_values<-as.list(rep("",nrow(forward_associations)))
-
-names(association_values) <- forward_associations$names } else 
+  names(association_values) <- forward_associations$names 
+ } else 
   {association_values <- list()
    associations <- list()
   }

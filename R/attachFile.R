@@ -8,7 +8,7 @@
 #' @param barcode User provided barcode as a character string
 #' @param filename name to use for the attached file
 #' @param filepath path to the file to attach
-
+#' @param targetAttributeName -NOT WORKING if included the name if the attribute to attach the file to.  Must be in all caps.  NOT WORKING
 #' @param useVerbose Use verbose communication for debugging
 #' @export
 #' @return RETURN returns a list $entity contains entity information, $response contains the entire http response
@@ -96,7 +96,7 @@ attachFile<-function (coreApi,barcode,filename,filepath,targetAttributeName="",u
 
    response<- httr::POST("http://qakms-test.coredev.cloud/sdk",
                           body=body,
-                          httr::verbose(),
+                          httr::verbose(data_out= FALSE),
                           httr::add_headers("Content-Type" = "multipart/form-data"),
                           httr::set_cookies(cookie)
                          
