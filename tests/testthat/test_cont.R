@@ -66,10 +66,10 @@ instance <- "test_environments/Test%205.2.postman_environment.json"
                  
                 
                  
-                 p<- CoreAPIV2::getCellContents(con$coreApi,"TE1","1",useVerbose = TRUE)
+                 p<- CoreAPIV2::getWellContents(con$coreApi,"384 WELL PLATE","TE1","1",useVerbose = TRUE)
                  
               
-                 expect_match(p$entity$cells[[1]]$cellContents[[1]]$lotBarcode,"PS1-1",all=verbose)
+                 expect_match(p$entity$CONTENT[[1]]$IMPL_SAMPLE_LOT$Barcode,"PS1-1",all=verbose)
                 
                  cc<-CoreAPIV2::getContainerContents(con$coreApi,"384 WELL PLATE","TE1")   
                  

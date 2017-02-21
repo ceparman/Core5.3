@@ -5,7 +5,7 @@
 \title{getContainerCellIds -  Gets cell ids for a container}
 \usage{
 getContainerCellIds(coreApi, containerType, containerBarcode,
-  fullMetadata = TRUE, useVerbose = FALSE)
+  useVerbose = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
