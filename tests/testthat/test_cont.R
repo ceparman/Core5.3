@@ -83,6 +83,38 @@ instance <- "test_environments/Test%205.2.postman_environment.json"
                  
                })
      
+     test_that(paste("test  get container IDs for multi well plate and Vial", instance),
+               {
+                 
+                 verbose <- FALSE
+                 api <- CoreAPIV2::coreAPI(instance)
+                 
+                 
+                 con<- CoreAPIV2::authBasic(api,useVerbose=verbose)
+                 
+                 expect_match(api$coreUrl,con$coreApi$coreUrl,all=verbose)
+                 expect_that(is.null(con$coreApi$jsessionId),equals(FALSE))
+                 
+                 
+                 
+                 cells<-CoreAPIV2::getContainerCellIds(con$coreApi,containerType = "384 WELL PLATE",
+                                                       containerBarcode = 'TE1',useVerbose = TRUE)
+                 
+                 expect_equal(cells$entity[1],18535078,all=verbose)
+                 
+                 cells<-CoreAPIV2::getContainerCellIds(con$coreApi,containerType = "VIAL",
+                                                       containerBarcode='VIA1',useVerbose = TRUE)
+                 
+                 expect_equal(cells$entity[1],18161996,all=verbose)
+                 
+                 
+                 
+                 logout<-CoreAPIV2::logOut(api,useVerbose = verbose)
+                 expect_match(logout$success,"Success")
+                 
+                 
+               })
+     
      
      
     

@@ -2,7 +2,7 @@
 % Please edit documentation in R/getContainerContents.R
 \name{getContainerContents}
 \alias{getContainerContents}
-\title{getContainerContents -  Gets information about container cell contents.}
+\title{getContainerContents -  Gets information about container contents.}
 \usage{
 getContainerContents(coreApi, containerType, containerBarcode,
   fullMetadata = TRUE, useVerbose = FALSE)
@@ -14,6 +14,8 @@ getContainerContents(coreApi, containerType, containerBarcode,
 
 \item{containerBarcode}{container barcode}
 
+\item{fullMetadata}{return full metadata}
+
 \item{useVerbose}{Use verbose communication for debugging}
 }
 \value{
@@ -23,7 +25,7 @@ RETURN returns a list $entity contains cell information, $response contains the 
 \code{getContainerContents} - Gets information about container cell contents. This call uses the JSON API.
 }
 \details{
-\code{getContainerContents} Gets information about container cell contents.
+\code{getContainerContents} Gets information about container contents.
 }
 \examples{
 \dontrun{
