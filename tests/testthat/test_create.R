@@ -13,7 +13,7 @@ instance <<- "test_environments/Test%205.2.postman_environment.json"
 
 
 
-     test_that(paste("test login parameters for environment", instance),
+     test_that(paste("test login,create sample and lot", instance),
             {
 
               verbose <- FALSE
@@ -43,7 +43,7 @@ instance <<- "test_environments/Test%205.2.postman_environment.json"
               
               body[["SAMPLE_ENZYME@odata.bind"]] <- "/ENZYME('ENZ1')"
               
-              return<-CoreAPIV2::createEntity(con$coreApi,"PATIENT_SAMPLE",body=body)
+              return<-CoreAPIV2::createEntity(coreApi = con$coreApi,entityType = "PATIENT_SAMPLE",body=body)
               
               barcode<-return$entity$Barcode
               
@@ -53,6 +53,18 @@ instance <<- "test_environments/Test%205.2.postman_environment.json"
               expect_match(b$Barcode,barcode,all=verbose)
               
               expect_match(b$SOURCE_LAB,"ACME",all=verbose)
+              
+              
+          #create sample lot
+              
+              sl<-CoreAPIV2::createSampleLot(con$coreApi,sampleType="PATIENT_SAMPLE",sampleBarcode=b$Barcode,body=NULL,
+                                         useVerbose=TRUE)
+              
+              expect_equal(is.numeric(sl$entity$Sequence),TRUE,all=verbose)
+              
+              expect_equal( httr::status_code(sl$response),201,all=verbose)
+              
+              
               logout<-CoreAPIV2::logOut(api,useVerbose = verbose)
               expect_match(logout$success,"Success")
 

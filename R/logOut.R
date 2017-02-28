@@ -26,9 +26,10 @@ logOut<-function(coreApi, useVerbose = FALSE)
 
   request<-list(request=list(sdkCmd =jsonlite::unbox("sdk-logout"), typeParam =jsonlite::unbox("*"),data= NULL ),
                 responseOptions = list())
-
   
-  response<- CoreAPIV2::apiPOST(coreApi=coreApi,body=request,headers = httr::content_type_json(),encode="json",special="login",useVerbose=useVerbose)
+  headers <- c('Content-Type' = "application/json;odata.metadata=full",accept= "application/json")
+  
+  response<- CoreAPIV2::apiPOST(coreApi=coreApi,body=request,headers =headers,encode="json",special="login",useVerbose=useVerbose)
 
 
   list(success= httr::http_status(response)$category,response=response)

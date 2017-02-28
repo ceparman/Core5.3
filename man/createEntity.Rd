@@ -12,7 +12,7 @@ createEntity(coreApi, entityType, body, locationId = NULL,
 
 \item{entityType}{entity type to get as character string}
 
-\item{body}{values for attributes and associations as a list of key-values pairs}
+\item{body}{values for attributes and associations as a  list of key-values pairs}
 
 \item{locationId}{location ID for initial location as character string}
 

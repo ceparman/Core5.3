@@ -27,7 +27,7 @@ instance <<- "test_environments/Test%205.2.postman_environment.json"
               expect_that(is.null(con$coreApi$jsessionId),equals(FALSE))
   #create plate            
               
-              return<-CoreAPIV2::createEntity(con$coreApi,"384 WELL PLATE",body=fromJSON("{}"))  
+              return<-CoreAPIV2::createEntity(con$coreApi,"384 WELL PLATE",body=jsonlite::fromJSON("{}"))  
          
 #fill the plate with concentration series              
  
@@ -101,7 +101,7 @@ instance <<- "test_environments/Test%205.2.postman_environment.json"
                  expect_that(is.null(con$coreApi$jsessionId),equals(FALSE))
                  #create plate            
                  
-                 return<-CoreAPIV2::createEntity(con$coreApi,"384 WELL PLATE",body=fromJSON("{}"))  
+                 return<-CoreAPIV2::createEntity(con$coreApi,"384 WELL PLATE",body=jsonlite::fromJSON("{}"))  
                  
                 
                  

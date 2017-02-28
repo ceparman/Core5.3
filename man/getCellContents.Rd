@@ -4,7 +4,7 @@
 \alias{getCellContents}
 \title{getCellContents -  Gets information about a single container well contents.}
 \usage{
-getCellContents(coreApi, containerType, containerBarcode, containerCellNum,
+getCellContents(coreApi, containerType, containerBarcode, containerCellId,
   useVerbose = FALSE)
 }
 \arguments{
@@ -14,7 +14,7 @@ getCellContents(coreApi, containerType, containerBarcode, containerCellNum,
 
 \item{containerBarcode}{container barcode}
 
-\item{containerCellNum}{container cell number as a string}
+\item{containerCellId}{container cell number as a string}
 
 \item{useVerbose}{Use verbose communication for debugging}
 }

@@ -50,7 +50,7 @@ sdk_url<-  CoreAPIV2::buildUrl(coreApi,resource=resource,special=special,useVerb
 
 cookie <- c(JSESSIONID = coreApi$jsessionId, AWSELB = coreApi$awselb )
 
-response<-invisible(httr::POST(sdk_url,resource=resource,body = body, encode=encode,headers=headers,
+response<-invisible(httr::POST(sdk_url,resource=resource,body = body, encode=encode,httr::add_headers(headers),
                                httr::set_cookies(cookie),
                                httr::verbose(data_out = useVerbose, data_in = useVerbose,
                                                info = useVerbose, ssl = useVerbose))
