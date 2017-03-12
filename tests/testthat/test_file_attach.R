@@ -58,7 +58,7 @@ instance <<- "test_environments/Test%205.2.postman_environment.json"
               filepath <- "test_files/trouble.PNG"
               filename <- "pic.PNG"
               
-              r<-attachFile(con$coreApi,b$Barcode,filename,filepath,targetAttributeName="",useVerbose=FALSE)
+              r<-CoreAPIV2::attachFile(con$coreApi,b$Barcode,filename,filepath,targetAttributeName="",useVerbose=FALSE)
              
              
               

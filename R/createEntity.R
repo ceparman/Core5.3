@@ -32,7 +32,7 @@ createEntity<-function (coreApi,entityType,body,
   
  headers <- c('Content-Type' = "application/json;odata.metadata=full",accept= "application/json")
  
-response<-CoreAPIV2::apiPOST(coreApi,resource=entityType,body=body,encode = "json", headers =headers ,special=NULL,useVerbose=TRUE)
+response<-CoreAPIV2::apiPOST(coreApi,resource=entityType,body=body,encode = "json", headers =headers ,special=NULL,useVerbose=useVerbose)
  
 
 

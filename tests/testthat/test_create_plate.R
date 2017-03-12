@@ -41,7 +41,7 @@ instance <<- "test_environments/Test%205.2.postman_environment.json"
     
       for (i in 1:16){  #                  loop over rows
         
-          for (j in 1:24){              #loop over columns
+          for (j in 1:2){              #loop over 2 columns
           
           containerWellNum <- (i-1)*24 + j
           
@@ -62,20 +62,20 @@ instance <<- "test_environments/Test%205.2.postman_environment.json"
               
                
               wc1<- CoreAPIV2::getWellContents(con$coreApi, containerType, containerBarcode, 1, useVerbose = FALSE)
-              wc384<- CoreAPIV2::getWellContents(con$coreApi, containerType, containerBarcode, 384, useVerbose = FALSE)
+              wc2<- CoreAPIV2::getWellContents(con$coreApi, containerType, containerBarcode, 2, useVerbose = FALSE)
               
 
               expect_equal(wc1$entity$CI_AMOUNT,1,all=verbose)
-              expect_equal(wc384$entity$CI_AMOUNT,1,all=verbose)
+              expect_equal(wc2$entity$CI_AMOUNT,1,all=verbose)
               
               
               expect_equal(wc1$entity$CONTENT[[1]]$CI_CONC,2,all=verbose)
-              expect_equal(wc384$entity$CONTENT[[1]]$CI_CONC,48,all=verbose)
+              expect_equal(wc2$entity$CONTENT[[1]]$CI_CONC,4,all=verbose)
               
               
               
               expect_match(wc1$entity$CONTENT[[1]]$IMPL_SAMPLE_LOT$Name,sampleLotBarcode,all=verbose)
-              expect_match(wc384$entity$CONTENT[[1]]$IMPL_SAMPLE_LOT$Name,sampleLotBarcode,all=verbose)
+              expect_match(wc2$entity$CONTENT[[1]]$IMPL_SAMPLE_LOT$Name,sampleLotBarcode,all=verbose)
               
               
               
@@ -124,7 +124,7 @@ instance <<- "test_environments/Test%205.2.postman_environment.json"
                  
                  for (i in 1:16){  #                  loop over rows
                    
-                   for (j in 1:24){              #loop over columns
+                   for (j in 1:2){              #loop over 2 columns
                      
                      containerWellNum <- (i-1)*24 + j
                      
@@ -145,20 +145,20 @@ instance <<- "test_environments/Test%205.2.postman_environment.json"
                  
                  
                  wc1<- CoreAPIV2::getWellContents(con$coreApi, containerType, containerBarcode, 1, useVerbose = FALSE)
-                 wc384<- CoreAPIV2::getWellContents(con$coreApi, containerType, containerBarcode, 384, useVerbose = FALSE)
+                 wc2<- CoreAPIV2::getWellContents(con$coreApi, containerType, containerBarcode, 2, useVerbose = FALSE)
                  
                  
                  expect_equal(wc1$entity$CI_AMOUNT,1,all=verbose)
-                 expect_equal(wc384$entity$CI_AMOUNT,1,all=verbose)
+                 expect_equal(wc2$entity$CI_AMOUNT,1,all=verbose)
                  
                  
                  expect_equal(wc1$entity$CONTENT[[1]]$CI_CONC,2,all=verbose)
-                 expect_equal(wc384$entity$CONTENT[[1]]$CI_CONC,48,all=verbose)
+                 expect_equal(wc2$entity$CONTENT[[1]]$CI_CONC,4,all=verbose)
                  
                  
                  
                  expect_match(wc1$entity$CONTENT[[1]]$IMPL_SAMPLE_LOT$Name,sampleLotBarcode,all=verbose)
-                 expect_match(wc384$entity$CONTENT[[1]]$IMPL_SAMPLE_LOT$Name,sampleLotBarcode,all=verbose)
+                 expect_match(wc2$entity$CONTENT[[1]]$IMPL_SAMPLE_LOT$Name,sampleLotBarcode,all=verbose)
                  
                  
                  
