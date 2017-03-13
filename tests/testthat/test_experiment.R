@@ -46,16 +46,24 @@ test_that(paste("test login,create sample and lot", instance),
            
             expect_that( expt$entity$PUBLISHED,equals(FALSE))
             
-            response<-experimentPublish(coreApi, "SIMPLE EXPERIMENT", "SPX18",useVerbose = FALSE)
+            response<-experimentPublish(coreApi, "SIMPLE EXPERIMENT",  expt$entity$Barcode,useVerbose = FALSE)
+            
+            updatedExpt<-CoreAPIV2::getEntityByBarcode(coreApi,entityType = "SIMPLE EXPERIMENT",barcode = expt$entity$Barcode)
+            
+            
             response$entity$values$PUBLISHED
             
-            expect_that( expt$entity$PUBLISHED,equals(TRUE))
+            expect_that( updatedExpt$entity$PUBLISHED,equals(TRUE))
             
             
-            response<-experimentUnPublish(coreApi, "SIMPLE EXPERIMENT", "SPX18",useVerbose = FALSE)
+            response<-experimentUnPublish(coreApi, "SIMPLE EXPERIMENT",  expt$entity$Barcode,useVerbose = FALSE)
+           
+            updatedExpt<-CoreAPIV2::getEntityByBarcode(coreApi,entityType = "SIMPLE EXPERIMENT",barcode = expt$entity$Barcode)
             
-            expect_that( expt$entity$PUBLISHED,equals(FALSE))
+  
+            expect_that( updatedExpt$entity$PUBLISHED,equals(FALSE))
             
+          
             
            
             
