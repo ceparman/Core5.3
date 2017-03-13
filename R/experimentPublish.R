@@ -25,11 +25,7 @@ experimentPublish<- function(coreApi, experimentType, experimentBarcode,useVerbo
 
 {
 
-  
-  sdk_url<-  CoreAPIV2::JSONbuildUrl(coreApi,special=NULL,useVerbose=useVerbose)
-  
-  cookie <- c(JSESSIONID = coreApi$jsessionId, AWSELB = coreApi$awselb )
-  
+ 
 #build request
   
   sdkCmd<-jsonlite::unbox("experiment-publish")
@@ -56,14 +52,9 @@ experimentPublish<- function(coreApi, experimentType, experimentBarcode,useVerbo
    headers <- c('Content-Type' = "application/json",Accept= "*/*",
                Cookie = paste0("AWSELB=",coreApi$awselb))
   
-  
-  response<-
-    httr::POST(sdk_url,body = jsonlite::toJSON(request), encode="raw",
-                            httr::add_headers(headers),
-                    httr::verbose(data_out = useVerbose, data_in = useVerbose,
-                    info = useVerbose, ssl = useVerbose)
-     )
-  
+   
+   response<-  CoreAPIV2::apiPOST(coreApi,resource=NULL,body=jsonlite::toJSON(request), encode="raw",
+                                    headers=headers,special="json",useVerbose=useVerbose)
   
 
   list(entity=httr::content(response)$response$data,response=response)

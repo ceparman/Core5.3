@@ -30,7 +30,9 @@ if (is.null(special)){
 
   switch(special,
          login = sdk_url<-paste(coreApi$scheme,"://",coreApi$coreUrl,":",coreApi$port,"/odatalogin",sep=""),
-         file = sdk_url <-paste0(coreApi$scheme,"://",coreApi$coreUrl,":",coreApi$port,"/sdk")
+         file = sdk_url <-paste0(coreApi$scheme,"://",coreApi$coreUrl,":",coreApi$port,"/sdk"), 
+         json = sdk_url <-paste0(coreApi$scheme,"://",coreApi$coreUrl,":",coreApi$port,"/sdk")
+         
 
   )
   }
