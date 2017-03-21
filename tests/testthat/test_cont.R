@@ -116,5 +116,57 @@ instance <- "test_environments/Test%205.2.postman_environment.json"
                })
      
      
+     test_that(paste("test create container, setContents, and update contents", instance),
+               {
+                 
+                 verbose <- FALSE
+                 api <- CoreAPIV2::coreAPI(instance)
+                 
+                 
+                 con<- CoreAPIV2::authBasic(api,useVerbose=verbose)
+                 
+                 expect_match(api$coreUrl,con$coreApi$coreUrl,all=verbose)
+                 expect_that(is.null(con$coreApi$jsessionId),equals(FALSE))
+                 
+                 
+                 vial<-CoreAPIV2::createEntity(con$coreApi,"VIAL",body=jsonlite::fromJSON("{}"))$entity  
+                 
+                 barcode<-vial$Barcode
+                 
+                 
+                 setCont<-CoreAPIV2::setWellContents(coreApi = con$coreApi,containerType = 'VIAL',
+                                                     containerBarcode = barcode,
+                                                     containerWellNum = "1",sampleLotType = "PATIENT SAMPLE LOT",
+                                                     sampleLotBarcode = "PS1-1",amount = 1,
+                                                     amountUnit = "ml",concentration =1,concentrationUnit = "nM",useVerbose=TRUE)
+                 
+                 wc1<- CoreAPIV2::getWellContents(con$coreApi, "VIAL", barcode, 1, useVerbose = FALSE)
+                 
+                 
+                 expect_equal(wc1$entity$CI_AMOUNT,1,all=verbose)
+                
+                 expect_equal(wc1$entity$CONTENT[[1]]$CI_CONC,1,all=verbose)
+                 
+                
+                 wc1<-CoreAPIV2::updateCellContents(coreApi = con$coreApi,containerType = 'VIAL',
+                                                  containerBarcode = barcode,
+                                                  containerCellNum = 0,
+                                                  sampleLotBarcode = "PS1-1",amount = 2,
+                                                  amountUnit = "ml",concentration =2,concentrationUnit = "nM",useVerbose=TRUE)
+                 
+                 expect_equal( wc1$entity$cells[[1]]$amount,2,all=verbose)
+                 
+                 expect_equal(wc1$entity$cells[[1]]$cellContents[[1]]$concentration,"0.002",all=verbose)
+                 
+                 
+                 
+                 logout<-CoreAPIV2::logOut(api,useVerbose = verbose)
+                 expect_match(logout$success,"Success")
+                 
+                 
+               })
+     
+     
+     
      
     
