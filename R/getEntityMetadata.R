@@ -28,15 +28,21 @@ getEntityMetadata<-function (coreApi,entityType,useVerbose=FALSE)
   
  entityType <- CoreAPIV2::ODATAcleanName(entityType)  
   
-    
+#userpwd<- paste0(coreApi$user,":",coreApi$pwd)   
+ 
 ## get all metadata  
-header <- c(Accept = "application/xml")
+header <- c(Accept = "application/xml"
+          # , Authorization = paste0("Basic ", base64enc::base64encode( charToRaw(userpwd)))
+           )
+
+#need special GET for XML with a basic authorization header 
+
+#m<-httr::GET(CoreAPIV2::buildUrl(coreApi,resource=NULL,query="$metadata",special=NULL,useVerbose=TRUE),httr::accept_xml())
+
+m<- CoreAPIV2::apiGET(coreApi,resource =NULL, query = "$metadata",headers = header,useVerbose=useVerbose)
 
 
-#need special GEt for XML  
-m<-httr::GET(CoreAPIV2::buildUrl(coreApi,resource=NULL,query="$metadata",special=NULL,useVerbose=TRUE),httr::accept_xml())
-
-doc<-XML::xmlTreeParse(m)
+doc<-XML::xmlTreeParse(m$response)
 
 xmltop = XML::xmlRoot(doc)
 

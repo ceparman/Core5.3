@@ -9,7 +9,7 @@ verbose <- FALSE
 
 #setup to work with environment
 
-instance <<- "test_environments/Test%205.2.postman_environment.json"
+instance <<- "test_environments/5-2-2.json"
 
 
 
@@ -38,8 +38,9 @@ instance <<- "test_environments/Test%205.2.postman_environment.json"
               body[["REQUESTOR"]] <- "Dr Strange"
               
               
-              body[["FILE"]] <- " "
+              body[["FILE"]] <- NULL
               
+              body[["IMAGE_FILE"]] <- NULL
               
               body[["SAMPLE_ENZYME@odata.bind"]] <- "/ENZYME('ENZ1')"
               

@@ -9,9 +9,14 @@ verbose <- FALSE
 
 #setup to work with environment
 
-instance <<- "test_environments/Test%205.2.postman_environment.json"
+environments<<-list.files("test_environments","*.json",full.names=TRUE)
+                          
+for (i in 1:length(environments))
+{
+                            
+   instance <<-environments[i]
 
-
+  
 
      test_that(paste("test login,create sample and lot", instance),
             {
@@ -30,6 +35,7 @@ instance <<- "test_environments/Test%205.2.postman_environment.json"
               
               
               body<-out$template
+             
               
               body[["SOURCE_LAB"]] <- "ACME"
               
@@ -38,12 +44,12 @@ instance <<- "test_environments/Test%205.2.postman_environment.json"
               body[["REQUESTOR"]] <- "Dr Strange"
               
               
-              body[["FILE"]] <- " "
-              
+              body[["FILE"]] <- NULL
+              body[["IMAGE_FILE"]] <- NULL
               
               body[["SAMPLE_ENZYME@odata.bind"]] <- "/ENZYME('ENZ1')"
               
-              return<-CoreAPIV2::createEntity(coreApi = con$coreApi,entityType = "PATIENT_SAMPLE",body=body)
+              return<-CoreAPIV2::createEntity(coreApi = con$coreApi,entityType = "PATIENT_SAMPLE",body=body,useVerbose = TRUE)
               
               barcode<-return$entity$Barcode
               
@@ -102,4 +108,4 @@ instance <<- "test_environments/Test%205.2.postman_environment.json"
                })
      
      
-  
+}  

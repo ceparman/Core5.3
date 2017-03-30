@@ -9,11 +9,11 @@ verbose <- FALSE
 
 #setup to work with environment
 
-instance <<- "test_environments/Test%205.2.postman_environment.json"
+instance <<- "test_environments/5-2-2.json"
 
 
 
-     test_that(paste("test getEntityMetadata for entity with attributes and associations", instance),
+     test_that(paste("test getEntityMetadata for entity with attributes and associations 1", instance),
             {
 
               verbose <- FALSE
@@ -37,7 +37,7 @@ instance <<- "test_environments/Test%205.2.postman_environment.json"
 
               })
      
-     test_that(paste("test getEntityMetadata for entity without attributes and associations", instance),
+     test_that(paste("test getEntityMetadata for entity without attributes and associations 2", instance),
                {
                  
                  verbose <- FALSE
@@ -56,7 +56,7 @@ instance <<- "test_environments/Test%205.2.postman_environment.json"
                  
                  expect_equal(length(out$attributes),0)
                  
-                 expect_equal(length(out$associations),0)
+                 expect_equal(length(out$associations),3)
                
                  logout<-CoreAPIV2::logOut(api,useVerbose = verbose)
                  expect_match(logout$success,"Success")

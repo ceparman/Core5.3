@@ -94,7 +94,7 @@ attachFile<-function (coreApi,barcode,filename,filepath,targetAttributeName="",u
   
     
 
-   response<- httr::POST("http://qakms-test.coredev.cloud/sdk",
+   response<- httr::POST(paste0(coreApi$scheme,"://",coreApi$coreUrl,"/sdk"),
                           body=body,
                           httr::verbose(data_out= FALSE),
                           httr::add_headers("Content-Type" = "multipart/form-data"),

@@ -10,7 +10,7 @@
     },
     {
       "key": "scheme",
-      "value": "http",
+      "value": "https",
       "type": "text",
       "name": "scheme",
       "enabled": true,
@@ -18,7 +18,7 @@
     },
     {
       "key": "host",
-      "value": "qakms-test.coredev.cloud",
+      "value": "qa-5.coredev.cloud",
       "type": "text",
       "name": "host",
       "enabled": true,
@@ -32,7 +32,7 @@
     },
     {
       "key": "username",
-      "value": "apitester2",
+      "value": "cparman",
       "type": "text",
       "name": "nameadmin",
       "enabled": true,
@@ -40,7 +40,7 @@
     },
     {
       "key": "password",
-      "value": "passtests",
+      "value": "lims11",
       "type": "text",
       "name": "passwordadmin",
       "enabled": true,
@@ -48,7 +48,7 @@
     },
     {
       "key": "port",
-      "value": "80",
+      "value": "443",
       "type": "text",
       "enabled": true
     }

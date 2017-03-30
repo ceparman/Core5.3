@@ -12,7 +12,7 @@ verbose <- FALSE
 
 environments<<-list.files("test_environments","*.json",full.names=TRUE)
 
-
+print(environments)
 for (i in 1:length(environments))
   {
 
