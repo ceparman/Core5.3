@@ -52,7 +52,7 @@ attachFile<-function (coreApi,barcode,filename,filepath,targetAttributeName="",u
    data<-list(targetEntityBarcode = jsonlite::unbox(barcode),
               targetEntityId=jsonlite::unbox(""),
               name=jsonlite::unbox(filename),
-             targetAttributeName=jsonlite::unbox(""), #  targetAttributeName=jsonlite::unbox(targetAttributeName),  NOT WORKING
+              targetAttributeName=jsonlite::unbox(targetAttributeName),  
              fileContentTypeOverride=jsonlite::unbox("")
    )
 

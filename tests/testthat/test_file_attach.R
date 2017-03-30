@@ -58,12 +58,26 @@ instance <<- "test_environments/5-2-2.json"
               
               filepath <- "test_files/trouble.PNG"
               filename <- "pic.PNG"
+      #Attach to the entity        
               
-              r<-CoreAPIV2::attachFile(con$coreApi,b$Barcode,filename,filepath,targetAttributeName="",useVerbose=FALSE)
+              
+              r<-CoreAPIV2::attachFile(con$coreApi,b$Barcode,filename,filepath,targetAttributeName="",useVerbose=verbose)
              
              
+              
               
               expect_equal(grep(pattern = "pic.PNG.[0-9]",r$entity$name),1)
+              
+              expect_equal( httr::status_code(r$response),200)
+              
+    #attach to an atribute          
+          
+              
+              filename <- "picAttrib.PNG"
+              
+              r<-CoreAPIV2::attachFile(con$coreApi,b$Barcode,filename,filepath,targetAttributeName="FILE",useVerbose=verbose)   
+              
+              expect_equal(grep(pattern = "picAttrib.PNG.[0-9]",r$entity$name),1)
               
               expect_equal( httr::status_code(r$response),200)
               
