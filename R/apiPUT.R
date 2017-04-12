@@ -50,18 +50,17 @@ apiPUT<-function(coreApi,resource=NULL,query=NULL,body=NULL,encode,headers=NULL,
 
  cookie <- c(JSESSIONID = coreApi$jsessionId, AWSELB = coreApi$awselb )
  
- response<-invisible(httr::PUT(sdk_url,config=list(add_headers=headers, httr::set_cookies(cookie),
-                                                   verbose=httr::verbose(data_out = useVerbose, data_in = useVerbose,
-                                                                         info = useVerbose, ssl = useVerbose)
-                                                   ),
-                               
-                                 body = body, encode=encode
-                                 )
-                       )
-     
+
+ 
+ 
+response<-    httr::PUT(url = sdk_url,body = jsonlite::toJSON(body,auto_unbox = TRUE), httr::set_cookies(cookie),encode = "raw",
+              httr::add_headers(headers),httr::verbose(data_out = useVerbose, data_in = useVerbose,
+                                                       info = useVerbose, ssl = useVerbose)
+              )
+
         
  
- content <- httr::content(response)
+
 
  
  #check for general HTTP error in response
@@ -77,6 +76,5 @@ apiPUT<-function(coreApi,resource=NULL,query=NULL,body=NULL,encode,headers=NULL,
  
  
  }
- out <- list(content = content, response = response)   
- return(out)
+ return(response)
 }
