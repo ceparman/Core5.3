@@ -61,6 +61,17 @@ for (i in 1:length(environments))
               expect_match(b$SOURCE_LAB,"ACME",all=verbose)
               
               
+          #test update
+              
+              
+              updateValues<-list(SOURCE_LAB = "My Lab",REQUESTOR = "you")
+              
+              ue<-CoreAPIV2::updateEntityAttributes(con$coreApi,"PATIENT_SAMPLE",barcode,updateValues,useVerbose=FALSE)
+              
+              expect_match(ue$entity$SOURCE_LAB,"My Lab",all=verbose)
+              
+              
+              
           #create sample lot
               
               sl<-CoreAPIV2::createSampleLot(con$coreApi,sampleType="PATIENT_SAMPLE",sampleBarcode=b$Barcode,body=NULL,

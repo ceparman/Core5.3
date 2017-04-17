@@ -53,7 +53,7 @@ apiPUT<-function(coreApi,resource=NULL,query=NULL,body=NULL,encode,headers=NULL,
 
  
  
-response<-    httr::PUT(url = sdk_url,body = jsonlite::toJSON(body,auto_unbox = TRUE), httr::set_cookies(cookie),encode = "raw",
+response<-    httr::PUT(url = sdk_url,body = jsonlite::toJSON(body,auto_unbox = TRUE, null = "null"), httr::set_cookies(cookie),encode = "raw",
               httr::add_headers(headers),httr::verbose(data_out = useVerbose, data_in = useVerbose,
                                                        info = useVerbose, ssl = useVerbose)
               )

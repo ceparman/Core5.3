@@ -4,16 +4,17 @@
 \alias{getExperimentSamplesAssayData}
 \title{getExperimentSamplesAssayData - Gets assay data for an experiment sample.}
 \usage{
-getExperimentSamplesAssayData(coreApi, assayType, barcode, useVerbose = FALSE)
+getExperimentSamplesAssayData(coreApi, assayType, experimentSamplebarcode,
+  useVerbose = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
 
 \item{assayType}{assay type to get}
 
-\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http POST}
-
 \item{experimentSamplebarcode}{experiment sample barcode of entity to get}
+
+\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http POST}
 }
 \value{
 returns a list $entity contains entity information, $response contains the entire http response
