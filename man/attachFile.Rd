@@ -16,7 +16,7 @@ attachFile(coreApi, barcode, filename, filepath, targetAttributeName = "",
 
 \item{filepath}{path to the file to attach}
 
-\item{targetAttributeName}{-NOT WORKING if included the name if the attribute to attach the file to.  Must be in all caps.  NOT WORKING}
+\item{targetAttributeName}{- if included the name if the attribute to attach the file to.  Must be in all caps.  NOT WORKING}
 
 \item{useVerbose}{Use verbose communication for debugging}
 }

@@ -109,6 +109,31 @@ test_that(paste("test login,create sample and lot", instance),
             
             expect_that(length(ec$entity)  ,equals(2))
             
+            #add asay data to a sample
+            
+            assayType<- "SIMPLE_ASSAY"
+            experimentSamplebarcode <-es$entity[1]
+            
+            assayAttributeValues <- list(assay_attribute_1 = 600, Comments = "This is a comment number 2")
+           
+            
+            u<-CoreAPIV2::updateExperimentSampleData(coreApi,assayType,experimentSamplebarcode,assayAttributeValues,
+                                                     useVerbose=TRUE)
+            
+            
+            expect_equal(u$entity$ASSAY_ATTRIBUTE_1, 600)
+            
+            expect_equal(u$entity$COMMENTS, "This is a comment number 2")
+            
+            
+            
+            #test get assay data
+            
+            
+            ad<-CoreAPIV2::getExperimentSamplesAssayData(coreApi,assayType,
+                                                         experimentSamplebarcode,useVerbose=TRUE)
+            
+            expect_equal(ad$entity[[1]]$ASSAY_ATTRIBUTE_1, 600)
             
             #publish and wrap up
             

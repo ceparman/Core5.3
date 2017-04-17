@@ -1,4 +1,4 @@
-#  THIS IS NOT WPRKING  5.2 json API file attach appears to not be working 
+
 #
 #
 #' attachFile - Attaches a file to an entity or file attribute.
@@ -8,7 +8,7 @@
 #' @param barcode User provided barcode as a character string
 #' @param filename name to use for the attached file
 #' @param filepath path to the file to attach
-#' @param targetAttributeName -NOT WORKING if included the name if the attribute to attach the file to.  Must be in all caps.  NOT WORKING
+#' @param targetAttributeName - if included the name if the attribute to attach the file to.  Must be in all caps.  NOT WORKING
 #' @param useVerbose Use verbose communication for debugging
 #' @export
 #' @return RETURN returns a list $entity contains entity information, $response contains the entire http response
