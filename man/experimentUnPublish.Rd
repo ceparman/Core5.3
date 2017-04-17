@@ -2,7 +2,7 @@
 % Please edit documentation in R/experimentUnPublish.R
 \name{experimentUnPublish}
 \alias{experimentUnPublish}
-\title{experimentPublish UnPublishes an experiment.}
+\title{experimentUnPublish UnPublishes an experiment.}
 \usage{
 experimentUnPublish(coreApi, experimentType, experimentBarcode,
   useVerbose = FALSE)

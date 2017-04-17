@@ -1,4 +1,4 @@
-#'experimentPublish UnPublishes an experiment.
+#'experimentUnPublish UnPublishes an experiment.
 #'
 #' \code{experimentUnPublish} UnPublishes an experiment.
 #' @param coreApi coreApi object with valid jsessionid
