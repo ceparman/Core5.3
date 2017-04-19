@@ -6,6 +6,7 @@
 #'@param entityType entity type to get
 #'@param barcode barcode of entity to get
 #'@param context association context
+#'@param fullMetadata - get full metadata
 #'@param useVerbose TRUE or FALSE to indicate if verbose options should be used in http POST
 #'@return returns a list $entity contains entity information, $response contains the entire http response
 #'@export
@@ -21,68 +22,34 @@
 
 
 
-getEntityAssociation<-function (coreApi,entityType,barcode,context,useVerbose=FALSE)
+getEntityAssociation<-function (coreApi,entityType,barcode,context,fullMetadata = TRUE, useVerbose=FALSE)
 
 {
   
 #clean the name for ODATA
   
  entityType <- CoreAPIV2::ODATAcleanName(entityType)
-  
+ context <-    CoreAPIV2::ODATAcleanName(context)
+ 
  resource <- entityType
   
  query   <- paste0("('",barcode,"')/",context)
 
-# Get entityType
- 
- entity <- CoreAPIV2::getEntityByBarcode(coreApi,entityType,barcode,fullMetadata = FALSE,useVerbose = TRUE)
- 
-
- old_values<-entity$entity
  
  
- #check to see if all values to update are in the entity
- 
- 
- newAssociations<-list()
- 
- namesToUpdate<- names(updateValues)
- 
- for(i in 1:length(namesToUpdate))
-   
- {
-   
-   name <- paste0(namesToUpdate[i],"@odata.bind")  
-   
-   value <- paste0("/", updateValues[[namesToUpdate[i]]][1],"('",updateValues[[namesToUpdate[i]]][2],"')")
-   
-   
-   newAssociations[[name]] <- value
+ if(fullMetadata){ header<-c(Accept="application/json;odata.metadata=full")
+ } else {
+   header<-c(Accept="application/json;odata.metadata=minimal")  
    
  }
  
- old_values <- c(old_values,newAssociations)
+ 
+ out <- CoreAPIV2::apiGET(coreApi,resource =resource, query = query,headers = header,useVerbose=useVerbose)
  
  
  
+ list(entity=out$content,response=out$response)
  
- body<-old_values   
- 
- resource <- paste0(entityType)
- query <- paste0("('",barcode,"')")
- 
- header<-c("Content-Type"="application/json","If-Match"="*")  
- 
- #update record 
- 
- 
-response<- CoreAPIV2::apiPUT(coreApi,resource = resource, query=query,body=body,encode="raw",
-                              headers = header, useVerbose=useVerbose)
- 
- 
-  
-
-list(entity=httr::content(response),response=response)
 
 }
 

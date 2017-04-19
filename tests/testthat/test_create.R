@@ -61,7 +61,7 @@ for (i in 1:length(environments))
               expect_match(b$SOURCE_LAB,"ACME",all=verbose)
 
 
-          #test update
+          #test update attributes
 
 
               updateValues<-list(SOURCE_LAB = "My Lab",REQUESTOR = "you")
@@ -71,6 +71,31 @@ for (i in 1:length(environments))
               expect_match(ue$entity$SOURCE_LAB,"My Lab",all=verbose)
 
 
+        #test update associations    
+              
+              context <- "SAMPLE_ENZYME"
+              
+              updateValues<-list(SAMPLE_ENZYME = c("ENZYME", "ENZ2"))
+              
+              us<- CoreAPIV2::updateEntityAssociations(con$coreApi,"PATIENT_SAMPLE",barcode,updateValues,useVerbose=FALSE)
+              
+
+              
+              as<-getEntityAssociation(con$coreApi,"PATIENT_SAMPLE",barcode,context,fullMetadata = TRUE, useVerbose=FALSE)
+              
+              expect_match(as$entity[[1]]$Barcode,"ENZ2")
+              
+            #Change it back
+              
+              updateValues<-list(SAMPLE_ENZYME = c("ENZYME", "ENZ1"))
+              
+              us<- CoreAPIV2::updateEntityAssociations(con$coreApi,"PATIENT_SAMPLE",barcode,updateValues,useVerbose=FALSE)
+              
+              as<-getEntityAssociation(con$coreApi,"PATIENT_SAMPLE",barcode,context,fullMetadata = TRUE, useVerbose=FALSE)
+              
+              expect_match(as$entity[[1]]$Barcode,"ENZ1")
+              
+              
 
           #create sample lot
 

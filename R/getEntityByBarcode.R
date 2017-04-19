@@ -33,12 +33,6 @@ getEntityByBarcode<-function (coreApi,entityType,barcode,fullMetadata=TRUE,useVe
   
  query   <- paste0("('",barcode,"')")
 
- 
- # if(fullMetadata){ header<-httr::add_headers(Accept="application/json;odata.metadata=full")
- #   } else {
- #   header<-httr::add_headers(Accept="application/json;odata.metadata=minimal")  
- #   
- # }
 
 
  
