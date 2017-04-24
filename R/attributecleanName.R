@@ -1,6 +1,5 @@
 #' attributeCleanName - converts names to uppercase and replaces spaces with underscores to 
-#' reference attribute names.compliant version. Used to clean names in ODATA calls.
-#'
+#' reference attribute names. 
 #' \code{attributeCleanName} clean attribute name.
 #' @param name  string to clean 
 #' @export
@@ -13,7 +12,8 @@
 #'  }
 #'@author Craig Parman
 #'@description \code{attriureCleanName} - onverts names to uppercase and replaces spaces with underscores to 
-#' reference attribute names.compliant version. Used to clean names in ODATA calls.
+#' reference attribute names.
+#' 
 attributeCleanName<-function(name)
 {
   

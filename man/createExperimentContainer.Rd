@@ -2,7 +2,7 @@
 % Please edit documentation in R/createExperimentContainer.R
 \name{createExperimentContainer}
 \alias{createExperimentContainer}
-\title{createExperimentContainer- Creates a new experiment container.}
+\title{createExperimentContainer- Creates a new experiment container by adding an exiting container to an experiment.}
 \usage{
 createExperimentContainer(coreApi, experimentType, experimentBarcode,
   containerBarcode, body = NULL, useVerbose = FALSE)
@@ -24,10 +24,11 @@ createExperimentContainer(coreApi, experimentType, experimentBarcode,
 RETURN returns a list $entity contains entity information, $response contains the entire http response
 }
 \description{
-\code{createExperimentContainer} Creates a new experiment container from an existing container.  Uses the JSON API not the ODATA interface.
+\code{createExperimentContainer}Creates a new experiment container by adding an exiting container 
+to an experiment.  Uses the JSON API not the ODATA interface.
 }
 \details{
-\code{createExperimentContainer} Creates a new instance of an entity.
+\code{createExperimentContainer} Creates a new experiment container by adding an exiting container to an experiment.
 }
 \examples{
 \dontrun{

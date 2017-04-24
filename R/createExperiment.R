@@ -4,9 +4,9 @@
 #' @param coreApi coreApi object with valid jsessionid
 #' @param experimentType experiment type to get as character string
 #' @param assayType assay type
-#' @param assayBarcode barcode
+#' @param assayBarcode assay barcode
 #' @param protocolType protocol type
-#' @param protocolBarcode barcode
+#' @param protocolBarcode protocol barcode
 #' @param body values for experiment attributes and associations as a  list of key-values pairs
 #' @param useVerbose Use verbose communication for debugging
 #' @export

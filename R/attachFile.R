@@ -1,6 +1,3 @@
-
-#
-#
 #' attachFile - Attaches a file to an entity or file attribute.
 #'
 #' \code{attachFile}  Attaches a file to an entity or file attribute.
@@ -24,7 +21,7 @@
 #'@description \code{attachFile} Attaches a file to entity identified by barcode.
 
 
-# @param targetAttributeName - if included the name if the attribute to attach the file to.  Must be in all caps.  NOT WORKING
+# @param targetAttributeName - if included the name if the attribute to attach the file to.  Must be in all caps. 
 
 attachFile<-function (coreApi,barcode,filename,filepath,targetAttributeName="",useVerbose=FALSE)
 

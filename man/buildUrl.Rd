@@ -31,7 +31,7 @@ RETURN Core REST URL
 \dontrun{
 api<-CoreAPIV2("PATH TO JSON FILE")
 login<- CoreAPIV2::authBasic(api)
-response <-CoreAPIV2::apiCall(login$coreApi,body,"json",useVerbose=FALSE)
+response <-CoreAPIV2::buildUrl(coeApi,"Sample","('PS1')")
 logOut(login$coreApi )
 }
 }

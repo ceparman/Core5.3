@@ -2,7 +2,7 @@
 % Please edit documentation in R/apiGET.R
 \name{apiGET}
 \alias{apiGET}
-\title{apiGET - Do a get to the Core ODATA REST API.}
+\title{apiGET - Do a get from the Core ODATA REST API.}
 \usage{
 apiGET(coreApi, resource, query, headers = NULL, special = NULL,
   useVerbose = FALSE)
@@ -25,7 +25,7 @@ Returns the content, concatenated if a chunked response, and the entire http res
 get if cunked content.
 }
 \description{
-\code{apiGET} - Do a get to the Core ODATA REST API.
+\code{apiGET} - Do a get from the Core ODATA REST API.
 }
 \details{
 \code{apiGET}  Base call to Core REST API.

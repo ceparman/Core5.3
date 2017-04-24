@@ -14,11 +14,11 @@ createExperiment(coreApi, experimentType, assayType, assayBarcode, protocolType,
 
 \item{assayType}{assay type}
 
-\item{assayBarcode}{barcode}
+\item{assayBarcode}{assay barcode}
 
 \item{protocolType}{protocol type}
 
-\item{protocolBarcode}{barcode}
+\item{protocolBarcode}{protocol barcode}
 
 \item{body}{values for experiment attributes and associations as a  list of key-values pairs}
 

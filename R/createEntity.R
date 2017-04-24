@@ -1,6 +1,6 @@
-#' createEntity - Create a new instance of a entity.
+#' createEntity - Create a new instance of a entity. Used for standard object or "Plan Old Core Objects" (POCOs)
 #' 
-#' \code{createEntity} Creates a new instance of an entity.
+#' \code{createEntity} Create a new instance of a entity. Used for standard object or "Plan Old Core Objects" (POCOs) 
 #' @param coreApi coreApi object with valid jsessionid
 #' @param entityType entity type to get as character string
 #' @param body values for attributes and associations as a  list of key-values pairs

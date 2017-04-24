@@ -2,7 +2,7 @@
 % Please edit documentation in R/createExperimentSample.R
 \name{createExperimentSample}
 \alias{createExperimentSample}
-\title{createExperimentSample - Create a new experiment sample.}
+\title{createExperimentSample - Create a new experiment sample from a sample lot.}
 \usage{
 createExperimentSample(coreApi, experimentType, experimentBarcode,
   sampleLotBarcode, body = NULL, useVerbose = FALSE)
@@ -24,7 +24,7 @@ createExperimentSample(coreApi, experimentType, experimentBarcode,
 RETURN returns a list $entity contains entity information, $response contains the entire http response
 }
 \description{
-\code{createExperimentSample} Creates a new experimen.
+\code{createExperimentSample} Creates a new experiment sample fomr a sample lot.
 }
 \details{
 \code{createExperimentSample} Creates a new instance of an entity.

@@ -1,4 +1,4 @@
-#' createExperimentSample - Create a new experiment sample.
+#' createExperimentSample - Create a new experiment sample from a sample lot.
 #' 
 #' \code{createExperimentSample} Creates a new instance of an entity.
 #' @param coreApi coreApi object with valid jsessionid
@@ -17,7 +17,7 @@
 #' CoreAPIV2::logOut(login$coreApi )
 #' }
 #'@author Craig Parman
-#'@description \code{createExperimentSample} Creates a new experimen.
+#'@description \code{createExperimentSample} Creates a new experiment sample fomr a sample lot.
 
 createExperimentSample<-function (coreApi,experimentType,experimentBarcode,
                                   sampleLotBarcode,body=NULL,useVerbose=FALSE)

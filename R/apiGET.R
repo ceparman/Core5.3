@@ -1,4 +1,4 @@
-#' apiGET - Do a get to the Core ODATA REST API.
+#' apiGET - Do a get from the Core ODATA REST API.
 #'
 #' \code{apiGET}  Base call to Core REST API.
 #' @param coreApi coreApi object with valid jsessionid
@@ -18,7 +18,7 @@
 #' CoreAPIV2::logOut(login$coreApi)
 #' }
 #'@author Craig Parman
-#'@description \code{apiGET} - Do a get to the Core ODATA REST API.
+#'@description \code{apiGET} - Do a get from the Core ODATA REST API.
 
 
 apiGET<-function(coreApi,resource,query,headers=NULL,special=NULL,useVerbose=FALSE)

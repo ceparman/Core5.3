@@ -2,7 +2,7 @@
 % Please edit documentation in R/createEntity.R
 \name{createEntity}
 \alias{createEntity}
-\title{createEntity - Create a new instance of a entity.}
+\title{createEntity - Create a new instance of a entity. Used for standard object or "Plan Old Core Objects" (POCOs)}
 \usage{
 createEntity(coreApi, entityType, body, locationId = NULL,
   projectIds = NULL, barcode = NULL, useVerbose = FALSE)
@@ -29,7 +29,7 @@ RETURN returns a list $entity contains entity information, $response contains th
 \code{createEntity} Creates a new entity instance. Required inputs are url, jsessionId and entityType.
 }
 \details{
-\code{createEntity} Creates a new instance of an entity.
+\code{createEntity} Create a new instance of a entity. Used for standard object or "Plan Old Core Objects" (POCOs)
 }
 \examples{
 \dontrun{

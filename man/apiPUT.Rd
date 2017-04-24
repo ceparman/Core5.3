@@ -28,7 +28,7 @@ apiPUT(coreApi, resource = NULL, query = NULL, body = NULL, encode,
 Returns the entire http response
 }
 \description{
-\code{apiPUT} - Base call to Core ODATA REST API.
+\code{apiPUT} - Base PUT call to Core ODATA REST API.
 }
 \details{
 \code{apiPUT}  Do a PUT to the Core ODATA REST API.

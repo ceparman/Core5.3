@@ -25,7 +25,7 @@ RETURN returns a list $entity contains entity information, $response contains th
 \code{createSampleLot} Creates a new sample lot using the parent sample barcode
 }
 \details{
-\code{createSampleLot} Creates a sinple lot of a sample. ASSUMES SAMPLE LOT ENTITY NAME IS OF THE FORM SAMPLENAME_LOT
+\code{createSampleLot} Creates a sample lot of a sample. Assumes the sample lot entity is inth from samplename_lot
 }
 \examples{
 \dontrun{

@@ -3,7 +3,8 @@
 \name{attributeCleanName}
 \alias{attributeCleanName}
 \title{attributeCleanName - converts names to uppercase and replaces spaces with underscores to 
-reference attribute names.compliant version. Used to clean names in ODATA calls.}
+reference attribute names. 
+\code{attributeCleanName} clean attribute name.}
 \usage{
 attributeCleanName(name)
 }
@@ -15,10 +16,7 @@ Returns name in ODAt compliant form
 }
 \description{
 \code{attriureCleanName} - onverts names to uppercase and replaces spaces with underscores to 
-reference attribute names.compliant version. Used to clean names in ODATA calls.
-}
-\details{
-\code{attributeCleanName} clean attribute name.
+reference attribute names.
 }
 \examples{
 \dontrun{

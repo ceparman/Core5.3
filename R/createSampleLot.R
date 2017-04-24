@@ -1,6 +1,6 @@
 #' createSampleLot - Creates a lot of a sample.
 #'
-#' \code{createSampleLot} Creates a sinple lot of a sample. ASSUMES SAMPLE LOT ENTITY NAME IS OF THE FORM SAMPLENAME_LOT
+#' \code{createSampleLot} Creates a sample lot of a sample. Assumes the sample lot entity is inth from samplename_lot
 #' @param coreApi coreApi object with valid jsessionid
 #' @param sampleType sample type to create the lot of
 #' @param sampleBarcode parent sample barcode

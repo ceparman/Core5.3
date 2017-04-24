@@ -59,7 +59,7 @@
 #'                   },
 #'                 {
 #'                     "key": "password",
-#'                     "value": "passtests",
+#'                     "value": "xxxxxx",
 #'                     "type": "text",
 #'                     "name": "passwordadmin",
 #'                     "enabled": true,

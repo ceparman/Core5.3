@@ -19,7 +19,7 @@
 #' CoreAPIV2::logOut(login$coreApi )
 #' }
 #'@author Craig Parman
-#'@description \code{apiPUT} - Base call to Core ODATA REST API.
+#'@description \code{apiPUT} - Base PUT call to Core ODATA REST API.
 
 
 

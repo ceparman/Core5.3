@@ -1,6 +1,6 @@
-#' createExperimentContainer- Creates a new experiment container.
+#' createExperimentContainer- Creates a new experiment container by adding an exiting container to an experiment.
 #' 
-#' \code{createExperimentContainer} Creates a new instance of an entity.
+#' \code{createExperimentContainer} Creates a new experiment container by adding an exiting container to an experiment.
 #' @param coreApi coreApi object with valid jsessionid
 #' @param experimentType experiment type to get as character string
 #' @param experimentBarcode experiment barcode
@@ -17,7 +17,8 @@
 #' CoreAPIV2::logOut(login$coreApi )
 #' }
 #'@author Craig Parman
-#'@description \code{createExperimentContainer} Creates a new experiment container from an existing container.  Uses the JSON API not the ODATA interface.
+#'@description \code{createExperimentContainer}Creates a new experiment container by adding an exiting container 
+#'to an experiment.  Uses the JSON API not the ODATA interface.
 
 createExperimentContainer<-function (coreApi,experimentType,experimentBarcode,
                                   containerBarcode,body=NULL,useVerbose=FALSE)
