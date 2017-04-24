@@ -29,25 +29,25 @@ instance <<- "test_environments/5-2-2.json"
  
               expect_match(b$Barcode,"PS1",all=verbose)
               
-              lc<-CoreAPIV2::updateEntityLocation(coreApi,"PATIENT_SAMPLE","PS1","LC1",useVerbose=FALSE)
+              lc<-CoreAPIV2::updateEntityLocation(con$coreApi,"PATIENT_SAMPLE","PS1","LC1",useVerbose=FALSE)
              
               expect_match( httr::http_status(lc$response)$category,"Success")
               
             
                             
-              lc1<-getEntityLocation(coreApi,"PATIENT_SAMPLE","PS1",useVerbose=FALSE)
+              lc1<-getEntityLocation(con$coreApi,"PATIENT_SAMPLE","PS1",useVerbose=FALSE)
               
               expect_match(lc1$entity[[1]]$Barcode,"LC1")
               
-              lc<-CoreAPIV2::updateEntityLocation(coreApi,"PATIENT_SAMPLE","PS1","LC2",useVerbose=TRUE)
+              lc<-CoreAPIV2::updateEntityLocation(con$coreApi,"PATIENT_SAMPLE","PS1","LC2",useVerbose=TRUE)
               expect_match( httr::http_status(lc$response)$category,"Success")
               
               
-              lc1<-getEntityLocation(coreApi,"PATIENT_SAMPLE","PS1",useVerbose=FALSE)
+              lc1<-getEntityLocation(con$coreApi,"PATIENT_SAMPLE","PS1",useVerbose=FALSE)
               
               expect_match(lc1$entity[[1]]$Barcode,"LC2")
               
-              logout<-CoreAPIV2::logOut(api,useVerbose = verbose)
+              logout<-CoreAPIV2::logOut(con$coreApi,useVerbose = verbose)
               expect_match(logout$success,"Success")
 
         
