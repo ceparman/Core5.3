@@ -2,7 +2,7 @@
 % Please edit documentation in R/getEntityByBarcode.R
 \name{getEntityByBarcode}
 \alias{getEntityByBarcode}
-\title{getEntityByBarcode - Get an entity from the Core LIMS using the ODATA API by barcode.}
+\title{getEntityByBarcode - Get an entity by barcode from the Core LIMS using the ODATA API.}
 \usage{
 getEntityByBarcode(coreApi, entityType, barcode, fullMetadata = TRUE,
   useVerbose = FALSE)
@@ -22,7 +22,7 @@ getEntityByBarcode(coreApi, entityType, barcode, fullMetadata = TRUE,
 returns a list $entity contains entity information, $response contains the entire http response
 }
 \description{
-\code{getEntityByBarcode}  Get an entity from the Core LIMS using the ODATA API by barcode.
+\code{getEntityByBarcode}  Get an entity by barcode from the Core LIMS using the ODATA API.
 }
 \details{
 \code{getEntityByBarcode} get an entity from the LIMS by barcode

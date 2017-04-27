@@ -22,7 +22,7 @@ getWellContents(coreApi, containerType, containerBarcode, containerWellNum,
 RETURN returns a list $entity contains cell information, $response contains the entire http response
 }
 \description{
-\code{getCellContents} -  Gets information about a single container well contents.
+\code{getWellContents} -  Gets information about a single container well contents.
 }
 \details{
 \code{getWellContents} Gets information about container well contents.

@@ -58,7 +58,7 @@ entity<-schemachildren[[which(lapply(XML::xmlSApply(schemachildren,XML::xmlAttrs
 if ( is.null(entity)) {
   stop(
     {print(paste("entity name",entityType,"not recognized"))
-      print( httr::http_status(response))
+    
     },
     call.=FALSE
   )

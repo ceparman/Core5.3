@@ -107,7 +107,9 @@ instance <- "test_environments/5-2-2.json"
                  
                  expect_equal(cells$entity[1],18161996,all=verbose)
                  
+                 c<-CoreAPIV2::getCellContents(con$coreApi,cells$entity[1],useVerbose = TRUE)
                  
+                 expect_equal(c$entity$Id,18161996,all=verbose)
                  
                  logout<-CoreAPIV2::logOut(api,useVerbose = verbose)
                  expect_match(logout$success,"Success")

@@ -10,7 +10,7 @@ ODATAcleanName(name)
 \item{name}{string to clean}
 }
 \value{
-Returns name in ODAt compliant form
+Returns name in ODATA compliant form
 }
 \description{
 \code{ODATAcleanName} - converts names to ODATA compliant version. Used to clean names in ODATA calls.

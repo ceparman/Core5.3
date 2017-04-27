@@ -30,7 +30,7 @@ returns a list $entity contains entity information, $response contains the entir
 \dontrun{
 api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 login<- CoreAPIV2::authBasic(api)
-item<-CoreAPIV2::getEntityAssociation(login$coreApi,"entityType","barcode",values)
+associations<-CoreAPIV2::getEntityAssociation(login$coreApi,"entityType","barcode",values)
 CoreAPIV2::logOut(login$coreApi)
 }
 }

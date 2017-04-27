@@ -2,7 +2,7 @@
 % Please edit documentation in R/updateExperimentSampleData.R
 \name{updateExperimentSampleData}
 \alias{updateExperimentSampleData}
-\title{updateExperimentSampleData - Update experiment sample data.}
+\title{updateExperimentSampleData - Update experiment sample assay data.}
 \usage{
 updateExperimentSampleData(coreApi, assayType, experimentSamplebarcode,
   assayAttributeValues, useVerbose = FALSE)
@@ -23,10 +23,10 @@ RETURN returns a list $entity contains entity information,
        $response contains the entire http response
 }
 \description{
-\code{updateExperimentSampleData} Update experiment sample data.
+\code{updateExperimentSampleData} Update experiment sample assay data.
 }
 \details{
-\code{updateExperimentSampleData} Update experiment sample data.
+\code{updateExperimentSampleData} Update experiment sample assay data.
 }
 \examples{
 \dontrun{

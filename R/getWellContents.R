@@ -16,7 +16,7 @@
 #' CoreAPIV2::logOut(login$coreApi )
 #' }
 #'@author Craig Parman
-#'@description \code{getCellContents} -  Gets information about a single container well contents.
+#'@description \code{getWellContents} -  Gets information about a single container well contents.
 
 
 

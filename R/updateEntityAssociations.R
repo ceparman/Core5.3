@@ -1,6 +1,6 @@
-#` updateEntityAssociations - Update entity attributes
+#` updateEntityAssociations - Update entity assoications
 #'
-#'\code{updateEntityAssociations} Update entity attributes and assoications
+#'\code{updateEntityAssociations} Update entity assoications
 #'
 #'@param coreApi coreApi object with valid jsessionid
 #'@param entityType entity type to get
@@ -17,7 +17,7 @@
 #' CoreAPIV2::logOut(login$coreApi)
 #' }
 #'@author Craig Parman
-#'@description \code{updateEntityAssociations}  Update entity attributes
+#'@description \code{updateEntityAssociations}  Update entity associations.
 
 
 

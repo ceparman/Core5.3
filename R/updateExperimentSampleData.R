@@ -1,6 +1,6 @@
-#' updateExperimentSampleData - Update experiment sample data.
+#' updateExperimentSampleData - Update experiment sample assay data.
 #'
-#' \code{updateExperimentSampleData} Update experiment sample data.
+#' \code{updateExperimentSampleData} Update experiment sample assay data.
 #'
 #' @param coreApi coreApi object with valid jsessionid
 #' @param assayType entity type to get as character string
@@ -19,8 +19,7 @@
 #' CoreAPIV2::logOut(login$coreApi ) response<- CoreAPI::authBasic(coreApi)
 #' }
 #'@author Craig Parman
-#'@description \code{updateExperimentSampleData} Update experiment sample data.
-
+#'@description \code{updateExperimentSampleData} Update experiment sample assay data.
 
 
 updateExperimentSampleData<-function (coreApi,assayType,experimentSamplebarcode,assayAttributeValues,

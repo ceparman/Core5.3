@@ -1,4 +1,4 @@
-#' getEntityLocation - Get location for an entity  by barcode from the Core LIMS using the ODATA API.
+#' getEntityLocation - Get location for an entity by barcode from the Core LIMS using the ODATA API.
 #'
 #'\code{getEntityLocation} Get location for an entity  by barcode from the Core LIMS using the ODATA API.
 #'
@@ -16,7 +16,7 @@
 #' CoreAPIV2::logOut(login$coreApi)
 #' }
 #'@author Craig Parman
-#'@description \code{getEntityLocation}  Get location for an entity  by barcode from the Core LIMS using the ODATA API.
+#'@description \code{getEntityLocation}  Get location for an entity by barcode from the Core LIMS using the ODATA API.
 
 
 

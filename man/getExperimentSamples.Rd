@@ -19,8 +19,7 @@ getExperimentSamples(coreApi, experimentType, barcode, useVerbose = FALSE)
 returns a list $entity contains entity information, $response contains the entire http response
 }
 \description{
-\code{ getExperimentSamples}  Gets experiment samples from experiment identified by experiment barcode. 
-Gets samples attached as sample lots an in containers.
+\code{ getExperimentSamples}  Gets experiment samples from experiment identified by experiment barcode.
 }
 \details{
 \code{getExperimentSamples}  Gets experiment samples from experiment identified by barcode.

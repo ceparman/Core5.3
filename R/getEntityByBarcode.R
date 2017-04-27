@@ -1,4 +1,4 @@
-#' getEntityByBarcode - Get an entity from the Core LIMS using the ODATA API by barcode.
+#' getEntityByBarcode - Get an entity by barcode from the Core LIMS using the ODATA API.
 #'
 #'\code{getEntityByBarcode} get an entity from the LIMS by barcode
 #'
@@ -17,8 +17,7 @@
 #' CoreAPIV2::logOut(login$coreApi)
 #' }
 #'@author Craig Parman
-#'@description \code{getEntityByBarcode}  Get an entity from the Core LIMS using the ODATA API by barcode.
-
+#'@description \code{getEntityByBarcode}  Get an entity by barcode from the Core LIMS using the ODATA API.
 
 
 getEntityByBarcode<-function (coreApi,entityType,barcode,fullMetadata=TRUE,useVerbose=FALSE)

@@ -1,9 +1,7 @@
-#' getCellContents -  Gets information about a single container well contents.
+#' getCellContents -  Gets information about a single container cell contents.
 #'
-#' \code{getCellContents} Gets information about container well contents.
+#' \code{getCellContents} Gets information about container cell contents.
 #' @param coreApi coreApi object with valid jsessionid
-#' @param containerType container type
-#' @param containerBarcode container barcode
 #' @param containerCellId container cell number as a string
 #' @param useVerbose  Use verbose communication for debugging
 #' @export
@@ -12,7 +10,7 @@
 #'\dontrun{
 #' api<-CoreAPI("PATH TO JSON FILE")
 #' login<- CoreAPIV2::authBasic(api)
-#' cell<-CoreAPIV2::getCellContents(login$coreApi,"VIA9","1234233",fullMetadata = TRUE)
+#' cell<-CoreAPIV2::getCellContents(login$coreApi,"1234233",fullMetadata = TRUE)
 #' CoreAPIV2::logOut(login$coreApi )
 #' }
 #'@author Craig Parman
@@ -20,14 +18,10 @@
 
 
 
-getCellContents<-function (coreApi, containerType, containerBarcode, containerCellId, useVerbose = FALSE)
+getCellContents<-function (coreApi, containerCellId, useVerbose = FALSE)
 {
 
-  
-  
-  #clean the name for ODATA
-  
-  resource <- CoreAPIV2::ODATAcleanName(containerType)
+
   
   #make sure containerCellNum is numeric
   

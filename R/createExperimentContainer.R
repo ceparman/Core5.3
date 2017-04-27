@@ -13,7 +13,8 @@
 #'\dontrun{
 #' api<-CoreAPIV2::coreApi("PATH TO JSON FILE")
 #' login<- CoreAPIV2::authBasic(api)
-#' item<-CoreAPIV2::createExperimentContainer(login$coreApi,"Experiment_Type","ExperimentBarCode","Containerbarcode")
+#' item<-CoreAPIV2::createExperimentContainer(login$coreApi,"Experiment_Type",
+#'      "ExperimentBarCode","Containerbarcode")
 #' CoreAPIV2::logOut(login$coreApi )
 #' }
 #'@author Craig Parman

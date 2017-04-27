@@ -2,7 +2,7 @@
 % Please edit documentation in R/getExperimentContainers.R
 \name{getExperimentContainers}
 \alias{getExperimentContainers}
-\title{getExperimentContainers - Gets experiment samples from experiment identified by barcode.}
+\title{getExperimentContainers - Gets experiment containers from experiment identified by barcode.}
 \usage{
 getExperimentContainers(coreApi, experimentType, barcode, useVerbose = FALSE)
 }
@@ -19,11 +19,10 @@ getExperimentContainers(coreApi, experimentType, barcode, useVerbose = FALSE)
 returns a list $entity contains entity information, $response contains the entire http response
 }
 \description{
-\code{getExperimentContainers}  Gets experiment contaiers from experiment identified by experiment barcode. 
-Gets samples attached as sample lots and in containers.
+\code{getExperimentContainers}  Gets experiment contaniers from experiment identified by experiment barcode.
 }
 \details{
-\code{getExperimentContainers}  Gets experiment samples from experiment identified by barcode.
+\code{getExperimentContainers}  Gets experiment containers from experiment identified by barcode.
 }
 \examples{
 \dontrun{

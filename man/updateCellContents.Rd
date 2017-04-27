@@ -2,7 +2,7 @@
 % Please edit documentation in R/updateCellContents.R
 \name{updateCellContents}
 \alias{updateCellContents}
-\title{updateCellContents -  Puts a cell lot in a container cell.}
+\title{updateCellContents -  Updates amount and concentrations of cell content}
 \usage{
 updateCellContents(coreApi, containerType, containerBarcode, containerCellNum,
   sampleLotBarcode, amount, amountUnit, concentration, concentrationUnit,
@@ -34,10 +34,10 @@ RETURN returns a list $entity contains updated container
         information, $response contains the entire http response
 }
 \description{
-\code{updateCellContents} - Puts a cell lot in a container cell.
+\code{updateCellContents} - Updates amount and concentrations of cell content Uses JSON API.
 }
 \details{
-\code{updateCellContents} Puts a cell lot in a container cell
+\code{updateCellContents} Updates amount and concentrations of cell content
 }
 \examples{
 \dontrun{

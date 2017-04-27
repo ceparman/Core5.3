@@ -2,7 +2,7 @@
 % Please edit documentation in R/getEntityLocation.R
 \name{getEntityLocation}
 \alias{getEntityLocation}
-\title{getEntityLocation - Get location for an entity  by barcode from the Core LIMS using the ODATA API.}
+\title{getEntityLocation - Get location for an entity by barcode from the Core LIMS using the ODATA API.}
 \usage{
 getEntityLocation(coreApi, entityType, barcode, useVerbose = FALSE)
 }
@@ -19,7 +19,7 @@ getEntityLocation(coreApi, entityType, barcode, useVerbose = FALSE)
 returns a list $entity contains location entity information, $response contains the entire http response
 }
 \description{
-\code{getEntityLocation}  Get location for an entity  by barcode from the Core LIMS using the ODATA API.
+\code{getEntityLocation}  Get location for an entity by barcode from the Core LIMS using the ODATA API.
 }
 \details{
 \code{getEntityLocation} Get location for an entity  by barcode from the Core LIMS using the ODATA API.

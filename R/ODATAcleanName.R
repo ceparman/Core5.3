@@ -3,7 +3,7 @@
 #' \code{ODATAcleanName} Clean a name for ODATA.
 #' @param name  string to clean 
 #' @export
-#' @return Returns name in ODAt compliant form
+#' @return Returns name in ODATA compliant form
 #' @examples
 #'\dontrun{
 #' new_name <-CoreAPIV2::ODATAcleanName("384 Well Plate")

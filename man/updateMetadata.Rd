@@ -15,7 +15,8 @@ updateMetadata(coreApi, useVerbose = FALSE)
 returns XML with all entitiy metadata
 }
 \description{
-\code{updateMetadata}  Updates cached metadata so metadata is up to date.
+\code{updateMetadata}  Updates cached metadata so metadata is up to date. 
+Must be run after any configuration changes.
 }
 \examples{
 \dontrun{

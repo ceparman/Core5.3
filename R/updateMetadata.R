@@ -14,7 +14,8 @@
 #' CoreAPIV2::logOut(login$coreApi)
 #' }
 #'@author Craig Parman
-#'@description \code{updateMetadata}  Updates cached metadata so metadata is up to date.
+#'@description \code{updateMetadata}  Updates cached metadata so metadata is up to date. 
+#'Must be run after any configuration changes.
 
 
 updateMetadata<-function(coreApi,useVerbose=FALSE)

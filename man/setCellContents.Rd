@@ -2,7 +2,7 @@
 % Please edit documentation in R/setCellContents.R
 \name{setCellContents}
 \alias{setCellContents}
-\title{setCellContents -  Puts a sample lot in a container well.}
+\title{setCellContents -  Puts a sample lot in a container Cell.}
 \usage{
 setCellContents(coreApi, containerType, containerBarcode, containerCellId,
   sampleLotType, sampleLotBarcode, amount, amountUnit, concentration,
@@ -39,7 +39,7 @@ RETURN returns a list $entity contains updated container
 \code{setCellContents} - Puts a cell lot in a container cell.
 }
 \details{
-\code{setCellContents} Puts a sample lot in a container well.
+\code{setCellContents} Puts a sample lot in a container cell.
 }
 \examples{
 \dontrun{

@@ -1,6 +1,6 @@
-#' setCellContents -  Puts a sample lot in a container well.
+#' setCellContents -  Puts a sample lot in a container Cell.
 #'
-#' \code{setCellContents} Puts a sample lot in a container well.
+#' \code{setCellContents} Puts a sample lot in a container cell.
 #' @param coreApi coreApi object with valid jsessionid
 #' @param containerType container type
 #' @param containerBarcode container barcode

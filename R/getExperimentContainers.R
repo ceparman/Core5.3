@@ -1,7 +1,6 @@
-#' getExperimentContainers - Gets experiment samples from experiment identified by barcode.
+#' getExperimentContainers - Gets experiment containers from experiment identified by barcode.
 #'
-#'\code{getExperimentContainers}  Gets experiment samples from experiment identified by barcode.
-#'
+#'\code{getExperimentContainers}  Gets experiment containers from experiment identified by barcode.
 #'@param coreApi coreApi object with valid jsessionid
 #'@param experimentType experiment entity type to get
 #'@param barcode barcode of entity to get
@@ -16,8 +15,8 @@
 #' CoreAPIV2:logOut(login$coreApi)
 #' }
 #'@author Craig Parman
-#'@description \code{getExperimentContainers}  Gets experiment contaiers from experiment identified by experiment barcode. 
-#' Gets samples attached as sample lots and in containers.
+#'@description \code{getExperimentContainers}  Gets experiment contaniers from experiment identified by experiment barcode. 
+
 
 
 

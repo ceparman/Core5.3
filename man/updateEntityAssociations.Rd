@@ -2,7 +2,7 @@
 % Please edit documentation in R/updateEntityAssociations.R
 \name{updateEntityAssociations}
 \alias{updateEntityAssociations}
-\title{\code{updateEntityAssociations} Update entity attributes and assoications}
+\title{\code{updateEntityAssociations} Update entity assoications}
 \usage{
 updateEntityAssociations(coreApi, entityType, barcode, updateValues,
   useVerbose = FALSE)
@@ -22,7 +22,7 @@ updateEntityAssociations(coreApi, entityType, barcode, updateValues,
 returns a list $entity contains entity information, $response contains the entire http response
 }
 \description{
-\code{updateEntityAssociations}  Update entity attributes
+\code{updateEntityAssociations}  Update entity associations.
 }
 \examples{
 \dontrun{

@@ -1,6 +1,6 @@
-#' updateCellContents -  Puts a cell lot in a container cell.
+#' updateCellContents -  Updates amount and concentrations of cell content 
 #'
-#' \code{updateCellContents} Puts a cell lot in a container cell
+#' \code{updateCellContents} Updates amount and concentrations of cell content 
 #' @param coreApi coreApi object with valid jsessionid
 #' @param containerType container entity type
 #' @param containerBarcode container barcode
@@ -22,8 +22,7 @@
 #' CoreAPIV2::logOut(login$coreApi )
 #' }
 #'@author Craig Parman
-#'@description \code{updateCellContents} - Puts a cell lot in a container cell.
-
+#'@description \code{updateCellContents} - Updates amount and concentrations of cell content Uses JSON API. 
 
 
 

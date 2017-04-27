@@ -21,7 +21,7 @@ returns a list $entity contains entity information, $response contains the entir
 }
 \description{
 \code{ getExperimentSamplesAssayData }  Gets experiment samples from experiment identified by experiment barcode. 
-Gets samples attached as sample lots an in containers.
+Does not retieve files attached as data.
 }
 \details{
 \code{getExperimentSamplesAssayData }  Gets assay data for a experiment sample identified by barcode.

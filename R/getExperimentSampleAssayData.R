@@ -17,7 +17,8 @@
 #' }
 #'@author Craig Parman
 #'@description \code{ getExperimentSamplesAssayData }  Gets experiment samples from experiment identified by experiment barcode. 
-#' Gets samples attached as sample lots an in containers.
+#'Does not retieve files attached as data.
+
 
 
 

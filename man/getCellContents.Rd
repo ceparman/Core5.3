@@ -2,17 +2,12 @@
 % Please edit documentation in R/getCellContents.R
 \name{getCellContents}
 \alias{getCellContents}
-\title{getCellContents -  Gets information about a single container well contents.}
+\title{getCellContents -  Gets information about a single container cell contents.}
 \usage{
-getCellContents(coreApi, containerType, containerBarcode, containerCellId,
-  useVerbose = FALSE)
+getCellContents(coreApi, containerCellId, useVerbose = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
-
-\item{containerType}{container type}
-
-\item{containerBarcode}{container barcode}
 
 \item{containerCellId}{container cell number as a string}
 
@@ -25,13 +20,13 @@ RETURN returns a list $entity contains cell information, $response contains the 
 \code{getCellContents} -  Gets information about a single container cell contents.
 }
 \details{
-\code{getCellContents} Gets information about container well contents.
+\code{getCellContents} Gets information about container cell contents.
 }
 \examples{
 \dontrun{
 api<-CoreAPI("PATH TO JSON FILE")
 login<- CoreAPIV2::authBasic(api)
-cell<-CoreAPIV2::getCellContents(login$coreApi,"VIA9","1234233",fullMetadata = TRUE)
+cell<-CoreAPIV2::getCellContents(login$coreApi,"1234233",fullMetadata = TRUE)
 CoreAPIV2::logOut(login$coreApi )
 }
 }
