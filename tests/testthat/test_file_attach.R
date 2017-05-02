@@ -75,7 +75,7 @@ instance <<- "test_environments/5-2-2.json"
               
               filename <- "picAttrib.PNG"
               
-              r<-CoreAPIV2::attachFile(con$coreApi,b$Barcode,filename,filepath,targetAttributeName="FILE",useVerbose=verbose)   
+              r<-CoreAPIV2::attachFile(con$coreApi,b$Barcode,filename,filepath,targetAttributeName="CI_FILE",useVerbose=verbose)   
               
               expect_equal(grep(pattern = "picAttrib.PNG.[0-9]",r$entity$name),1)
               
@@ -87,5 +87,68 @@ instance <<- "test_environments/5-2-2.json"
               
              
               })
+     
+     
+     test_that(paste("get a file attached as assay data", instance),
+               {
+                 
+                 verbose <- FALSE
+                 api <- CoreAPIV2::coreAPI(instance)
+                 
+                 
+                 con<- CoreAPIV2::authBasic(api,useVerbose=verbose)
+                 
+                 
+                 
+                 
+                 assayType<-"SIMPLE_ASSAY"
+                 experimentSamplebarcode<-"XPX84"
+                 attributeName <-"ci_file"
+                 
+                 
+                 response<-   CoreAPIV2::getExperimentSamplesAssayFileData(con$coreApi,assayType,
+                                          experimentSamplebarcode, attributeName,useVerbose = TRUE)
+                 expect_equal( httr::status_code(response$response),200)
+                 
+                 filename<-paste0(tempdir(),"/myfile.png")
+                 writeBin(response$entity, filename)
+                 
+                 expect_true(file.exists(filename))
+                 CoreAPIV2::logOut(con$coreApi)
+                 
+                 
+                 
+               })
+     
+    
+     test_that(paste("attach file  as assay data", instance),
+               {
+                 
+                 verbose <- FALSE
+                 api <- CoreAPIV2::coreAPI(instance)
+                 
+                 
+                 con<- CoreAPIV2::authBasic(api,useVerbose=verbose)
+                 
+                 
+                 
+                 
+                 assayType<-"SIMPLE_ASSAY"
+                 experimentSamplebarcode<-"XPX84"
+                 attributeName <-"ci_file"
+                 
+                 
+                 
+                 filepath <-"test_files/stocks.txt"
+                 response<-CoreAPIV2::setExperimentSamplesAssayFileData(con$coreApi,assayType,"XPX84","CI_FILE",filepath,useVerbose = TRUE)
+        
+                 expect_equal( httr::status_code(response$response),204)
+                 
+                 CoreAPIV2::logOut(con$coreApi)
+                 
+                 
+                 
+               })
+     
      
     
