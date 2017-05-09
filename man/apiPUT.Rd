@@ -5,7 +5,7 @@
 \title{apiPUT - Do a PUT to the Core ODATA REST API.}
 \usage{
 apiPUT(coreApi, resource = NULL, query = NULL, body = NULL, encode,
-  headers = NULL, special = NULL, useVerbose = FALSE)
+  headers = NULL, special = NULL, useVerbose = FALSE, unbox = TRUE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
@@ -23,6 +23,8 @@ apiPUT(coreApi, resource = NULL, query = NULL, body = NULL, encode,
 \item{special}{passed to buildUrl for special sdk endpoints}
 
 \item{useVerbose}{Use verbose communication for debugging}
+
+\item{unbox}{use autounbox when doing lait yo json conversion}
 }
 \value{
 Returns the entire http response
@@ -37,7 +39,7 @@ Returns the entire http response
 \dontrun{
 api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 login<- CoreAPIV2::authBasic(api)
-response <-CoreAPIV2::apiPUT(login$coreApi,"SAMPLE",body,"json",special=NULL,useVerbose=FALSE)
+response <-CoreAPIV2::apiPUT(login$coreApi,"SAMPLE",body,"json",special=NULL,useVerbose=FALSE,unbox = TRUE)
 CoreAPIV2::logOut(login$coreApi )
 }
 }

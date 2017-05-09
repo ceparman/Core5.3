@@ -9,13 +9,14 @@
 #' @param headers  headers to be added to get.
 #' @param special  passed to buildUrl for special sdk endpoints
 #' @param useVerbose  Use verbose communication for debugging
+#' @param unbox use autounbox when doing lait yo json conversion
 #' @export
 #' @return Returns the entire http response
 #' @examples
 #'\dontrun{
 #' api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 #' login<- CoreAPIV2::authBasic(api)
-#' response <-CoreAPIV2::apiPUT(login$coreApi,"SAMPLE",body,"json",special=NULL,useVerbose=FALSE)
+#' response <-CoreAPIV2::apiPUT(login$coreApi,"SAMPLE",body,"json",special=NULL,useVerbose=FALSE,unbox = TRUE)
 #' CoreAPIV2::logOut(login$coreApi )
 #' }
 #'@author Craig Parman
@@ -23,7 +24,8 @@
 
 
 
-apiPUT<-function(coreApi,resource=NULL,query=NULL,body=NULL,encode,headers=NULL,special=NULL,useVerbose=FALSE)
+apiPUT<-function(coreApi,resource=NULL,query=NULL,body=NULL,encode,headers=NULL,special=NULL,
+                 useVerbose=FALSE ,unbox = TRUE)
 {
 
   
@@ -53,7 +55,7 @@ apiPUT<-function(coreApi,resource=NULL,query=NULL,body=NULL,encode,headers=NULL,
 
  
  
-response<-    httr::PUT(url = sdk_url,body = jsonlite::toJSON(body,auto_unbox = TRUE, null = "null"), httr::set_cookies(cookie),encode = "raw",
+response<-    httr::PUT(url = sdk_url,body = jsonlite::toJSON(body,auto_unbox = unbox, null = "null"), httr::set_cookies(cookie),encode = "raw",
               httr::add_headers(headers),httr::verbose(data_out = useVerbose, data_in = useVerbose,
                                                        info = useVerbose, ssl = useVerbose)
               )

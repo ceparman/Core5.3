@@ -5,7 +5,7 @@
 #'@param coreApi coreApi object with valid jsessionid
 #'@param entityType entity type to get
 #'@param barcode barcode of entity to get
-#'@param locationBarcode values to update as list of associations contex and entity type pair and barcode 
+#'@param locationBarcode loaction barcode
 #'@param useVerbose TRUE or FALSE to indicate if verbose options should be used in http POST
 #'@return returns a list $entity contains entity information, $response contains the entire http response
 #'@export
@@ -35,13 +35,10 @@ updateEntityLocation<-function (coreApi,entityType,barcode,locationBarcode,useVe
 
 # Get entityType
  
- entity <- CoreAPIV2::getEntityByBarcode(coreApi,entityType,barcode,fullMetadata = FALSE,useVerbose = TRUE)
+ entity <- CoreAPIV2::getEntityByBarcode(coreApi,entityType,barcode,fullMetadata = FALSE,useVerbose = useVerbose)
  
 
  old_values<-entity$entity
- 
- 
- #check to see if all values to update are in the entity
  
  
 
