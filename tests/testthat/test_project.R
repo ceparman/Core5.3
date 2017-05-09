@@ -29,23 +29,31 @@ instance <<- "test_environments/5-2-2.json"
  
               expect_match(b$Barcode,"PS2",all=verbose)
               
-              lc<-CoreAPIV2::updateEntityProject(con$coreApi,"PATIENT_SAMPLE","PS2","PJ1",useVerbose=FALSE)
-             
-              expect_match( httr::http_status(lc$response)$category,"Success")
+              p<-CoreAPIV2::updateEntityProject(con$coreApi,"PATIENT_SAMPLE","PS2","PJ1",useVerbose=FALSE)
+                 
+ 
+              expect_match( httr::http_status(p$response)$category,"Success")
               
-            
+              
                             
-              lc1<-getEntityLocation(con$coreApi,"PATIENT_SAMPLE","PS2",useVerbose=FALSE)
+              p1<-getEntityProject(con$coreApi,"PATIENT_SAMPLE","PS2",useVerbose=FALSE)
               
-              expect_match(lc1$entity[[1]]$Barcode,"LC1")
-              
-              lc<-CoreAPIV2::updateEntityLocation(con$coreApi,"PATIENT_SAMPLE","PS1","LC2",useVerbose=TRUE)
-              expect_match( httr::http_status(lc$response)$category,"Success")
+              expect_match(p1$entity[[1]]$Barcode,"PJ1")
               
               
-              lc1<-getEntityLocation(con$coreApi,"PATIENT_SAMPLE","PS1",useVerbose=FALSE)
+              p2<-CoreAPIV2::updateEntityProject(con$coreApi,"PATIENT_SAMPLE","PS2",c("PJ1","PJ2"),useVerbose=TRUE)
+             
+            
               
-              expect_match(lc1$entity[[1]]$Barcode,"LC2")
+              expect_match( httr::http_status(p2$response)$category,"Success")
+              
+              
+             p3<-getEntityProject(con$coreApi,"PATIENT_SAMPLE","PS2",useVerbose=FALSE)
+              
+             expect_match(p3$entity[[1]]$Barcode,"PJ1")
+             expect_match(p3$entity[[2]]$Barcode,"PJ2")
+             
+            
               
               logout<-CoreAPIV2::logOut(con$coreApi,useVerbose = verbose)
               expect_match(logout$success,"Success")

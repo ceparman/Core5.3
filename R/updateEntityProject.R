@@ -67,6 +67,7 @@ response<- CoreAPIV2::apiPUT(coreApi,resource = resource, query=query,body=body,
  
  
 
+list(entity=httr::content(response),response=response)
 }
 
 
