@@ -44,7 +44,7 @@ for (i in 1:length(environments))
               body[["REQUESTOR"]] <- "Dr Strange"
 
 
-              body[["FILE"]] <- NULL
+              body[["CI_FILE"]] <- NULL
               body[["IMAGE_FILE"]] <- NULL
 
               body[["SAMPLE_ENZYME@odata.bind"]] <- "/ENZYME('ENZ1')"

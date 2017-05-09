@@ -38,7 +38,7 @@ instance <<- "test_environments/5-2-2.json"
               body[["REQUESTOR"]] <- "Dr Strange"
               
               
-              body[["FILE"]] <- NULL
+              body[["CI_FILE"]] <- NULL
               
               body[["IMAGE_FILE"]] <- NULL
               
