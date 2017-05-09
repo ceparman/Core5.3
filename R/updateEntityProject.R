@@ -19,8 +19,7 @@
 #'@author Craig Parman
 #'@description \code{updateEntityProject} - Update entity project associations.  Does not perserve current associations.
 
-## Projects must be returned as an array even if there is only one.  I have a work around but it 
-## assumes all values returned for get entity are singletons. 
+
 
 updateEntityProject<-function (coreApi,entityType,barcode,projectBarcodes,useVerbose=FALSE)
 
@@ -39,7 +38,7 @@ updateEntityProject<-function (coreApi,entityType,barcode,projectBarcodes,useVer
  entity <- CoreAPIV2::getEntityByBarcode(coreApi,entityType,barcode,fullMetadata = FALSE,useVerbose = useVerbose)
  
 
- old_values<-lapply(entity$entity,jsonlite::unbox)
+ old_values<-lapply(entity$entity, function(x) if((length(x) <= 1)) jsonlite::unbox(x) else x)
  
  
  
