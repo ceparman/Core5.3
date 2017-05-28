@@ -56,7 +56,7 @@ instance <<- "test_environments/5-2-2.json"
               expect_match(b$SOURCE_LAB,"ACME",all=verbose)
               
               
-              filepath <- "test_files/trouble.PNG"
+              filepath <- "test_files/trouble.png"
               filename <- "pic.PNG"
       #Attach to the entity        
               

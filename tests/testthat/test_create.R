@@ -64,7 +64,8 @@ for (i in 1:length(environments))
           #test update attributes
 
 
-              updateValues<-list(SOURCE_LAB = "My Lab",REQUESTOR = "you")
+              updateValues<-list(SOURCE_LAB = "My Lab",REQUESTOR = "you",CI_FILE = NULL, IMAGE_FILE  <- NULL
+              )
 
               ue<-CoreAPIV2::updateEntityAttributes(con$coreApi,"PATIENT_SAMPLE",barcode,updateValues,useVerbose=FALSE)
 
