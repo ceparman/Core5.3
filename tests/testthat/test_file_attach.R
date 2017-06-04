@@ -55,29 +55,39 @@ instance <<- "test_environments/5-2-2.json"
              
               expect_match(b$SOURCE_LAB,"ACME",all=verbose)
               
+              #create a text file
               
-              filepath <- "test_files/trouble.png"
-              filename <- "pic.PNG"
+              filepath <- tempfile()
+              write.csv(x =runif(n = 1000),file = filepath )
+              filename <- paste0("testfile",as.character(floor(runif(1, 1,101))),".txt")
+              
       #Attach to the entity        
               
               
-              r<-CoreAPIV2::attachFile(con$coreApi,b$Barcode,filename,filepath,targetAttributeName="",useVerbose=verbose)
+            r<-CoreAPIV2::attachFile(con$coreApi,b$Barcode,filename,
+                                     filepath,targetAttributeName="",useVerbose=verbose)
              
              
               
               
-              expect_equal(grep(pattern = "pic.PNG.[0-9]",r$entity$name),1)
+              expect_equal(grep(pattern = paste0(filename,".[0-9]"),r$entity$name),1)
               
               expect_equal( httr::status_code(r$response),200)
               
-    #attach to an atribute          
+    #attach a binary to an atribute          
           
+              filepath <- tempfile()
+              filename <- paste0("testfile",as.character(floor(runif(1, 1,101))),".jpg")
               
-              filename <- "picAttrib.PNG"
+              jpeg(filepath)
+              image(matrix(runif(100),10,10))
+              dev.off()
+              
+            
               
               r<-CoreAPIV2::attachFile(con$coreApi,b$Barcode,filename,filepath,targetAttributeName="CI_FILE",useVerbose=verbose)   
               
-              expect_equal(grep(pattern = "picAttrib.PNG.[0-9]",r$entity$name),1)
+              expect_equal(grep(pattern = paste0(filename,".[0-9]"),r$entity$name),1)
               
               expect_equal( httr::status_code(r$response),200)
               
@@ -107,7 +117,7 @@ instance <<- "test_environments/5-2-2.json"
                  
                  
                  response<-   CoreAPIV2::getExperimentSamplesAssayFileData(con$coreApi,assayType,
-                                          experimentSamplebarcode, attributeName,useVerbose = TRUE)
+                                          experimentSamplebarcode, attributeName,useVerbose = verbose)
                  expect_equal( httr::status_code(response$response),200)
                  
                  filename<-paste0(tempdir(),"/myfile.png")
@@ -140,7 +150,8 @@ instance <<- "test_environments/5-2-2.json"
                  
                  
                  filepath <-"test_files/stocks.txt"
-                 response<-CoreAPIV2::setExperimentSamplesAssayFileData(con$coreApi,assayType,"XPX84","CI_FILE",filepath,useVerbose = TRUE)
+                 response<-CoreAPIV2::setExperimentSamplesAssayFileData(con$coreApi,assayType,
+                                                                        "XPX84","CI_FILE",filepath,useVerbose = verbose)
         
                  expect_equal( httr::status_code(response$response),204)
                  
