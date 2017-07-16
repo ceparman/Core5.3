@@ -10,7 +10,7 @@ verbose <- FALSE
 
 #setup to test against multiple environments
 
-environments<<-list.files("test_environments","*.json",full.names=TRUE)
+environments<<-list.files("test_environments","5-2-2.json",full.names=TRUE)
 
 print(environments)
 for (i in 1:length(environments))

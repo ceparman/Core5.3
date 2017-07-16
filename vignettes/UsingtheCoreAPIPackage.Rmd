@@ -1,5 +1,5 @@
 ---
-title: "Using the CoreAPI Package"
+title: "Using the CoreAPIV2 Package"
 author: "Craig Parman"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -372,6 +372,7 @@ exptdata1<-CoreAPI::updateExperimentSampleData(r$coreApi,experimentSampleType,ex
 
 
 expt<-CoreAPI::getExperimentSamples(r$coreApi,"TEST EXPERIMENT",newExptbarcode,useVerbose=FALSE)
+
 ```
 
 

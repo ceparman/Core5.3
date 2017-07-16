@@ -66,7 +66,7 @@ instance <<- "test_environments/5-2-2.json"
                  
                  expect_equal(length(cells$content),384,all=verbose)
                  
-                 expect_equal(length(cells$content[[1]]),12,all=verbose)
+                 expect_equal(length(cells$content[[1]]),9,all=verbose)
                  
                  
                  logout<-CoreAPIV2::logOut(api,useVerbose = verbose)

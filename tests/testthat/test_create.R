@@ -9,7 +9,7 @@ verbose <- FALSE
 
 #setup to work with environment
 
-environments<<-list.files("test_environments","*.json",full.names=TRUE)
+environments<<-list.files("test_environments","5-2-2.json",full.names=TRUE)
 
 for (i in 1:length(environments))
 {
@@ -44,7 +44,7 @@ for (i in 1:length(environments))
               body[["REQUESTOR"]] <- "Dr Strange"
 
 
-              body[["CI_FILE"]] <- NULL
+             body[["CI_FILE"]] <- NULL
               body[["IMAGE_FILE"]] <- NULL
 
               body[["SAMPLE_ENZYME@odata.bind"]] <- "/ENZYME('ENZ1')"
@@ -62,10 +62,11 @@ for (i in 1:length(environments))
 
 
           #test update attributes
+          
+              #you don't include file attribute names in updates
 
-
-              updateValues<-list(SOURCE_LAB = "My Lab",REQUESTOR = "you",CI_FILE = NULL, IMAGE_FILE  <- NULL
-              )
+              updateValues<-list(SOURCE_LAB = "My Lab",REQUESTOR = "you") #,CI_FILE <- NULL, IMAGE_FILE  <- NULL)
+              
 
               ue<-CoreAPIV2::updateEntityAttributes(con$coreApi,"PATIENT_SAMPLE",barcode,updateValues,useVerbose=FALSE)
 

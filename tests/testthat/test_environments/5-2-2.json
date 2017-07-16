@@ -18,7 +18,7 @@
     },
     {
       "key": "host",
-      "value": "qa-5.coredev.cloud",
+      "value": "dev-5.coredev.cloud",
       "type": "text",
       "name": "host",
       "enabled": true,
@@ -32,7 +32,7 @@
     },
     {
       "key": "username",
-      "value": "cparman",
+      "value": "lims",
       "type": "text",
       "name": "nameadmin",
       "enabled": true,
@@ -40,7 +40,7 @@
     },
     {
       "key": "password",
-      "value": "lims11",
+      "value": "lims#1",
       "type": "text",
       "name": "passwordadmin",
       "enabled": true,
