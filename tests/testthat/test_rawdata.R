@@ -38,16 +38,16 @@ instance <<- "test_environments/dose.json"
               #getRaw data
               
               rawData <- CoreAPIV2::getExperimentSamplesRawData(con$coreApi,experimentType = "BIOCHEMICAL DOSE RESPONSE EXPERIMENT",
-                                                                assayType = "BIOCHEMICAL_DOSE_RESPONSE_ASSAY",
+                                                                assayType = "BIOCHEMICAL DOSE RESPONSE ASSAY",
                                                                 experimentSamplebarcode =  exptSampleBarcode,useVerbose = verbose)
               
               
               expect_equal(nrow(rawData$entity),10,all=verbose)
               
               #intermediate data is in assay data
-              
-              ad<-CoreAPIV2::getExperimentSamplesAssayData(api,"BIOCHEMICAL_DOSE_RESPONSE_ASSAY",
-                                                       experimentSamplebarcode = exptSamples$entity[1])
+                
+              ad<-CoreAPIV2::getExperimentSamplesAssayData(coreApi = con$coreApi,assayType = "BIOCHEMICAL DOSE RESPONSE ASSAY",
+                                                        experimentSamplebarcode = exptSamples$entity[1])
               
               
               expect_match(ad$entity[[1]]$Barcode,exptSamples$entity[1],all=verbose)

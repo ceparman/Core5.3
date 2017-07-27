@@ -31,6 +31,7 @@ getExperimentSamplesAssayData <-function (coreApi,assayType,experimentSamplebarc
   
   resource <- CoreAPIV2::ODATAcleanName("EXPERIMENT_SAMPLE")
   
+  assayType <- CoreAPIV2::ODATAcleanName(assayType)
   
   query   <- paste0("('",experimentSamplebarcode,
                     "')/ASSAY_DATA/pfs.",

@@ -37,8 +37,8 @@ cookie <- c(JSESSIONID = coreApi$jsessionId, AWSELB = coreApi$awselb )
 #Get first response
 
 if (useVerbose){  
-           response<- httr::with_verbose(httr::GET(sdk_url,httr::add_headers(headers)),
-                                         httr::set_cookies(cookie)
+           response<- httr::with_verbose(httr::GET(sdk_url,httr::add_headers(headers),
+                                         httr::set_cookies(cookie))
                                          ) 
   
      } else  {

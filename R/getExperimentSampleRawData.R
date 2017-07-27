@@ -7,13 +7,14 @@
 #'@param assayType  assay type for sample
 #'@param experimentSamplebarcode experiment sample barcode of entity to get
 #'@param useVerbose TRUE or FALSE to indicate if verbose options should be used in http call
-#'@return returns a list $entity contains data frame with derived experiment sample barcodes concentration, and %I, $response contains the entire http response
+#'@return returns a list $entity contains data frame with derived experiment sample barcodes concentration, 
+#'         and %I, $response contains the entire http response
 #'@export
 #'@examples
 #'\dontrun{
 #' api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 #' login<- CoreAPIV2::authBasic(api)
-#' experiment<-  getExperimentSamplesRawData (login$coreApi,"ExperimentType","assayType",barcode")
+#' experiment<-  getExperimentSamplesRawData (login$coreApi,"ExperimentType","assayType","barcode")
 #' CoreAPIV2:logOut(login$coreApi)
 #' }
 #'@author Craig Parman

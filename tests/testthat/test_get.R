@@ -38,6 +38,11 @@ instance <<- "test_environments/5-2-2.json"
               
               expect_match(b$SOURCE_LAB,"New York Medical Center",all=verbose)
               
+              #get entity by name
+              
+              n<-CoreAPIV2::getEntityByName(con$coreApi,"PATIENT_SAMPLE",b$Name,fullMetadata=TRUE,useVerbose=verbose)$entity[[1]]
+              
+              expect_match(n$Barcode,"PS1",all=verbose)
               
               logout<-CoreAPIV2::logOut(api,useVerbose = verbose)
               expect_match(logout$success,"Success")

@@ -83,7 +83,7 @@ for (i in 1:length(environments))
               
 
               
-              as<-getEntityAssociation(con$coreApi,"PATIENT_SAMPLE",barcode,context,fullMetadata = TRUE, useVerbose=FALSE)
+              as<-getEntityAssociations(con$coreApi,"PATIENT_SAMPLE",barcode,context,fullMetadata = TRUE, useVerbose=FALSE)
               
               expect_match(as$entity[[1]]$Barcode,"ENZ2")
               
@@ -93,7 +93,7 @@ for (i in 1:length(environments))
               
               us<- CoreAPIV2::updateEntityAssociations(con$coreApi,"PATIENT_SAMPLE",barcode,updateValues,useVerbose=FALSE)
               
-              as<-getEntityAssociation(con$coreApi,"PATIENT_SAMPLE",barcode,context,fullMetadata = TRUE, useVerbose=FALSE)
+              as<-getEntityAssociations(con$coreApi,"PATIENT_SAMPLE",barcode,context,fullMetadata = TRUE, useVerbose=FALSE)
               
               expect_match(as$entity[[1]]$Barcode,"ENZ1")
               
