@@ -32,12 +32,13 @@ RETURN returns a list $entity contains entity information,
 \dontrun{
 api<-CoreAPI("PATH TO JSON FILE")
 login<- CoreAPIV2::authBasic(api)
-newdata<-CoreAPIV2::updateExperimentSampleData(login$coreApi,assayType,
+response<-CoreAPIV2::updateExperimentSampleData(login$coreApi,assayType,
                   experimentSampleBarcode,assayAtributeValues)
+updatedEntity <- response$entity
 CoreAPIV2::logOut(login$coreApi ) response<- CoreAPI::authBasic(coreApi)
 }
 }
 \author{
-Craig Parman
+Craig Parman ngsAnalytics, ngsanalytics.com
 }
 

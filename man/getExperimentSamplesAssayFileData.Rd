@@ -22,7 +22,8 @@ getExperimentSamplesAssayFileData(coreApi, assayType, experimentSamplebarcode,
 returns a list $entity containsbinary object that in the file, $response contains the entire http response
 }
 \description{
-\code{ getExperimentSamplesAssayFileData }  Gets file attached as assay data.
+\code{ getExperimentSamplesAssayFileData }  Gets file attached as assay data. 
+Use getExperimentSamplesAssayData for non-file data.
 }
 \details{
 \code{getExperimentSamplesAssayFileData }  Gets file attached as assay data.
@@ -37,6 +38,6 @@ CoreAPIV2:logOut(login$coreApi)
 }
 }
 \author{
-Craig Parman
+Craig Parman ngsAnalytics, ngsanalytics.com
 }
 

@@ -13,27 +13,32 @@
 #' metadata<-CoreAPIV2::updateMetadata(login$coreApi,useverbose=TRUE)
 #' CoreAPIV2::logOut(login$coreApi)
 #' }
-#'@author Craig Parman
+#'@author Craig Parman ngsAnalytics, ngsanalytics.com
 #'@description \code{updateMetadata}  Updates cached metadata so metadata is up to date. 
 #'Must be run after any configuration changes.
 
 
-updateMetadata<-function(coreApi,useVerbose=FALSE)
 
+updateMetadata <- function(coreApi, useVerbose = FALSE)
+  
 {
+  resource <- "$metadata"
+  query <- "?reload=1"
   
-resource <-"$metadata"
-query <- "?reload=1"
-
-header <- c(Accept= "application/xml")
-
-out <- CoreAPIV2::apiGET(coreApi,resource =resource, query = query,headers = header,useVerbose=useVerbose)
-
+  header <- c(Accept = "application/xml")
   
-
-list(entity=out$content,response=out$response)
-
+  out <-
+    CoreAPIV2::apiGET(
+      coreApi,
+      resource = resource,
+      query = query,
+      headers = header,
+      useVerbose = useVerbose
+    )
+  
+  
+  
+  list(entity = out$content, response = out$response)
+  
 }
-
-
 

@@ -32,11 +32,12 @@ returns a list $entity contains data frame with derived experiment sample barcod
 \dontrun{
 api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 login<- CoreAPIV2::authBasic(api)
-experiment<-  getExperimentSamplesRawData (login$coreApi,"ExperimentType","assayType","barcode")
+response<-  getExperimentSamplesRawData (login$coreApi,"ExperimentType","assayType","barcode")
+rawdata <- response$entity
 CoreAPIV2:logOut(login$coreApi)
 }
 }
 \author{
-Craig Parman
+Craig Parman ngsAnalytics, ngsanalytics.com
 }
 

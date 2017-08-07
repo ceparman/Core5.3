@@ -9,13 +9,7 @@ verbose <- FALSE
 
 #setup to work with environment
 
-environments<<-list.files("test_environments","5-2-2.json",full.names=TRUE)
-
-for (i in 1:length(environments))
-{
-
-   instance <<-environments[i]
-
+instance <- "test_environments/5-2-2.json"
 
 
      test_that(paste("test login,create sample and lot", instance),
@@ -146,4 +140,3 @@ for (i in 1:length(environments))
                })
 
 
-}

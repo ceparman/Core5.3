@@ -14,12 +14,12 @@ getEntityMetadata(coreApi, entityType, useVerbose = FALSE)
 \item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http POST}
 }
 \value{
-returns a list $entity contains entity information; $description - a list containing $attributes for attribute properties, 
+returns a list containing $attributes for attribute properties, 
 and $association for association properties; $template contains a list that can be converted to JSON for object creation.
 }
 \description{
-\code{getEntityMetadata} Get an entity metadata by entityType. Returns a list with two data frames
-named attributes and associations.
+\code{getEntityMetadata} Get an entity metadata by entityType. Returns a list with three data frames
+named attributes,associations, and template. Template can be used as the body to for createEntity functions.
 }
 \details{
 \code{getEntityMetadata}  Get entity metadata.
@@ -33,6 +33,6 @@ CoreAPIV2::logOut(login$coreApi)
 }
 }
 \author{
-Craig Parman
+Craig Parman ngsAnalytics, ngsanalytics.com
 }
 

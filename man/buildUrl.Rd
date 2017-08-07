@@ -25,7 +25,7 @@ RETURN Core REST URL
 \code{buildUrl} build URL for call to Core REST API.
 }
 \details{
-\code{apiCall}  base call to Core REST API.
+\code{buildUrl}  build URL for call to Core ODATA API.
 }
 \examples{
 \dontrun{
@@ -36,6 +36,6 @@ logOut(login$coreApi )
 }
 }
 \author{
-Craig Parman
+Craig Parman ngsAnalytics, ngsanalytics.com
 }
 

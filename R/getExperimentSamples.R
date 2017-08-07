@@ -1,4 +1,4 @@
-#' getExperimentSamples - Gets experiment samples from experiment identified by barcode.
+#' getExperimentSamples - Gets experiment sample barcodes from experiment identified by barcode.
 #'
 #'\code{getExperimentSamples}  Gets experiment samples from experiment identified by barcode.
 #'
@@ -12,41 +12,56 @@
 #'\dontrun{
 #' api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 #' login<- CoreAPIV2::authBasic(api)
-#' experiment<-  CoreAPIV2::getExperimentSamples(login$coreApi,"entityType","barcode")
+#' response<-  CoreAPIV2::getExperimentSamples(login$coreApi,"entityType","barcode")
+#' experimentsampleBarcodes <- response$entity
 #' CoreAPIV2:logOut(login$coreApi)
 #' }
-#'@author Craig Parman
-#'@description \code{ getExperimentSamples}  Gets experiment samples from experiment identified by experiment barcode. 
+#'@author Craig Parman ngsAnalytics, ngsanalytics.com
+#'@description \code{ getExperimentSamples}  Gets experiment sample barcodes from experiment identified by experiment barcode. 
 
 
 
 
-getExperimentSamples<-function (coreApi,experimentType,barcode,useVerbose=FALSE)
 
-{
-
-  
-  #clean the name for ODATA
-  
-  resource <- CoreAPIV2::ODATAcleanName(experimentType)
-  
-  
-  query   <- paste0("('",barcode,"')/REV_EXPERIMENT_EXPERIMENT_SAMPLE")
-  
-  
-  header<-c('Content-Type' = "application/json;odata.metadata=full", Accept = "application/json")  
-  
-  
-  
-  response <- CoreAPIV2::apiGET(coreApi,resource =resource, query = query,headers = header,useVerbose=useVerbose)
-  
-  
-  
-
-  list(entity=unlist((lapply(response$content,FUN = function(x) x$Barcode))),response=response)
-
+getExperimentSamples <-
+  function (coreApi,
+            experimentType,
+            barcode,
+            useVerbose = FALSE)
+    
+  {
+    #clean the name for ODATA
+    
+    resource <- CoreAPIV2::ODATAcleanName(experimentType)
+    
+    
+    query   <-
+      paste0("('", barcode, "')/REV_EXPERIMENT_EXPERIMENT_SAMPLE")
+    
+    
+    header <-
+      c('Content-Type' = "application/json;odata.metadata=full", Accept = "application/json")
+    
+    
+    
+    response <-
+      CoreAPIV2::apiGET(
+        coreApi,
+        resource = resource,
+        query = query,
+        headers = header,
+        useVerbose = useVerbose
+      )
+    
+    
+    
+    
+    list(entity = unlist((
+      lapply(
+        response$content,
+        FUN = function(x)
+          x$Barcode
+      )
+    )), response = response)
+    
   }
-
-
-
-

@@ -14,51 +14,60 @@
 #'\dontrun{
 #' api<-CoreAPI("PATH TO JSON FILE")
 #' login<- CoreAPIV2::authBasic(api)
-#' newdata<-CoreAPIV2::updateExperimentSampleData(login$coreApi,assayType,
+#' response<-CoreAPIV2::updateExperimentSampleData(login$coreApi,assayType,
 #'                   experimentSampleBarcode,assayAtributeValues)
+#' updatedEntity <- response$entity
 #' CoreAPIV2::logOut(login$coreApi ) response<- CoreAPI::authBasic(coreApi)
 #' }
-#'@author Craig Parman
+#'@author Craig Parman ngsAnalytics, ngsanalytics.com
 #'@description \code{updateExperimentSampleData} Update experiment sample assay data.
 
 
-updateExperimentSampleData<-function (coreApi,assayType,experimentSamplebarcode,assayAttributeValues,
-                                      useVerbose=FALSE)
 
-{
-
-  
-  
-  #Clean Names of assay
-  
-  assayType <- CoreAPIV2::ODATAcleanName(assayType)
-  
-  
-  #Clean Names of attributes
-
-  
-  for(i in 1:length(names(assayAttributeValues)))
-  {
+updateExperimentSampleData <-
+  function (coreApi,
+            assayType,
+            experimentSamplebarcode,
+            assayAttributeValues,
+            useVerbose = FALSE)
     
-    names(assayAttributeValues)[i] <- CoreAPIV2::attributeCleanName( names(assayAttributeValues)[i])
+  {
+    #Clean Names of assay
+    
+    assayType <- CoreAPIV2::ODATAcleanName(assayType)
+    
+    
+    #Clean Names of attributes
+    
+    
+    for (i in 1:length(names(assayAttributeValues)))
+    {
+      names(assayAttributeValues)[i] <-
+        CoreAPIV2::attributeCleanName(names(assayAttributeValues)[i])
+      
+    }
+    
+    
+    
+    body <- assayAttributeValues   #needs to be unboxed
+    
+    resource <- paste0(assayType, "_DATA")
+    query <- paste0("('", experimentSamplebarcode, "')")
+    
+    header <- c("Content-Type" = "application/json", "If-Match" = "*")
+    
+    response <-
+      CoreAPIV2::apiPUT(
+        coreApi,
+        resource = resource,
+        query = query,
+        body = body,
+        encode = "raw",
+        headers = header,
+        useVerbose = useVerbose
+      )
+    
+    
+    list(entity = httr::content(response), response = response)
     
   }
-
-  
-  
-  body<-assayAttributeValues   #needs to be unboxed
-  
-  resource <- paste0( assayType,"_DATA")
-  query <- paste0("('",experimentSamplebarcode,"')")
-  
-  header<-c("Content-Type"="application/json","If-Match"="*")  
-  
-  response<- CoreAPIV2::apiPUT(coreApi,resource = resource, query=query,body=body,encode="raw",
-                                headers = header, useVerbose=useVerbose)
-  
-
-  list(entity=httr::content(response),response=response)
-
-}
-
-

@@ -1,6 +1,6 @@
 #' buildUrl - build URL for call to Core ODATA API.
 #'
-#' \code{apiCall}  base call to Core REST API.
+#' \code{buildUrl}  build URL for call to Core ODATA API.
 #' @param coreApi coreApi object with valid jsessionid
 #' @param resource resource path (required except for special requests)
 #' @param query and additional property options (optional)
@@ -15,29 +15,69 @@
 #' response <-CoreAPIV2::buildUrl(coeApi,"Sample","('PS1')")
 #' logOut(login$coreApi )
 #' }
-#'@author Craig Parman
+#'@author Craig Parman ngsAnalytics, ngsanalytics.com
 #'@description \code{buildUrl} build URL for call to Core REST API.
 
 
 
-buildUrl<-function(coreApi,resource=NULL,query=NULL,special=NULL,useVerbose=FALSE)
-{
 
-if (is.null(special)){
-  sdk_url<-paste(coreApi$scheme,"://",coreApi$coreUrl,":",coreApi$port,"/odata/",resource,query,sep="")
-
-  } else {
-
-  switch(special,
-         login = sdk_url<-paste(coreApi$scheme,"://",coreApi$coreUrl,":",coreApi$port,"/odatalogin",sep=""),
-         file = sdk_url <-paste0(coreApi$scheme,"://",coreApi$coreUrl,":",coreApi$port,"/sdk"), 
-         json = sdk_url <-paste0(coreApi$scheme,"://",coreApi$coreUrl,":",coreApi$port,"/sdk")
-         
-
-  )
+buildUrl <-
+  function(coreApi,
+           resource = NULL,
+           query = NULL,
+           special = NULL,
+           useVerbose = FALSE)
+  {
+    if (is.null(special)) {
+      sdk_url <-
+        paste(
+          coreApi$scheme,
+          "://",
+          coreApi$coreUrl,
+          ":",
+          coreApi$port,
+          "/odata/",
+          resource,
+          query,
+          sep = ""
+        )
+      
+    } else {
+      switch(
+        special,
+        login = sdk_url <-
+          paste(
+            coreApi$scheme,
+            "://",
+            coreApi$coreUrl,
+            ":",
+            coreApi$port,
+            "/odatalogin",
+            sep = ""
+          ),
+        file = sdk_url <-
+          paste0(
+            coreApi$scheme,
+            "://",
+            coreApi$coreUrl,
+            ":",
+            coreApi$port,
+            "/sdk"
+          ),
+        json = sdk_url <-
+          paste0(
+            coreApi$scheme,
+            "://",
+            coreApi$coreUrl,
+            ":",
+            coreApi$port,
+            "/sdk"
+          )
+        
+        
+      )
+    }
+    
+    return(sdk_url)
+    
   }
-
-  return(sdk_url)
-
-}
-

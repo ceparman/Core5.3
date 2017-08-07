@@ -28,11 +28,12 @@ returns a list $entity contains entity information, $response contains the entir
 \dontrun{
 api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 login<- CoreAPIV2::authBasic(api)
-item<-CoreAPIV2::updateEntityLocation(login$coreApi,"entityType","barcode","locationBarcode")
+response<-CoreAPIV2::updateEntityLocation(login$coreApi,"entityType","barcode","locationBarcode")
+entity <- response$entity
 CoreAPIV2::logOut(login$coreApi)
 }
 }
 \author{
-Craig Parman
+Craig Parman ngsAnalytics, ngsanalytics.com
 }
 

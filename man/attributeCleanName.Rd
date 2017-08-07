@@ -26,6 +26,6 @@ MY_COMMENTS
  }
 }
 \author{
-Craig Parman
+Craig Parman, ngsAnalytics, ngsanalytics.com
 }
 

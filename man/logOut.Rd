@@ -24,10 +24,10 @@ returns list with $success = TRUE when sucessful, $response contains the entire 
 \dontrun{
 api<-CoreAPIV2::coreAPI("PATH TO JSON FILE")
 response<- CoreAPIV2::authBasic(api)
-CoreAPIV2::logOut(response$coreApi,useVerbose=TRUE )
+logOut <- CoreAPIV2::logOut(response$coreApi,useVerbose=TRUE )
 }
 }
 \author{
-Craig Parman
+Craig Parman ngsAnalytics, ngsanalytics.com
 }
 

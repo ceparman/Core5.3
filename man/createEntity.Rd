@@ -40,6 +40,6 @@ CoreAPI::logOut(login$coreApi )
 }
 }
 \author{
-Craig Parman
+Craig Parman ngsAnalytics, ngsanalytics.com
 }
 

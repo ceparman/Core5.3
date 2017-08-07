@@ -16,7 +16,7 @@ createExperimentContainer(coreApi, experimentType, experimentBarcode,
 
 \item{containerBarcode}{barcode of container to add to experiment}
 
-\item{body}{values for sample attributes as a  list of key-values pairs (not user in this version)}
+\item{body}{values for sample attributes as a  list of key-values pairs (not user in this json version)}
 
 \item{useVerbose}{Use verbose communication for debugging}
 }
@@ -40,6 +40,6 @@ CoreAPIV2::logOut(login$coreApi )
 }
 }
 \author{
-Craig Parman
+Craig Parman ngsAnalytics, ngsanalytics.com
 }
 

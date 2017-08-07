@@ -14,7 +14,7 @@ getEntityByBarcode(coreApi, entityType, barcode, fullMetadata = TRUE,
 
 \item{barcode}{barcode of entity to get}
 
-\item{fullMetadata}{- get full metadata}
+\item{fullMetadata}{- get full metadata, default is TRUE}
 
 \item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http POST}
 }
@@ -36,6 +36,6 @@ CoreAPIV2::logOut(login$coreApi)
 }
 }
 \author{
-Craig Parman
+Craig Parman ngsAnalytics, ngsanalytics.com
 }
 

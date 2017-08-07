@@ -28,7 +28,7 @@ createExperiment(coreApi, experimentType, assayType, assayBarcode, protocolType,
 RETURN returns a list $entity contains entity information, $response contains the entire http response
 }
 \description{
-\code{createExperiment} Creates a new experimen.
+\code{createExperiment} Creates a new experiment.
 }
 \details{
 \code{createExperiment} Creates a new instance of an entity.
@@ -37,11 +37,11 @@ RETURN returns a list $entity contains entity information, $response contains th
 \dontrun{
 api<-CoreAPIV2::coreApi("PATH TO JSON FILE")
 login<- CoreAPIV2::authBasic(api)
-item<-CoreAPIV2::createExperiment(login$coreApi,"Experiment_Type","Assaybarcode","Protocolbarcode")
+experiment<-CoreAPIV2::createExperiment(login$coreApi,"Experiment_Type","Assaybarcode","Protocolbarcode")
 CoreAPIV2::logOut(login$coreApi )
 }
 }
 \author{
-Craig Parman
+Craig Parman ngsAnalytics, ngsanalytics.com
 }
 

@@ -17,27 +17,40 @@
 #' item<-CoreAPI::createEntity(login$coreApi,"Entity_Type")
 #' CoreAPI::logOut(login$coreApi )
 #' }
-#'@author Craig Parman
+#'@author Craig Parman ngsAnalytics, ngsanalytics.com
 #'@description \code{createEntity} Creates a new entity instance. Required inputs are url, jsessionId and entityType.
 
 
-createEntity<-function (coreApi,entityType,body,
-                        locationId=NULL,projectIds=NULL,barcode=NULL,useVerbose=FALSE)
 
+createEntity <- function (coreApi,
+                          entityType,
+                          body,
+                          locationId = NULL,
+                          projectIds = NULL,
+                          barcode = NULL,
+                          useVerbose = FALSE)
+  
 {
-
   #clean the name for ODATA
   
- entityType <- CoreAPIV2::ODATAcleanName(entityType)
+  entityType <- CoreAPIV2::ODATAcleanName(entityType)
   
- headers <- c('Content-Type' = "application/json;odata.metadata=full",accept= "application/json")
- 
-response<-CoreAPIV2::apiPOST(coreApi,resource=entityType,body=jsonlite::toJSON( body,auto_unbox = TRUE),encode = "raw", headers =headers ,special=NULL,useVerbose=useVerbose)
- 
-
-
-list(entity=httr::content(response),response=response)
-
+  headers <-
+    c('Content-Type' = "application/json;odata.metadata=full", accept = "application/json")
+  
+  response <-
+    CoreAPIV2::apiPOST(
+      coreApi,
+      resource = entityType,
+      body = jsonlite::toJSON(body, auto_unbox = TRUE),
+      encode = "raw",
+      headers = headers ,
+      special = NULL,
+      useVerbose = useVerbose
+    )
+  
+  
+  
+  list(entity = httr::content(response), response = response)
+  
 }
-
-

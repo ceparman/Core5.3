@@ -36,7 +36,7 @@ RETURN returns a list $entity contains updated container
         information, $response contains the entire http response
 }
 \description{
-\code{setWellContents} - Puts a cell lot in a container cell.
+\code{setWellContents} - Puts a cell lot in a container well.
 }
 \details{
 \code{setWellContents} Puts a sample lot in a container well.
@@ -52,6 +52,6 @@ CoreAPIV2::logOut(login$coreApi )
 }
 }
 \author{
-Craig Parman
+Craig Parman ngsAnalytics, ngsanalytics.com
 }
 

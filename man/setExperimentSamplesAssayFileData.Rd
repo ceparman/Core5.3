@@ -2,7 +2,7 @@
 % Please edit documentation in R/setExperimentSampleAssayFileData.R
 \name{setExperimentSamplesAssayFileData}
 \alias{setExperimentSamplesAssayFileData}
-\title{setExperimentSamplesAssayFileData - puts file attached as assay data.}
+\title{setExperimentSamplesAssayFileData - puts file attached as assay data in an experiment.}
 \usage{
 setExperimentSamplesAssayFileData(coreApi, assayType, experimentSamplebarcode,
   attributeName, filepath, useVerbose = FALSE)
@@ -24,7 +24,7 @@ setExperimentSamplesAssayFileData(coreApi, assayType, experimentSamplebarcode,
 returns a list $entity containsbinary object that in the file, $response contains the entire http response
 }
 \description{
-\code{ setExperimentSamplesAssayFileData } puts file attached as assay data.
+\code{ setExperimentSamplesAssayFileData } Puts file attached as assay data in an experiment
 }
 \details{
 \code{setExperimentSamplesAssayFileData }  puts file attached as assay data.
@@ -38,6 +38,6 @@ CoreAPIV2:logOut(login$coreApi)
 }
 }
 \author{
-Craig Parman
+Craig Parman ngsAnalytics, ngsanalytics.com
 }
 

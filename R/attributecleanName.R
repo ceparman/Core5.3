@@ -10,19 +10,18 @@
 #' new_name
 #' MY_COMMENTS
 #'  }
-#'@author Craig Parman
+#'@author Craig Parman, ngsAnalytics, ngsanalytics.com
 #'@description \code{attriureCleanName} - onverts names to uppercase and replaces spaces with underscores to 
 #' reference attribute names.
-#' 
-attributeCleanName<-function(name)
+ 
+attributeCleanName <- function(name)
 {
+  name <- toupper(name)
   
-name <- toupper(name)
-
-name <- gsub(" ","_",name)
+  name <- gsub(" ", "_", name)
   
-
-name  
+  
+  name
   
   
 }

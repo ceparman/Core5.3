@@ -16,39 +16,49 @@
 #' item<-CoreAPIV2::getEntityByName(login$coreApi,"entityType","name")
 #' CoreAPIV2::logOut(login$coreApi)
 #' }
-#'@author Craig Parman
+#'@author Craig Parman ngsAnalytics, ngsanalytics.com
 #'@description \code{getEntityByName}  Get an entity by barcode from the Core LIMS using the ODATA API.
 
 
-getEntityByName<-function (coreApi,entityType,name,fullMetadata=TRUE,useVerbose=FALSE)
 
-{
-  
-#clean the name for ODATA
-  
- entityType <- CoreAPIV2::ODATAcleanName(entityType)
-  
- resource <- entityType
-  
- query   <- URLencode(paste0("?$filter=Name eq '",name,"'"))
-
-
-
- 
- if(fullMetadata){ header<-c(Accept="application/json;odata.metadata=full")
- } else {
-   header<-c(Accept="application/json;odata.metadata=minimal")  
-   
- }
- 
- 
- out <- CoreAPIV2::apiGET(coreApi,resource =resource, query = query,headers = header,useVerbose=useVerbose)
-
-  
-
-list(entity=out$content,response=out$response)
-
-}
-
-
-
+getEntityByName <-
+  function (coreApi,
+            entityType,
+            name,
+            fullMetadata = TRUE,
+            useVerbose = FALSE)
+    
+  {
+    #clean the name for ODATA
+    
+    entityType <- CoreAPIV2::ODATAcleanName(entityType)
+    
+    resource <- entityType
+    
+    query   <- URLencode(paste0("?$filter=Name eq '", name, "'"))
+    
+    
+    
+    
+    if (fullMetadata) {
+      header <- c(Accept = "application/json;odata.metadata=full")
+    } else {
+      header <- c(Accept = "application/json;odata.metadata=minimal")
+      
+    }
+    
+    
+    out <-
+      CoreAPIV2::apiGET(
+        coreApi,
+        resource = resource,
+        query = query,
+        headers = header,
+        useVerbose = useVerbose
+      )
+    
+    
+    
+    list(entity = out$content, response = out$response)
+    
+  }

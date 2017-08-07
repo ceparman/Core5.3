@@ -1,4 +1,4 @@
-#' setExperimentSamplesAssayFileData - puts file attached as assay data. 
+#' setExperimentSamplesAssayFileData - puts file attached as assay data in an experiment. 
 #'
 #'\code{setExperimentSamplesAssayFileData }  puts file attached as assay data. 
 #'
@@ -17,100 +17,118 @@
 #' response<-  setExperimentSamplesAssayFileData(login$coreApi,"assayType","barcode","filepath","CI_FILE")
 #' CoreAPIV2:logOut(login$coreApi)
 #' }
-#'@author Craig Parman
-#'@description \code{ setExperimentSamplesAssayFileData } puts file attached as assay data. 
+#'@author Craig Parman ngsAnalytics, ngsanalytics.com
+#'@description \code{ setExperimentSamplesAssayFileData } Puts file attached as assay data in an experiment 
 
 
 
 
 
-setExperimentSamplesAssayFileData <-function (coreApi,assayType,experimentSamplebarcode,attributeName,filepath,useVerbose=FALSE)
 
-{
-
-  
-  #does the file exist
-  
-  if(!file.exists(filepath)) {
+setExperimentSamplesAssayFileData <-
+  function (coreApi,
+            assayType,
+            experimentSamplebarcode,
+            attributeName,
+            filepath,
+            useVerbose = FALSE)
     
-    stop(
-      {print("Unable to find file on local OS")
-        print( filepath)
+  {
+    #does the file exist
+    
+    if (!file.exists(filepath)) {
+      stop({
+        print("Unable to find file on local OS")
+        print(filepath)
       },
-      call.=FALSE
+      call. = FALSE)
+      
+    }
+    
+    
+    #clean the name for ODATA
+    
+    
+    
+    resource <- paste0(CoreAPIV2::ODATAcleanName(assayType), "_DATA")
+    resource <- CoreAPIV2::ODATAcleanName(resource)
+    
+    query   <- paste0(
+      "('",
+      experimentSamplebarcode,
+      "')/",
+      CoreAPIV2::attributeCleanName(attributeName),
+      "/$value"
     )
     
-  }
-  
-  
-  #clean the name for ODATA
-  
-  
-  
-  resource <- paste0(CoreAPIV2::ODATAcleanName(assayType),"_DATA")
-  resource <- CoreAPIV2::ODATAcleanName(resource)
-  
-  query   <- paste0("('",experimentSamplebarcode,
-                    "')/",CoreAPIV2::attributeCleanName(attributeName),
-                    "/$value")
-  
-  
-  
-  headers<-c(Accept = "image/png")  
-  
-  
-  
-
-  
-  body <-  httr::upload_file(filepath,type = "image/png") 
-  
-  
-
-  
-  sdk_url<- CoreAPIV2::buildUrl(coreApi,resource=resource,query=query,special=NULL,useVerbose=useVerbose)
- 
-  
-  cookie <- c(JSESSIONID = coreApi$jsessionId, AWSELB = coreApi$awselb )
-  
-
-  
-  if (useVerbose){  
-    response<- httr::with_verbose(httr::PUT(sdk_url,body = body,httr::add_headers(headers),
-                                  httr::set_cookies(cookie))
-    ) 
-    
-  } else  {
-    
-    response<-httr::PUT(sdk_url,body = body,httr::add_headers(headers),
-                     httr::set_cookies(cookie))
     
     
-  }  
-  
-  #check for general HTTP error in response
-  
-  if(httr::http_error(response)) {
+    headers <- c(Accept = "image/png")
     
-    stop(
-      {print("API call failed")
-        print( httr::http_status(response))
+    
+    
+    
+    
+    body <-  httr::upload_file(filepath, type = "image/png")
+    
+    
+    
+    
+    sdk_url <-
+      CoreAPIV2::buildUrl(
+        coreApi,
+        resource = resource,
+        query = query,
+        special = NULL,
+        useVerbose = useVerbose
+      )
+    
+    
+    cookie <-
+      c(JSESSIONID = coreApi$jsessionId,
+        AWSELB = coreApi$awselb)
+    
+    
+    
+    if (useVerbose) {
+      response <-
+        httr::with_verbose(httr::PUT(
+          sdk_url,
+          body = body,
+          httr::add_headers(headers),
+          httr::set_cookies(cookie)
+        ))
+      
+    } else  {
+      response <- httr::PUT(sdk_url,
+                            body = body,
+                            httr::add_headers(headers),
+                            httr::set_cookies(cookie))
+      
+      
+    }
+    
+    #check for general HTTP error in response
+    
+    if (httr::http_error(response)) {
+      stop({
+        print("API call failed")
+        print(httr::http_status(response))
       },
-      call.=FALSE
-    )
+      call. = FALSE)
+      
+    }
+    
+    #not sure what is going to happen if file is returned chunked
+    
+    
+    
+    
+    
+    
+    list(entity = "", response = response)
     
   }
-  
-  #not sure what is going to happen if file is returned chunked
-  
-  
-  
-
-  
-
-  list(entity="",response=response)
-
-  }
-
 
 
 

@@ -71,19 +71,15 @@ verbose <- FALSE
 
 #setup to test against multiple environments
 
-environments<<-list.files("test_environments","*.json",full.names=TRUE)
+instance<<-"test_environments/5-2-2.json"
 
-print(environments)
-for (i in 1:length(environments))
-{
   
   
-  
-  test_that(paste("test metadata update", environments[i]),
+  test_that(paste("test metadata update", instance),
             {
               verbose <- FALSE
               
-              api <- CoreAPIV2::coreAPI(environments[i])
+              api <- CoreAPIV2::coreAPI(instance)
               
               
               con<- CoreAPIV2::authBasic(api,useVerbose=verbose)
@@ -98,7 +94,7 @@ for (i in 1:length(environments))
             })
   
 
-}
+
 
 
 

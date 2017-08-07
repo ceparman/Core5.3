@@ -11,12 +11,12 @@ getExperimentContainers(coreApi, experimentType, barcode, useVerbose = FALSE)
 
 \item{experimentType}{experiment entity type to get}
 
-\item{barcode}{barcode of entity to get}
+\item{barcode}{barcode of experiment to query}
 
 \item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http POST}
 }
 \value{
-returns a list $entity contains entity information, $response contains the entire http response
+returns a list $entity contains barcodes of the containers, $response contains the entire http response
 }
 \description{
 \code{getExperimentContainers}  Gets experiment contaniers from experiment identified by experiment barcode.
@@ -28,11 +28,11 @@ returns a list $entity contains entity information, $response contains the entir
 \dontrun{
 api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 login<- CoreAPIV2::authBasic(api)
-experiment<-  CoreAPIV2::getExperimentContainers(login$coreApi,"entityType","barcode")
+exptCaontainerBarcodes <-  CoreAPIV2::getExperimentContainers(login$coreApi,"entityType","barcode")
 CoreAPIV2:logOut(login$coreApi)
 }
 }
 \author{
-Craig Parman
+Craig Parman ngsAnalytics, ngsanalytics.com
 }
 

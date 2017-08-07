@@ -13,83 +13,97 @@
 #'\dontrun{
 #' api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 #' login<- CoreAPIV2::authBasic(api)
-#' item<-CoreAPIV2::updateEntityAttributes(login$coreApi,"entityType","barcode",values)
+#' updateValues<-list(SOURCE_LAB = "My Lab",REQUESTOR = "you")
+#' response<-CoreAPIV2::updateEntityAttributes(login$coreApi,"entityType","barcode",updateValues)
+#' updatedEntity <- response$entity
 #' CoreAPIV2::logOut(login$coreApi)
 #' }
-#'@author Craig Parman
+#'@author Craig Parman ngsAnalytics, ngsanalytics.com
 #'@description \code{updateEntityAttributes}  Update entity attributes.
 
 
 
-updateEntityAttributes<-function (coreApi,entityType,barcode,updateValues,useVerbose=FALSE)
-
-{
-  
-#clean the name for ODATA
-  
- entityType <- CoreAPIV2::ODATAcleanName(entityType)
-  
- resource <- entityType
-  
- query   <- paste0("('",barcode,"')")
-
-# Get entityType
- 
- entity <- CoreAPIV2::getEntityByBarcode(coreApi,entityType,barcode,fullMetadata = FALSE,useVerbose = TRUE)
- 
-
- old_values<-entity$entity
- 
- 
- #check to see if all values to update are in the entity
- 
- 
- # replace values
- 
- if ( table(names(updateValues)  %in% names(old_values))["TRUE"] != length(names(updateValues)) ) {
- 
-   stop(
-     {print("Names of values to update don't match entity names ")
-       print( names(updateValues) )
-       print(names(old_values) )
-     },
-     call.=FALSE
-   )
-   
- 
-}
- 
- namesToUpdate<- names(updateValues)
- for(i in 1:length(namesToUpdate))
-   
- {
-   old_values[[namesToUpdate[i]]]  <- updateValues[[i]]
-   
-   
- }
- 
- 
- 
- 
- body<-old_values   
- 
- resource <- paste0(entityType)
- query <- paste0("('",barcode,"')")
- 
- header<-c("Content-Type"="application/json","If-Match"="*")  
- 
- #update record 
- 
- 
-response<- CoreAPIV2::apiPUT(coreApi,resource = resource, query=query,body=body,encode="raw",
-                              headers = header, useVerbose=useVerbose)
- 
- 
-  
-
-list(entity=httr::content(response),response=response)
-
-}
-
-
-
+updateEntityAttributes <-
+  function (coreApi,
+            entityType,
+            barcode,
+            updateValues,
+            useVerbose = FALSE)
+    
+  {
+    #clean the name for ODATA
+    
+    entityType <- CoreAPIV2::ODATAcleanName(entityType)
+    
+    resource <- entityType
+    
+    query   <- paste0("('", barcode, "')")
+    
+    # Get entityType
+    
+    entity <-
+      CoreAPIV2::getEntityByBarcode(coreApi,
+                                    entityType,
+                                    barcode,
+                                    fullMetadata = FALSE,
+                                    useVerbose = TRUE)
+    
+    
+    old_values <- entity$entity
+    
+    
+    #check to see if all values to update are in the entity
+    
+    
+    # replace values
+    
+    if (table(names(updateValues)  %in% names(old_values))["TRUE"] != length(names(updateValues))) {
+      stop({
+        print("Names of values to update don't match entity names ")
+        print(names(updateValues))
+        print(names(old_values))
+      },
+      call. = FALSE)
+      
+      
+    }
+    
+    namesToUpdate <- names(updateValues)
+    for (i in 1:length(namesToUpdate))
+      
+    {
+      old_values[[namesToUpdate[i]]]  <- updateValues[[i]]
+      
+      
+    }
+    
+    
+    
+    
+    body <- old_values
+    
+    resource <- paste0(entityType)
+    query <- paste0("('", barcode, "')")
+    
+    header <- c("Content-Type" = "application/json", "If-Match" = "*")
+    
+    #update record
+    
+    
+    response <-
+      CoreAPIV2::apiPUT(
+        coreApi,
+        resource = resource,
+        query = query,
+        body = body,
+        encode = "raw",
+        headers = header,
+        useVerbose = useVerbose
+      )
+    
+    
+    
+    
+    list(entity = httr::content(response), response = response)
+    
+  }

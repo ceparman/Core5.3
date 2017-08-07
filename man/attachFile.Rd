@@ -16,7 +16,7 @@ attachFile(coreApi, barcode, filename, filepath, targetAttributeName = "",
 
 \item{filepath}{path to the file to attach}
 
-\item{targetAttributeName}{- if included the name if the attribute to attach the file to.  Must be in all caps.  NOT WORKING}
+\item{targetAttributeName}{- if included the name if the attribute to attach the file to.  Must be in all caps.}
 
 \item{useVerbose}{Use verbose communication for debugging}
 }
@@ -24,7 +24,7 @@ attachFile(coreApi, barcode, filename, filepath, targetAttributeName = "",
 RETURN returns a list $entity contains entity information, $response contains the entire http response
 }
 \description{
-\code{attachFile} Attaches a file to entity identified by barcode.
+\code{attachFile} Attaches a file to entity identified by barcode.  Note: This function uses the JSON API.
 }
 \details{
 \code{attachFile}  Attaches a file to an entity or file attribute.
@@ -33,12 +33,12 @@ RETURN returns a list $entity contains entity information, $response contains th
 \dontrun{
 api<-CoreAPI("PATH TO JSON FILE")
 login<- CoreAPIV2::authBasic(api)
-newitem<-CoreAPIV2::attachFile(response$coreApi,barcode,filename,
+modifiedItem<-CoreAPIV2::attachFile(response$coreApi,barcode,filename,
          filepath,targetAttributeName="",useVerbose=FALSE)
 CoreAPIV2::logOut(login$coreApi )
 }
 }
 \author{
-Craig Parman
+Craig Parman ngsAnalytics, ngsanalytics.com
 }
 

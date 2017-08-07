@@ -21,7 +21,7 @@ returns a list $entity contains entity information, $response contains the entir
 }
 \description{
 \code{ getExperimentSamplesAssayData }  Gets experiment samples from experiment identified by experiment barcode. 
-Does not retieve files attached as data.
+Does not retieve files attached as data. Use getExperimentSampleAssayFileData to retrieve assay data that is a file.
 }
 \details{
 \code{getExperimentSamplesAssayData }  Gets assay data for a experiment sample identified by barcode.
@@ -35,6 +35,6 @@ CoreAPIV2:logOut(login$coreApi)
 }
 }
 \author{
-Craig Parman
+Craig Parman ngsAnalytics, ngsanalytics.com
 }
 

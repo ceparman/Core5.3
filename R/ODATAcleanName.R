@@ -10,19 +10,19 @@
 #' new_name
 #' _384_WELL_PLATE
 #'  }
-#'@author Craig Parman
+#'@author Craig Parman ngsAnalytics, ngsanalytics.com
 #'@description \code{ODATAcleanName} - converts names to ODATA compliant version. Used to clean names in ODATA calls.
 
 
-ODATAcleanName<-function(name)
+
+ODATAcleanName <- function(name)
 {
+  name <- gsub("(^[1-9])", "_\\1", name)
   
-name <- gsub("(^[1-9])","_\\1",name)
-
-name <- gsub(" ","_",name)
+  name <- gsub(" ", "_", name)
   
-
-name  
+  
+  name
   
   
 }

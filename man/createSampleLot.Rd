@@ -25,17 +25,17 @@ RETURN returns a list $entity contains entity information, $response contains th
 \code{createSampleLot} Creates a new sample lot using the parent sample barcode
 }
 \details{
-\code{createSampleLot} Creates a sample lot of a sample. Assumes the sample lot entity is inth from samplename_lot
+\code{createSampleLot} Creates a sample lot of a sample. Assumes the sample lot entity is in the form samplename_lot
 }
 \examples{
 \dontrun{
 api<-CoreAPIV2("PATH TO JSON FILE")
 login<- CoreAPIV2::authBasic(api)
-item<-CoreAPIV2::createSampleLot(login$coreApi,"Sample_Name")
+lot<-CoreAPIV2::createSampleLot(login$coreApi,"Sample_Name")
 logOut(login$coreApi )
 }
 }
 \author{
-Craig Parman
+Craig Parman ngsAnalytics, ngsanalytics.com
 }
 

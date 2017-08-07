@@ -40,10 +40,11 @@ Returns the entire http response
 api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 login<- CoreAPIV2::authBasic(api)
 response <-CoreAPIV2::apiPUT(login$coreApi,"SAMPLE",body,"json",special=NULL,useVerbose=FALSE,unbox = TRUE)
+content <- httr::coontent(response)
 CoreAPIV2::logOut(login$coreApi )
 }
 }
 \author{
-Craig Parman
+Craig Parman ngsAnalytics, ngsanalytics.com
 }
 

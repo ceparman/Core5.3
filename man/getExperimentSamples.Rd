@@ -2,7 +2,7 @@
 % Please edit documentation in R/getExperimentSamples.R
 \name{getExperimentSamples}
 \alias{getExperimentSamples}
-\title{getExperimentSamples - Gets experiment samples from experiment identified by barcode.}
+\title{getExperimentSamples - Gets experiment sample barcodes from experiment identified by barcode.}
 \usage{
 getExperimentSamples(coreApi, experimentType, barcode, useVerbose = FALSE)
 }
@@ -19,7 +19,7 @@ getExperimentSamples(coreApi, experimentType, barcode, useVerbose = FALSE)
 returns a list $entity contains entity information, $response contains the entire http response
 }
 \description{
-\code{ getExperimentSamples}  Gets experiment samples from experiment identified by experiment barcode.
+\code{ getExperimentSamples}  Gets experiment sample barcodes from experiment identified by experiment barcode.
 }
 \details{
 \code{getExperimentSamples}  Gets experiment samples from experiment identified by barcode.
@@ -28,11 +28,12 @@ returns a list $entity contains entity information, $response contains the entir
 \dontrun{
 api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 login<- CoreAPIV2::authBasic(api)
-experiment<-  CoreAPIV2::getExperimentSamples(login$coreApi,"entityType","barcode")
+response<-  CoreAPIV2::getExperimentSamples(login$coreApi,"entityType","barcode")
+experimentsampleBarcodes <- response$entity
 CoreAPIV2:logOut(login$coreApi)
 }
 }
 \author{
-Craig Parman
+Craig Parman ngsAnalytics, ngsanalytics.com
 }
 

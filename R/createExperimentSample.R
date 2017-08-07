@@ -17,37 +17,51 @@
 #'        "Assaybarcode","ProtocolBarcode")
 #' CoreAPIV2::logOut(login$coreApi )
 #' }
-#'@author Craig Parman
+#'@author Craig Parman ngsAnalytics, ngsanalytics.com
 #'@description \code{createExperimentSample} Creates a new experiment sample fomr a sample lot.
 
-createExperimentSample<-function (coreApi,experimentType,experimentBarcode,
-                                  sampleLotBarcode,body=NULL,useVerbose=FALSE)
-
-{
-
-  #clean the names for ODATA
-  
-  experimentType<- CoreAPIV2::ODATAcleanName(experimentType)
-  
-  experimentSampleType <- paste0(experimentType,"_SAMPLE")
-  
-  exptRef<- list('EXPERIMENT@odata.bind' = paste0("/",experimentType,"('",experimentBarcode,"')"))
-  
-  entityRef<- list('ENTITY@odata.bind' = paste0("/ENTITY('",sampleLotBarcode,"')"))
-  
-  fullBody<- jsonlite::toJSON(c(body,exptRef,entityRef),auto_unbox = TRUE)
-  
-  
-
- headers <- c('Content-Type' = "application/json;odata.metadata=full")
- 
- response<-CoreAPIV2::apiPOST(coreApi,resource=experimentSampleType,body=fullBody,encode = "json",
-                              headers =headers ,special=NULL,useVerbose=useVerbose)
- 
-
-
-list(entity=httr::content(response),response=response)
-
-}
-
-
+createExperimentSample <-
+  function (coreApi,
+            experimentType,
+            experimentBarcode,
+            sampleLotBarcode,
+            body = NULL,
+            useVerbose = FALSE)
+    
+  {
+    #clean the names for ODATA
+    
+    experimentType <- CoreAPIV2::ODATAcleanName(experimentType)
+    
+    experimentSampleType <- paste0(experimentType, "_SAMPLE")
+    
+    exptRef <-
+      list('EXPERIMENT@odata.bind' = paste0("/", experimentType, "('", experimentBarcode, "')"))
+    
+    entityRef <-
+      list('ENTITY@odata.bind' = paste0("/ENTITY('", sampleLotBarcode, "')"))
+    
+    fullBody <-
+      jsonlite::toJSON(c(body, exptRef, entityRef), auto_unbox = TRUE)
+    
+    
+    
+    headers <-
+      c('Content-Type' = "application/json;odata.metadata=full")
+    
+    response <-
+      CoreAPIV2::apiPOST(
+        coreApi,
+        resource = experimentSampleType,
+        body = fullBody,
+        encode = "json",
+        headers = headers ,
+        special = NULL,
+        useVerbose = useVerbose
+      )
+    
+    
+    
+    list(entity = httr::content(response), response = response)
+    
+  }

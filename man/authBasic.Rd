@@ -13,7 +13,7 @@ account. account is required if user has access to multiple tenants.}
 \item{useVerbose}{- Use verbose settings for HTTP commands}
 }
 \value{
-returns a list with coreApi which returns the passed coreApi object with  jsessionid,
+returns a list with two oblects. coreApi which returns the passed coreApi object with  jsessionid,
            awselb and employeeid populated, $response contains the entire http response
 }
 \description{
@@ -26,10 +26,12 @@ returns a list with coreApi which returns the passed coreApi object with  jsessi
 \dontrun{
 api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 response<- CoreAPIV2::authBasic(api)
+login <- response$core$Api
+error <- httr::http_error(response$response)
 CoreAPIV2::logOut(response$coreApi,useVerbose=TRUE )
 }
 }
 \author{
-Craig Parman
+Craig Parman ngsAnalytics, ngsanalltics.com
 }
 

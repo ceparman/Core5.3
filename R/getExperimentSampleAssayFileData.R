@@ -17,82 +17,89 @@
 #' writeBin(response$entity, "myfile.png")
 #' CoreAPIV2:logOut(login$coreApi)
 #' }
-#'@author Craig Parman
+#'@author Craig Parman ngsAnalytics, ngsanalytics.com
 #'@description \code{ getExperimentSamplesAssayFileData }  Gets file attached as assay data. 
+#'Use getExperimentSamplesAssayData for non-file data.
 
 
-
-
-
-getExperimentSamplesAssayFileData <-function (coreApi,assayType,experimentSamplebarcode,attributeName,useVerbose=FALSE)
-
-{
-
-  
-  #clean the name for ODATA
-  
-  
-  
-  resource <- paste0(CoreAPIV2::ODATAcleanName(assayType),"_DATA")
-  
-  
-  query   <- paste0("('",experimentSamplebarcode,
-                    "')/",CoreAPIV2::attributeCleanName(attributeName),
-                    "/$value")
-  
-  
-  
-  headers<-c(Accept = "image/png")  
-  
-  
-  
-  
-  resource <- CoreAPIV2::ODATAcleanName(resource)
-  
-  sdk_url<- CoreAPIV2::buildUrl(coreApi,resource=resource,query=query,special=NULL,useVerbose=useVerbose)
- 
-  
-  cookie <- c(JSESSIONID = coreApi$jsessionId, AWSELB = coreApi$awselb )
-  
-
-  
-  if (useVerbose){  
-    response<- httr::with_verbose(httr::GET(sdk_url,httr::add_headers(headers)),
-                                  httr::set_cookies(cookie)
-    ) 
+getExperimentSamplesAssayFileData <-
+  function (coreApi,
+            assayType,
+            experimentSamplebarcode,
+            attributeName,
+            useVerbose = FALSE)
     
-  } else  {
+  {
+    #clean the name for ODATA
     
-    response<-httr::GET(sdk_url,httr::add_headers(headers),
-                        httr::set_cookies(cookie)
-    ) 
     
-  }  
-  
-  #check for general HTTP error in response
-  
-  if(httr::http_error(response)) {
     
-    stop(
-      {print("API call failed")
-        print( httr::http_status(response))
-      },
-      call.=FALSE
+    resource <- paste0(CoreAPIV2::ODATAcleanName(assayType), "_DATA")
+    
+    
+    query   <- paste0(
+      "('",
+      experimentSamplebarcode,
+      "')/",
+      CoreAPIV2::attributeCleanName(attributeName),
+      "/$value"
     )
     
+    
+    
+    headers <- c(Accept = "image/png")
+    
+    
+    
+    
+    resource <- CoreAPIV2::ODATAcleanName(resource)
+    
+    sdk_url <-
+      CoreAPIV2::buildUrl(
+        coreApi,
+        resource = resource,
+        query = query,
+        special = NULL,
+        useVerbose = useVerbose
+      )
+    
+    
+    cookie <-
+      c(JSESSIONID = coreApi$jsessionId,
+        AWSELB = coreApi$awselb)
+    
+    
+    
+    if (useVerbose) {
+      response <-
+        httr::with_verbose(httr::GET(sdk_url, httr::add_headers(headers)),
+                           httr::set_cookies(cookie))
+      
+    } else  {
+      response <- httr::GET(sdk_url,
+                            httr::add_headers(headers),
+                            httr::set_cookies(cookie))
+      
+    }
+    
+    #check for general HTTP error in response
+    
+    if (httr::http_error(response)) {
+      stop({
+        print("API call failed")
+        print(httr::http_status(response))
+      },
+      call. = FALSE)
+      
+    }
+    
+    #not sure what is going to happen if file is returned chunked
+    
+    
+    bin <- httr::content(response, "raw")
+    
+    
+    
+    list(entity = bin, response = response)
+    
   }
-  
-  #not sure what is going to happen if file is returned chunked
-  
-  
-  bin <- httr::content(response, "raw")
-
-  
-
-  list(entity=bin,response=response)
-
-  }
-
-
-
-

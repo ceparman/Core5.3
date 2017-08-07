@@ -24,62 +24,97 @@
 #'                            concentrationUnit,useVerbose = FALSE)
 #' CoreAPIV2::logOut(login$coreApi )
 #' }
-#'@author Craig Parman
-#'@description \code{setWellContents} - Puts a cell lot in a container cell.
+#'@author Craig Parman ngsAnalytics, ngsanalytics.com
+#'@description \code{setWellContents} - Puts a cell lot in a container well.
 
 
 
 
 
-setWellContents<-function (coreApi, containerType,containerBarcode, containerWellNum,
-                           sampleLotType,sampleLotBarcode, amount, amountUnit, concentration,
-                           concentrationUnit,useVerbose = FALSE)
-{
 
-  
-  #clean the name for ODATA
-  
-  containerType <- CoreAPIV2::ODATAcleanName(containerType)
-  
-  
-  containerWellNum <- as.numeric(containerWellNum)
-  
-  #first get the cellID for the well
-  
-  cellID<-getContainerCellIds(coreApi, containerType,containerBarcode, useVerbose = FALSE)$entity[containerWellNum]
-  
-  
-  #get ID for lot number
-  lotID<- CoreAPIV2::getEntityByBarcode(coreApi,entityType =sampleLotType,barcode = sampleLotBarcode,
-     
-                                     fullMetadata = FALSE, useVerbose=useVerbose)$entity$Id
-  
-  body<-list()
-
-  
-  cells <- list(c( list(cellId = jsonlite::unbox(cellID), amount = jsonlite::unbox(amount),
-                                          amountUnit=jsonlite::unbox(amountUnit),
+setWellContents <-
+  function (coreApi,
+            containerType,
+            containerBarcode,
+            containerWellNum,
+            sampleLotType,
+            sampleLotBarcode,
+            amount,
+            amountUnit,
+            concentration,
+            concentrationUnit,
+            useVerbose = FALSE)
+  {
+    #clean the name for ODATA
+    
+    containerType <- CoreAPIV2::ODATAcleanName(containerType)
+    
+    
+    containerWellNum <- as.numeric(containerWellNum)
+    
+    #first get the cellID for the well
+    
+    cellID <-
+      getContainerCellIds(coreApi, containerType, containerBarcode, useVerbose = FALSE)$entity[containerWellNum]
+    
+    
+    #get ID for lot number
+    lotID <-
+      CoreAPIV2::getEntityByBarcode(
+        coreApi,
+        entityType = sampleLotType,
+        barcode = sampleLotBarcode,
+        
+        fullMetadata = FALSE,
+        useVerbose = useVerbose
+      )$entity$Id
+    
+    body <- list()
+    
+    
+    cells <-
+      list(c(
+        list(
+          cellId = jsonlite::unbox(cellID),
+          amount = jsonlite::unbox(amount),
+          amountUnit = jsonlite::unbox(amountUnit),
           
-                   
-
-       contents = list(c(  list( lotId = jsonlite::unbox(lotID), concentration=jsonlite::unbox(concentration),
-                                        concentrationUnit = jsonlite::unbox(concentrationUnit)
-        ))))))
-                
-  
-  body[["cells"]] <- cells
-  
-  query <- paste0("CONTAINER('",containerBarcode,"')/pfs.Container.SetCellContents")
-  
-  
-  header<-c("Content-Type"="application/json;metadata=minimal",Accept="application/json")  
-  
-  response<- CoreAPIV2::apiPOST(coreApi,resource=query,body=body,encode="json",
-                                headers = header, useVerbose=useVerbose)
-  
-  
-  
- list(entity=httr::content(response),response=response)
-
+          
+          
+          contents = list(c(
+            list(
+              lotId = jsonlite::unbox(lotID),
+              concentration = jsonlite::unbox(concentration),
+              concentrationUnit = jsonlite::unbox(concentrationUnit)
+            )
+          ))
+        )
+      ))
+    
+    
+    body[["cells"]] <- cells
+    
+    query <-
+      paste0("CONTAINER('",
+             containerBarcode,
+             "')/pfs.Container.SetCellContents")
+    
+    
+    header <-
+      c("Content-Type" = "application/json;metadata=minimal", Accept = "application/json")
+    
+    response <-
+      CoreAPIV2::apiPOST(
+        coreApi,
+        resource = query,
+        body = body,
+        encode = "json",
+        headers = header,
+        useVerbose = useVerbose
+      )
+    
+    
+    
+    list(entity = httr::content(response), response = response)
+    
   }
-

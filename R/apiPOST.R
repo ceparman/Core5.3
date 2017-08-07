@@ -15,65 +15,89 @@
 #' api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 #' login<- CoreAPIV2::authBasic(api)
 #' response <-CoreAPIV2::apiPOST(login$coreApi,"SAMPLE",body,"json",special=NULL,useVerbose=FALSE)
+#' message <- httr::content(response)
+#' error <- httr::http_error(response)
 #' CoreAPIV2::logOut(login$coreApi )
 #' }
-#'@author Craig Parman
+#'@author Craig Parman ngsAnalytics, ngsanalytics.com
 #'@description \code{apiPOST} - Base call to Core ODATA REST API.
 
 
 
-apiPOST<-function(coreApi,resource=NULL,body=NULL,encode,headers=NULL,special=NULL,useVerbose=FALSE)
-{
 
-  
-  
-#clean the resource name for ODATA
-  
-resource <- CoreAPIV2::ODATAcleanName(resource)  
-  
-  
-  #Check that encode parameter is proper
-
-   if ( !(encode %in% c("multipart", "form", "json", "raw"))) {
-        stop(
-          {print("encode parameter not recognized")
-            print( httr::http_status(response))
-          },
-          call.=FALSE
-        )
-
-   }
-
-
-
-sdk_url<-  CoreAPIV2::buildUrl(coreApi,resource=resource,special=special,useVerbose=useVerbose)
-
-cookie <- c(JSESSIONID = coreApi$jsessionId, AWSELB = coreApi$awselb )
-
-response<-invisible(httr::POST(sdk_url,resource=resource,body = body, encode=encode,httr::add_headers(headers),
-                               httr::set_cookies(cookie),
-                               httr::verbose(data_out = useVerbose, data_in = useVerbose,
-                                               info = useVerbose, ssl = useVerbose))
-                      )
+apiPOST <-
+  function(coreApi,
+           resource = NULL,
+           body = NULL,
+           encode,
+           headers = NULL,
+           special = NULL,
+           useVerbose = FALSE)
+  {
+    #clean the resource name for ODATA
     
-       
-
-
-
-
-#check for general HTTP error in response
-
-if(httr::http_error(response)) {
-
-  stop(
-    {print("API call failed")
-      print( httr::http_status(response))
-    },
-    call.=FALSE
-  )
-
-
-}
-
-return(response)
-}
+    resource <- CoreAPIV2::ODATAcleanName(resource)
+    
+    
+    #Check that encode parameter is proper
+    
+    if (!(encode %in% c("multipart", "form", "json", "raw"))) {
+      stop({
+        print("encode parameter not recognized")
+        print(httr::http_status(response))
+      },
+      call. = FALSE)
+      
+    }
+    
+    
+    
+    sdk_url <-
+      CoreAPIV2::buildUrl(
+        coreApi,
+        resource = resource,
+        special = special,
+        useVerbose = useVerbose
+      )
+    
+    cookie <-
+      c(JSESSIONID = coreApi$jsessionId,
+        AWSELB = coreApi$awselb)
+    
+    response <-
+      invisible(
+        httr::POST(
+          sdk_url,
+          resource = resource,
+          body = body,
+          encode = encode,
+          httr::add_headers(headers),
+          httr::set_cookies(cookie),
+          httr::verbose(
+            data_out = useVerbose,
+            data_in = useVerbose,
+            info = useVerbose,
+            ssl = useVerbose
+          )
+        )
+      )
+    
+    
+    
+    
+    
+    
+    #check for general HTTP error in response
+    
+    if (httr::http_error(response)) {
+      stop({
+        print("API call failed")
+        print(httr::http_status(response))
+      },
+      call. = FALSE)
+      
+      
+    }
+    
+    return(response)
+  }

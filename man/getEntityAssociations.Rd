@@ -21,10 +21,10 @@ getEntityAssociations(coreApi, entityType, barcode, context,
 \item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http POST}
 }
 \value{
-returns a list $entity contains entity information, $response contains the entire http response
+returns a list $entity contains entity associations, $response contains the entire http response
 }
 \description{
-\code{getEntityAssociations}  Get assoication for a context
+\code{getEntityAssociations}  Get assoication for a entity
 }
 \examples{
 \dontrun{
@@ -35,6 +35,6 @@ CoreAPIV2::logOut(login$coreApi)
 }
 }
 \author{
-Craig Parman
+Craig Parman ngsAnalytics, ngsanalytics.com
 }
 

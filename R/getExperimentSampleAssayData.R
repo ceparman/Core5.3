@@ -15,44 +15,50 @@
 #' experiment<-  getExperimentSamplesAssayData (login$coreApi,"assayType","barcode")
 #' CoreAPIV2:logOut(login$coreApi)
 #' }
-#'@author Craig Parman
+#'@author Craig Parman ngsAnalytics, ngsanalytics.com
 #'@description \code{ getExperimentSamplesAssayData }  Gets experiment samples from experiment identified by experiment barcode. 
-#'Does not retieve files attached as data.
+#'Does not retieve files attached as data. Use getExperimentSampleAssayFileData to retrieve assay data that is a file.
 
 
 
 
-getExperimentSamplesAssayData <-function (coreApi,assayType,experimentSamplebarcode,useVerbose=FALSE)
 
-{
-
-  
-  #clean the name for ODATA
-  
-  resource <- CoreAPIV2::ODATAcleanName("EXPERIMENT_SAMPLE")
-  
-  assayType <- CoreAPIV2::ODATAcleanName(assayType)
-  
-  query   <- paste0("('",experimentSamplebarcode,
-                    "')/ASSAY_DATA/pfs.",
-                    assayType,
-                    "_DATA")
-  
-  
-  header<-c(Accept = "application/json")  
-  
-  
-  
-  response <- CoreAPIV2::apiGET(coreApi,resource =resource, query = query,headers = header,
-                                useVerbose=useVerbose)
-  
-  
-  
-
-  list(entity=response$content,response=response$response)
-
+getExperimentSamplesAssayData <-
+  function (coreApi,
+            assayType,
+            experimentSamplebarcode,
+            useVerbose = FALSE)
+    
+  {
+    #clean the name for ODATA
+    
+    resource <- CoreAPIV2::ODATAcleanName("EXPERIMENT_SAMPLE")
+    
+    assayType <- CoreAPIV2::ODATAcleanName(assayType)
+    
+    query   <- paste0("('",
+                      experimentSamplebarcode,
+                      "')/ASSAY_DATA/pfs.",
+                      assayType,
+                      "_DATA")
+    
+    
+    header <- c(Accept = "application/json")
+    
+    
+    
+    response <-
+      CoreAPIV2::apiGET(
+        coreApi,
+        resource = resource,
+        query = query,
+        headers = header,
+        useVerbose = useVerbose
+      )
+    
+    
+    
+    
+    list(entity = response$content, response = response$response)
+    
   }
-
-
-
-

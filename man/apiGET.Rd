@@ -14,15 +14,15 @@ apiGET(coreApi, resource, query, headers = NULL, special = NULL,
 
 \item{query}{query string}
 
-\item{headers}{headers to be added to get.}
+\item{headers}{headers to be added to get}
 
 \item{special}{passed to buildUrl for special sdk endpoints}
 
 \item{useVerbose}{Use verbose communication for debugging}
 }
 \value{
-Returns the content, concatenated if a chunked response, and the entire http response for the last 
-get if cunked content.
+Returns a list of length two. First the content, concatenated if a chunked response, and second the entire http response.
+If chuncked for the content for the last chunk only.last
 }
 \description{
 \code{apiGET} - Do a get from the Core ODATA REST API.
@@ -35,10 +35,12 @@ get if cunked content.
 api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 login<- CoreAPIV2::authBasic(api)
 response <-CoreAPIV2::apiGET(login$coreApi,"json",resource,query)
+content <- response$content
+error <- httr::http_error(response$response)
 CoreAPIV2::logOut(login$coreApi)
 }
 }
 \author{
-Craig Parman
+Craig Parman ngsAnalytics, ngsanalytics.com
 }
 
