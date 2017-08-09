@@ -16,7 +16,11 @@
 #' error <- httr::http_error(response$response)
 #' CoreAPIV2::logOut(response$coreApi,useVerbose=TRUE )
 #'}
+<<<<<<< HEAD
 #'@author Craig Parman ngsAnalytics, ngsanalltics.com
+=======
+#'@author Craig Parman ngsAnalytics, ngsanaltics.com
+>>>>>>> 5c12acc7ebc3af5f9931cc782407ed60e5b46ada
 #'@description \code{authBasic} Logs in and returns a fully populated coreApi object in $coreAPI.
 
 
