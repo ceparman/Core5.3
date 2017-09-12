@@ -35,7 +35,7 @@ instance <<- "test_environments/5-2-2.json"
               
             
                             
-              lc1<-getEntityLocation(con$coreApi,"PATIENT_SAMPLE","PS1",useVerbose=FALSE)
+              lc1<-CoreAPIV2::getEntityLocation(con$coreApi,"PATIENT_SAMPLE","PS1",useVerbose=FALSE)
               
               expect_match(lc1$entity[[1]]$Barcode,"LC1")
               
@@ -43,7 +43,7 @@ instance <<- "test_environments/5-2-2.json"
               expect_match( httr::http_status(lc$response)$category,"Success")
               
               
-              lc1<-getEntityLocation(con$coreApi,"PATIENT_SAMPLE","PS1",useVerbose=FALSE)
+              lc1<-CoreAPIV2::getEntityLocation(con$coreApi,"PATIENT_SAMPLE","PS1",useVerbose=FALSE)
               
               expect_match(lc1$entity[[1]]$Barcode,"LC2")
               

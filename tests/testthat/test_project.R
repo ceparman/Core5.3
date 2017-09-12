@@ -36,7 +36,7 @@ instance <<- "test_environments/5-2-2.json"
               
               
                             
-              p1<-getEntityProject(con$coreApi,"PATIENT_SAMPLE","PS2",useVerbose=FALSE)
+              p1<-CoreAPIV2::getEntityProject(con$coreApi,"PATIENT_SAMPLE","PS2",useVerbose=FALSE)
               
               expect_match(p1$entity[[1]]$Barcode,"PJ1")
               
@@ -48,7 +48,7 @@ instance <<- "test_environments/5-2-2.json"
               expect_match( httr::http_status(p2$response)$category,"Success")
               
               
-             p3<-getEntityProject(con$coreApi,"PATIENT_SAMPLE","PS2",useVerbose=FALSE)
+             p3<-CoreAPIV2::getEntityProject(con$coreApi,"PATIENT_SAMPLE","PS2",useVerbose=FALSE)
               
              expect_match(p3$entity[[1]]$Barcode,"PJ1")
              expect_match(p3$entity[[2]]$Barcode,"PJ2")

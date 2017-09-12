@@ -3,7 +3,7 @@
 #' \code{attributeCleanName} clean attribute name.
 #' @param name  string to clean 
 #' @export
-#' @return Returns name in ODAt compliant form
+#' @return Returns attribute name as the API will use.
 #' @examples
 #'\dontrun{
 #' new_name <-CoreAPIV2::attributeCleanName("My Comments")
@@ -18,7 +18,7 @@ attributeCleanName <- function(name)
 {
   name <- toupper(name)
   
-  name <- gsub(" ", "_", name)
+  name <- gsub("[ ,&,%]", "_", name)
   
   
   name

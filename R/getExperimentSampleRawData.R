@@ -1,56 +1,50 @@
-#' getExperimentSamplesRawData - Gets raw data for an experiment sample.
+#' getExperimentSamplesRawData - Gets raw data for an experiment container.
 #'
-#'\code{getExperimentSamplesAssayData }  Gets raw data for a experiment sample identified by barcode.
+#'\code{getExperimentSamplesRawData }  Gets raw data for a experiment container identified by barcode.
 #'
 #'@param coreApi coreApi object with valid jsessionid
 #'@param experimentType experiment type for sample
 #'@param assayType  assay type for sample
-#'@param experimentSamplebarcode experiment sample barcode of entity to get
+#'@param experimentContainerBarcode experiment sample container of entity to get
+#'@param dataName assay data name to retrive as configured in the assay.
 #'@param useVerbose TRUE or FALSE to indicate if verbose options should be used in http call
 #'@return returns a list $entity contains data frame with derived experiment sample barcodes concentration, 
-#'         and %I, $response contains the entire http response
+#'         and assay raw data. $response contains the entire http response
 #'@export
 #'@examples
 #'\dontrun{
 #' api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 #' login<- CoreAPIV2::authBasic(api)
-#' response<-  getExperimentSamplesRawData (login$coreApi,"ExperimentType","assayType","barcode")
+#' response<-  getExperimentSamplesRawData (login$coreApi,"ExperimentContainerBarcode",useVerbose = FALSE)
 #' rawdata <- response$entity
 #' CoreAPIV2:logOut(login$coreApi)
 #' }
 #'@author Craig Parman ngsAnalytics, ngsanalytics.com
-#'@description \code{ getExperimentSamplesRawData }   Gets raw data for a experiment sample identified by barcode.
+#'@description \code{ getExperimentSamplesRawData }   Gets raw data for a experiment container identified by barcode.
 
 
 
 getExperimentSamplesRawData <-
   function (coreApi,
-            experimentType,
-            assayType,
-            experimentSamplebarcode,
+            experimentContainerBarcode,
             useVerbose = FALSE)
     
   {
-    #clean the name for ODATA
-    experimentType <- CoreAPIV2::ODATAcleanName(experimentType)
-    assayType   <-   CoreAPIV2::ODATAcleanName(assayType)
     
-    resource <- paste0(experimentType, "_SAMPLE")
+    resource <- "RAW_DATA"
     
-    
+
     query   <- paste0(
-      "('",
-      experimentSamplebarcode,
-      "')?$expand=ASSAY_DATA/pfs.ASSAY_DATA,DERIVED_FROM",
-      "($expand=INTERMEDIATE_ASSAY_DATA/pfs.INTERMEDIATE_",
-      assayType,
-      "_DATA)"
+      
+      "?$filter=EXPERIMENT_CONTAINER/Name%20eq%20'",
+      experimentContainerBarcode,
+         "'"
     )
     
     
-    header <- c(Accept = "application/json; odata.metadata=minimal")
+    header <- c(Accept = "application/json")
     
-    
+
     
     
     response <-
@@ -63,87 +57,19 @@ getExperimentSamplesRawData <-
       )
     
     
-    derivedSamples <- response$content$DERIVED_FROM
+    dataValues <-lapply(response$content,unlist)
     
-    barcodes <- unlist(lapply(derivedSamples, function(x)
-      x$Barcode))
+    dataValues <- lapply(dataValues, function(x) {names(x) <- NULL
+                         return(x) })
     
-    concentration <-
-      unlist(lapply(derivedSamples, function(x) {
-        if (is.null(x$CI_CONC_NM))
-          return("")
-        else
-          return(x$CI_CONC_NM)
-      }))
+    dataValues <- t(matrix(unlist(dataValues), ncol = length(response$content), nrow =length(response$content[[1]]) ))
+   
+    colnames(dataValues) <- names(response$content[[1]])
     
-    
-    concUnit <-
-      unlist(lapply(derivedSamples, function(x) {
-        if (is.null(x$CI_CONC_UNIT))
-          return("")
-        else
-          return(x$CI_CONC_UNIT)
-      }))
-    
-    
-    time <-
-      unlist(lapply(derivedSamples, function(x) {
-        if (is.null(x$CI_TIME))
-          return("")
-        else
-          return(x$CI_TIME)
-      }))
-    
-    cell <-
-      unlist(lapply(derivedSamples, function(x) {
-        if (is.null(x$CI_CELL))
-          return("")
-        else
-          return(x$CI_CELL)
-      }))
-    
-    entity <-
-      data.frame (
-        barcodes = barcodes,
-        concentration = concentration,
-        concUnit = concUnit,
-        time = time,
-        cell = cell
-      )
-    
-    ######## can have different intermediate data must build columns
+    dataValues <- as.data.frame(dataValues)
     
     
     
-    dataNames <-
-      names(derivedSamples[[1]]$INTERMEDIATE_ASSAY_DATA)[-1]
-    
-    dataNames <- gsub("^[_$ ]", "", dataNames)
-    
-    variableNames <-
-      names(derivedSamples[[1]]$INTERMEDIATE_ASSAY_DATA)[-1]
-    
-    #remove leading underscores and ???
-    
-    if (length(dataNames > 0)) {
-      for (i in 1:length(dataNames))
-      {
-        eval(parse(
-          text = paste0(
-            dataNames[i],
-            "<- unlist(lapply(derivedSamples, function(x) x$INTERMEDIATE_ASSAY_DATA$",
-            "'",
-            variableNames[i],
-            "'))"
-          )
-        ))
-        
-        paste0("entity$", dataNames[1], " <-", dataNames[i])
-        
-      }
-      
-    }
-    
-    list(entity = entity, response = response$response)
+    list(entity = dataValues, response = response$response)
     
   }

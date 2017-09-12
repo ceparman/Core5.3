@@ -77,7 +77,7 @@ instance <- "test_environments/5-2-2.json"
               
 
               
-              as<-getEntityAssociations(con$coreApi,"PATIENT_SAMPLE",barcode,context,fullMetadata = TRUE, useVerbose=FALSE)
+              as<-CoreAPIV2::getEntityAssociations(con$coreApi,"PATIENT_SAMPLE",barcode,context,fullMetadata = TRUE, useVerbose=FALSE)
               
               expect_match(as$entity[[1]]$Barcode,"ENZ2")
               
@@ -87,7 +87,7 @@ instance <- "test_environments/5-2-2.json"
               
               us<- CoreAPIV2::updateEntityAssociations(con$coreApi,"PATIENT_SAMPLE",barcode,updateValues,useVerbose=FALSE)
               
-              as<-getEntityAssociations(con$coreApi,"PATIENT_SAMPLE",barcode,context,fullMetadata = TRUE, useVerbose=FALSE)
+              as<-CoreAPIV2::getEntityAssociations(con$coreApi,"PATIENT_SAMPLE",barcode,context,fullMetadata = TRUE, useVerbose=FALSE)
               
               expect_match(as$entity[[1]]$Barcode,"ENZ1")
               

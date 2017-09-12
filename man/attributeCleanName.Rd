@@ -12,7 +12,7 @@ attributeCleanName(name)
 \item{name}{string to clean}
 }
 \value{
-Returns name in ODAt compliant form
+Returns attribute name as the API will use.
 }
 \description{
 \code{attriureCleanName} - onverts names to uppercase and replaces spaces with underscores to 

@@ -2,37 +2,39 @@
 % Please edit documentation in R/getExperimentSampleRawData.R
 \name{getExperimentSamplesRawData}
 \alias{getExperimentSamplesRawData}
-\title{getExperimentSamplesRawData - Gets raw data for an experiment sample.}
+\title{getExperimentSamplesRawData - Gets raw data for an experiment container.}
 \usage{
-getExperimentSamplesRawData(coreApi, experimentType, assayType,
-  experimentSamplebarcode, useVerbose = FALSE)
+getExperimentSamplesRawData(coreApi, experimentContainerBarcode,
+  useVerbose = FALSE)
 }
 \arguments{
 \item{coreApi}{coreApi object with valid jsessionid}
+
+\item{experimentContainerBarcode}{experiment sample container of entity to get}
+
+\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http call}
 
 \item{experimentType}{experiment type for sample}
 
 \item{assayType}{assay type for sample}
 
-\item{experimentSamplebarcode}{experiment sample barcode of entity to get}
-
-\item{useVerbose}{TRUE or FALSE to indicate if verbose options should be used in http call}
+\item{dataName}{assay data name to retrive as configured in the assay.}
 }
 \value{
 returns a list $entity contains data frame with derived experiment sample barcodes concentration, 
-        and %I, $response contains the entire http response
+        and assay raw data. $response contains the entire http response
 }
 \description{
-\code{ getExperimentSamplesRawData }   Gets raw data for a experiment sample identified by barcode.
+\code{ getExperimentSamplesRawData }   Gets raw data for a experiment container identified by barcode.
 }
 \details{
-\code{getExperimentSamplesAssayData }  Gets raw data for a experiment sample identified by barcode.
+\code{getExperimentSamplesRawData }  Gets raw data for a experiment container identified by barcode.
 }
 \examples{
 \dontrun{
 api<-CoreAPIV2::CoreAPI("PATH TO JSON FILE")
 login<- CoreAPIV2::authBasic(api)
-response<-  getExperimentSamplesRawData (login$coreApi,"ExperimentType","assayType","barcode")
+response<-  getExperimentSamplesRawData (login$coreApi,"ExperimentContainerBarcode",useVerbose = FALSE)
 rawdata <- response$entity
 CoreAPIV2:logOut(login$coreApi)
 }

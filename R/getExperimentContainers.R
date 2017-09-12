@@ -61,6 +61,6 @@ getExperimentContainers <-
         FUN = function(x)
           x$Barcode
       )
-    )), response = response)
+    )), response = response$response)
     
   }

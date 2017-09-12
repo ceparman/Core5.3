@@ -30,86 +30,34 @@ createExperimentContainer <-
             useVerbose = FALSE)
     
   {
-    sdkCmd <- jsonlite::unbox("update-experiment-containers")
-    
-    data <- list()
-    
-    data[["containerRefs"]] <-
-      list(c(list(barcode = jsonlite::unbox(containerBarcode))))
-    
-    data[["entityRef"]] <-
-      list(barcode = jsonlite::unbox(experimentBarcode))
+   
+
+    experimentType <- CoreAPIV2::ODATAcleanName( experimentType)
     
     
-    
-    responseOptions <-
-      c("CONTEXT_GET",
-        "MESSAGE_LEVEL_WARN",
-        "INCLUDE_EXPERIMENT_CONTAINER")
-    logicOptions <- list()
-    typeParam <- jsonlite::unbox(experimentType)
+    headers <-
+      c('Content-Type' = "application/json;odata.metadata=full")
     
     
+    resource <- paste0(experimentType,"_CONTAINER")
     
-    request <-
-      list(
-        request = list(
-          sdkCmd = sdkCmd,
-          data = data,
-          typeParam = typeParam,
-          responseOptions = responseOptions,
-          logicOptions = logicOptions
-        )
-      )
-    
-    
-    
-    headers <- c(
-      'Content-Type' = "application/json",
-      Accept = "*/*",
-      Cookie = paste0("AWSELB=", coreApi$awselb)
-    )
-    
-    
+    body <- list("CONTAINER_EXPERIMENT@odata.bind" = paste0("/",experimentType,"('",experimentBarcode,"')"),
+                 "CONTAINER@odata.bind" =  paste0("/CONTAINER('",containerBarcode,"')" ) ) 
     
     response <-
       CoreAPIV2::apiPOST(
         coreApi,
-        resource = NULL,
-        body = jsonlite::toJSON(request),
+        resource =  resource,
+        body = jsonlite::toJSON( body,auto_unbox = TRUE),
         encode = "raw",
-        headers = headers,
-        special = "json",
+        headers = headers ,
+        special = NULL,
         useVerbose = useVerbose
       )
     
     
+    
     list(entity = httr::content(response), response = response)
     
-    
-    
-    
-    #   #clean the names for ODATA
-    #
-    #   experimentType<- CoreAPIV2::ODATAcleanName(experimentType)
-    #
-    #   experimentContainerType <- paste0(experimentType,"_CONTAINER")
-    #
-    #   exptRef<- list('CONTAINER_EXPERIMENT@odata.bind' = paste0("/",experimentType,"('",experimentBarcode,"')"))
-    #
-    #   containerRef<- list('CONTAINER@odata.bind' = paste0("/CONTAINER('",containerBarcode,"')"))
-    #
-    #   fullBody<- jsonlite::toJSON(c(body,exptRef,containerRef),auto_unbox = TRUE)
-    #
-    #
-    #
-    #  headers <- c('Content-Type' = "application/json;odata.metadata=full")
-    #
-    #  response<-CoreAPIV2::apiPOST(coreApi,resource=experimentContainerType,body=fullBody,encode = "json",
-    #                               headers =headers ,special=NULL,useVerbose=useVerbose)
-    #
-    #
-    #
-    # list(entity=httr::content(response),response=response)
     
   }
