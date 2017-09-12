@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 This document lists the R version and package vesions used in the development of the CoreAPI package.  
 It is built automatically and refects the latest vesions used. 
 
-## CoreAPI Package Information
+## CoreAPIV2 Package Information
 
 ```{r echo = FALSE }
 
@@ -48,7 +48,7 @@ kable(  envrio[,11:length(envrio)] , format = "markdown")
 
 ```{r echo = FALSE}
 library('knitr')
-d<-packageDescription("CoreAPI")
+d<-packageDescription("CoreAPIV2")
 imports<-strsplit(d$Imports,",")[[1]]
 n<-length(imports)
 versions<-sapply(imports,function(x) packageDescription(x)$Version)
@@ -58,3 +58,18 @@ importframe<-data.frame(package = imports, vesion = versions)
 kable(importframe , format = "markdown")
 
 ```
+
+
+
+```{r echo = FALSE}
+library('knitr')
+library('testthat')
+
+tr<-test_dir("tests/testthat/",reporter="rstudio")
+
+kable(tr , format = "markdown")
+
+```
+
+
+
