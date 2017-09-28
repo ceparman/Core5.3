@@ -34,7 +34,7 @@ getContainerCellIds <-
     query   <-
       paste0("('",
              containerBarcode,
-             "')?$expand=REV_IMPL_CONTAINER_CELL")
+             "')?$expand=CELLS")
     
     
     
@@ -53,7 +53,7 @@ getContainerCellIds <-
       )
     
     cells <-
-      unlist(lapply(out$content$REV_IMPL_CONTAINER_CELL, function(x)
+      unlist(lapply(out$content$CELLS, function(x)
         x$Id))
     
     list(entity = cells, response = out$response)

@@ -66,7 +66,7 @@ instance <<- "test_environments/5-2-2.json"
                  
                  lheader <- c(Accept = "application/json;odata.metadata=full")
                  
-                 cells<- CoreAPIV2::apiGET(con$coreApi,resource = "384 WELL PLATE",query ="('TE1')/REV_IMPL_CONTAINER_CELL" ,headers = lheader,
+                 cells<- CoreAPIV2::apiGET(con$coreApi,resource = "384 WELL PLATE",query ="('TE1')/CELLS" ,headers = lheader,
                                            useVerbose=FALSE)
                  
                  expect_equal(length(cells$content),384,all=verbose)

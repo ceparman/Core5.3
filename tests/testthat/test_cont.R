@@ -31,7 +31,7 @@ instance <- "test_environments/5-2-2.json"
               
               cc<-CoreAPIV2::getContainerContents(con$coreApi,"VIAL","VIA1")   
               
-              expect_match(cc$entity$REV_IMPL_CONTAINER_CELL[[1]]$CONTENT[[1]]$IMPL_SAMPLE_LOT$Name,
+              expect_match(cc$entity$CELLS[[1]]$CELL_CONTENTS[[1]]$SAMPLE_LOT$Name,
                            "PS2-1",all=verbose)
               
               logout<-CoreAPIV2::logOut(api,useVerbose = verbose)
@@ -69,11 +69,11 @@ instance <- "test_environments/5-2-2.json"
                  p<- CoreAPIV2::getWellContents(con$coreApi,"384 WELL PLATE","TE1","1",useVerbose = FALSE)
                  
               
-                 expect_match(p$entity$CONTENT[[1]]$IMPL_SAMPLE_LOT$Barcode,"PS1-1",all=verbose)
+                 expect_match(p$entity$CELL_CONTENTS[[1]]$SAMPLE_LOT$Barcode,"PS1-1",all=verbose)
                 
                  cc<-CoreAPIV2::getContainerContents(con$coreApi,"384 WELL PLATE","TE1")   
                  
-                 expect_match(cc$entity$REV_IMPL_CONTAINER_CELL[[1]]$CONTENT[[1]]$IMPL_SAMPLE_LOT$Name,
+                 expect_match(cc$entity$CELLS[[1]]$CELL_CONTENTS[[1]]$SAMPLE_LOT$Name,
                               "PS1-1",all=verbose)
                  
                  
@@ -101,7 +101,7 @@ instance <- "test_environments/5-2-2.json"
                                                        containerBarcode = 'TE1',useVerbose = FALSE)
                  
                  expect_equal(cells$entity[1],18535078,all=verbose)
-                 
+         I        
                  cells<-CoreAPIV2::getContainerCellIds(con$coreApi,containerType = "VIAL",
                                                        containerBarcode='VIA1',useVerbose = TRUE)
                  

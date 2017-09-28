@@ -33,7 +33,7 @@ getCellContents <-
     query   <-
       paste0("(",
              containerCellId,
-             ")?$expand=CONTENT($expand=IMPL_SAMPLE_LOT)")
+             ")?$expand=CELL_CONTENTS($expand=SAMPLE_LOT)")
     
     
     header <-

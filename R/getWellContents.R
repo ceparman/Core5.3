@@ -45,7 +45,7 @@ getWellContents <-
     resource <- "CELL"
     
     query   <-
-      paste0("(", id, ")?$expand=CONTENT($expand=IMPL_SAMPLE_LOT)")
+      paste0("(", id, ")?$expand=CELL_CONTENTS($expand=SAMPLE_LOT)")
     
     
     header <-

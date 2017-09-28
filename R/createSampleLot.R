@@ -38,7 +38,7 @@ createSampleLot <-
     
     
     lotRef <-
-      list('IMPL_LOT_SAMPLE@odata.bind' = paste0("/", sampleType, "('", sampleBarcode, "')"))
+      list('SAMPLE@odata.bind' = paste0("/", sampleType, "('", sampleBarcode, "')"))
     
     fullBody <- jsonlite::toJSON(c(body, lotRef), auto_unbox = TRUE)
     

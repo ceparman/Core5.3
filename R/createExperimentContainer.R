@@ -19,7 +19,7 @@
 #' }
 #'@author Craig Parman ngsAnalytics, ngsanalytics.com
 #'@description \code{createExperimentContainer}Creates a new experiment container by adding an exiting container 
-#'to an experiment.  Uses the JSON API not the ODATA interface.
+#'to an experiment.  
 
 createExperimentContainer <-
   function (coreApi,
@@ -41,7 +41,7 @@ createExperimentContainer <-
     
     resource <- paste0(experimentType,"_CONTAINER")
     
-    body <- list("CONTAINER_EXPERIMENT@odata.bind" = paste0("/",experimentType,"('",experimentBarcode,"')"),
+    body <- list("EXPERIMENT@odata.bind" = paste0("/",experimentType,"('",experimentBarcode,"')"),
                  "CONTAINER@odata.bind" =  paste0("/CONTAINER('",containerBarcode,"')" ) ) 
     
     response <-

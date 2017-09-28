@@ -89,7 +89,7 @@ test_that(paste("test login,create sample and lot", instance),
             updatedExpt<-CoreAPIV2::getEntityByBarcode(coreApi,entityType = "SIMPLE EXPERIMENT",barcode =  experimentBarcode)
             
             
-            response$entity$values$PUBLISHED
+           
             
             expect_that( updatedExpt$entity$PUBLISHED,equals(TRUE))
             

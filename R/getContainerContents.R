@@ -35,7 +35,7 @@ getContainerContents <-
       paste0(
         "('",
         containerBarcode,
-        "')?$expand=REV_IMPL_CONTAINER_CELL($expand=CONTENT($expand=IMPL_SAMPLE_LOT))"
+        "')?$expand=CELLS($expand=CELL_CONTENTS($expand=SAMPLE_LOT))"
       )
     
     
