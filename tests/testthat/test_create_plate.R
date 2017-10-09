@@ -69,13 +69,13 @@ instance <<- "test_environments/5-2-2.json"
               expect_equal(wc2$entity$CI_AMOUNT,1,all=verbose)
               
               
-              expect_equal(wc1$entity$CONTENT[[1]]$CI_CONC,2,all=verbose)
-              expect_equal(wc2$entity$CONTENT[[1]]$CI_CONC,4,all=verbose)
+              expect_equal(wc1$entity$CELL_CONTENT[[1]]$CI_CONC,2,all=verbose)
+              expect_equal(wc2$entity$CELL_CONTENT[[1]]$CI_CONC,4,all=verbose)
               
               
               
-              expect_match(wc1$entity$CONTENT[[1]]$IMPL_SAMPLE_LOT$Name,sampleLotBarcode,all=verbose)
-              expect_match(wc2$entity$CONTENT[[1]]$IMPL_SAMPLE_LOT$Name,sampleLotBarcode,all=verbose)
+              expect_match(wc1$entity$CELL_CONTENT[[1]]$SAMPLE_LOT$Name,sampleLotBarcode,all=verbose)
+              expect_match(wc2$entity$CELL_CONTENT[[1]]$SAMPLE_LOT$Name,sampleLotBarcode,all=verbose)
               
               
               
@@ -152,13 +152,13 @@ instance <<- "test_environments/5-2-2.json"
                  expect_equal(wc2$entity$CI_AMOUNT,1,all=verbose)
                  
                  
-                 expect_equal(wc1$entity$CONTENT[[1]]$CI_CONC,2,all=verbose)
-                 expect_equal(wc2$entity$CONTENT[[1]]$CI_CONC,4,all=verbose)
+                 expect_equal(wc1$entity$CELL_CONTENT[[1]]$CI_CONC,2,all=verbose)
+                 expect_equal(wc2$entity$CELL_CONTENT[[1]]$CI_CONC,4,all=verbose)
                  
                  
                  
-                 expect_match(wc1$entity$CONTENT[[1]]$IMPL_SAMPLE_LOT$Name,sampleLotBarcode,all=verbose)
-                 expect_match(wc2$entity$CONTENT[[1]]$IMPL_SAMPLE_LOT$Name,sampleLotBarcode,all=verbose)
+                 expect_match(wc1$entity$CELL_CONTENT[[1]]$SAMPLE_LOT$Name,sampleLotBarcode,all=verbose)
+                 expect_match(wc2$entity$CELL_CONTENT[[1]]$SAMPLE_LOT$Name,sampleLotBarcode,all=verbose)
                  
                  
                  

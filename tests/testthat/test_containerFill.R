@@ -97,7 +97,7 @@ test_that("full sample to container cycle",
              
              expect_equal(wc1$entity$CI_AMOUNT,1,all=verbose) #7
              
-             expect_equal(wc1$entity$CONTENT[[1]]$CI_CONC,1,all=verbose) #8
+             expect_equal(wc1$entity$CELL_CONTENT[[1]]$CI_CONC,1,all=verbose) #8
             # 
             # 
            
@@ -132,10 +132,10 @@ test_that("full sample to container cycle",
           # 
           # 
           # 
-         concentration <- contWell$entity$CONTENT[[1]]$CI_CONC
+         concentration <- contWell$entity$CELL_CONTENT[[1]]$CI_CONC
           # 
           # 
-        concentrationUnit <- contWell$entity$CONTENT[[1]]$CI_CONC_UNIT
+        concentrationUnit <- contWell$entity$CELL_CONTENT[[1]]$CI_CONC_UNIT
           # 
           #   #now transfer contents
           # 
@@ -150,21 +150,4 @@ test_that("full sample to container cycle",
           logout<-CoreAPIV2::logOut(api,useVerbose = verbose)
           expect_match(logout$success,"Success")
           })
-          # 
-          #   expect_equal(object=tc$entity$cells[[1]]$cellContents[[1]]$lotBarcode, expected=lot_barcode)
-          # 
-          #   #test lineage
-          # 
-          # 
-          #  lineage<-CoreAPI::getContainerLineage(r$coreApi,cont2$entity$barcode)
-          # 
-          #  expect_equal(object=lineage$entity$parents[[1]]$name,
-          #               expected=cont$entity$barcode )
-          # 
-          #   out<-CoreAPI::logOut(r$coreApi)
-          # })
-          # 
-          # 
-          # 
-          # 
-          # 
+         

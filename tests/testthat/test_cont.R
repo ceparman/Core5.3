@@ -147,7 +147,7 @@ instance <- "test_environments/5-2-2.json"
                  
                  expect_equal(wc1$entity$CI_AMOUNT,1,all=verbose)
                 
-                 expect_equal(wc1$entity$CONTENT[[1]]$CI_CONC,1,all=verbose)
+                 expect_equal(wc1$entity$CELL_CONTENTS[[1]]$CI_CONC,1,all=verbose)
                  
                 
                  wc1<-CoreAPIV2::updateCellContents(coreApi = con$coreApi,containerType = 'VIAL',
