@@ -42,6 +42,8 @@ instance <- "test_environments/5-2-2.json"
               body[["IMAGE_FILE"]] <- NULL
 
               body[["SAMPLE_ENZYME@odata.bind"]] <- "/ENZYME('ENZ1')"
+              
+  
 
               return<-CoreAPIV2::createEntity(coreApi = con$coreApi,entityType = "PATIENT_SAMPLE",body=body,useVerbose = TRUE)
 

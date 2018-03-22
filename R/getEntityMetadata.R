@@ -145,6 +145,11 @@ getEntityMetadata <- function (coreApi, entityType, useVerbose = FALSE)
                     stringsAsFactors = FALSE
                   )
                 
+                #remove associations with out partners, not sure what they are
+                
+                associations <- associations[!is.na(associations$partners),] 
+                
+                
                 forward_associations <-
                   associations[!startsWith(associations$names, "REV_"), ]
                 
@@ -158,6 +163,7 @@ getEntityMetadata <- function (coreApi, entityType, useVerbose = FALSE)
               }
               
               
+       
               
               #Create list object that can be used for create
               
