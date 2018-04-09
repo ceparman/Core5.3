@@ -25,30 +25,30 @@ instance <<- "test_environments/5-2-2.json"
               expect_that(is.null(con$coreApi$jsessionId),equals(FALSE))
               
               
-              b<-CoreAPIV2::getEntityByBarcode(con$coreApi,"PATIENT_SAMPLE","PS2",fullMetadata=FALSE,useVerbose=verbose)$entity
+              b<-CoreAPIV2::getEntityByBarcode(con$coreApi,"PATIENT_SAMPLE","PS534",fullMetadata=FALSE,useVerbose=verbose)$entity
  
-              expect_match(b$Barcode,"PS2",all=verbose)
+              expect_match(b$Barcode,"PS534",all=verbose)
               
-              p<-CoreAPIV2::updateEntityProject(con$coreApi,"PATIENT_SAMPLE","PS2","PJ1",useVerbose=FALSE)
+              p<-CoreAPIV2::updateEntityProject(con$coreApi,"PATIENT_SAMPLE","PS534","PJ1",useVerbose=FALSE)
                  
  
               expect_match( httr::http_status(p$response)$category,"Success")
               
               
                             
-              p1<-CoreAPIV2::getEntityProject(con$coreApi,"PATIENT_SAMPLE","PS2",useVerbose=FALSE)
+              p1<-CoreAPIV2::getEntityProject(con$coreApi,"PATIENT_SAMPLE","PS534",useVerbose=FALSE)
               
               expect_match(p1$entity[[1]]$Barcode,"PJ1")
               
               
-              p2<-CoreAPIV2::updateEntityProject(con$coreApi,"PATIENT_SAMPLE","PS2",c("PJ1","PJ2"),useVerbose=TRUE)
+              p2<-CoreAPIV2::updateEntityProject(con$coreApi,"PATIENT_SAMPLE","PS534",c("PJ1","PJ2"),useVerbose=TRUE)
              
             
               
               expect_match( httr::http_status(p2$response)$category,"Success")
               
               
-             p3<-CoreAPIV2::getEntityProject(con$coreApi,"PATIENT_SAMPLE","PS2",useVerbose=FALSE)
+             p3<-CoreAPIV2::getEntityProject(con$coreApi,"PATIENT_SAMPLE","PS534",useVerbose=FALSE)
               
              expect_match(p3$entity[[1]]$Barcode,"PJ1")
              expect_match(p3$entity[[2]]$Barcode,"PJ2")

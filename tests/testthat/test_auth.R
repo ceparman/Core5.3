@@ -81,7 +81,7 @@ instance<<-"test_environments/5-2-2.json"
               
               api <- CoreAPIV2::coreAPI(instance)
               
-              
+
               con<- CoreAPIV2::authBasic(api,useVerbose=verbose)
               
               metadata<- CoreAPIV2::updateMetadata(con$coreApi,useVerbose=TRUE)

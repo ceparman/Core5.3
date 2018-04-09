@@ -115,7 +115,6 @@ instance <<- "test_environments/5-2-2.json"
                  experimentSamplebarcode<-"XPX84"
                  attributeName <-"ci_file"
                  
-                 
                  response<-   CoreAPIV2::getExperimentSamplesAssayFileData(con$coreApi,assayType,
                                           experimentSamplebarcode, attributeName,useVerbose = verbose)
                  expect_equal( httr::status_code(response$response),200)

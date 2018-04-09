@@ -15,7 +15,7 @@ instance <<- "test_environments/dose.json"
      test_that(paste("test get expt., expt. sample, raw and intermediate data", instance),
             {
 
-              verbose <- FALSE
+              verbose <- TRUE
               api <- CoreAPIV2::coreAPI(instance)
 
           
@@ -27,16 +27,16 @@ instance <<- "test_environments/dose.json"
               
               #get the experiment
               
-              expt <- CoreAPIV2::getEntityByBarcode(con$coreApi,"BIOCHEMICAL DOSE RESPONSE EXPERIMENT",barcode = "BDR16",useVerbose = verbose)
+              expt <- CoreAPIV2::getEntityByBarcode(con$coreApi,"API TEST EXPERIMENT",barcode = "ATE1",useVerbose = verbose)
               
-              expect_match(expt$entity$Barcode,"BDR16",all=verbose)
+              expect_match(expt$entity$Barcode,"ATE1",all=verbose)
               
-              exptSamples <- CoreAPIV2::getExperimentSamples(con$coreApi,"BIOCHEMICAL DOSE RESPONSE EXPERIMENT",barcode = "BDR16",
+              exptSamples <- CoreAPIV2::getExperimentSamples(con$coreApi,"API TEST EXPERIMENT",barcode = "ATE1",
                                                                useVerbose = verbose)
               
               exptSampleBarcode = exptSamples$entity[1]
               # get expt. container
-              exptContainer <- CoreAPIV2::getExperimentContainers(con$coreApi,"BIOCHEMICAL DOSE RESPONSE EXPERIMENT",barcode = "BDR16",
+              exptContainer <- CoreAPIV2::getExperimentContainers(con$coreApi,"API TEST EXPERIMENT",barcode = "ATE1",
                                                                   useVerbose = verbose)
               
               #get raw data
@@ -85,17 +85,17 @@ instance <<- "test_environments/dose.json"
               
               #get intermediate data
               
-              intermediateData <- CoreAPIV2::getExperimentSamplesIntermediateData(con$coreApi,experimentType = "BIOCHEMICAL DOSE RESPONSE EXPERIMENT",
-                                                                assayType = "BIOCHEMICAL DOSE RESPONSE ASSAY",
+              intermediateData <- CoreAPIV2::getExperimentSamplesIntermediateData(con$coreApi,experimentType = "CONC ANALYSIS EXPERIMENT",
+                                                                assayType = "CONC ANALYSIS EXPERIMENT",
                                                                 experimentSamplebarcode =  exptSampleBarcode,
                                                                 dataName = "%i", useVerbose = verbose)
               
-              
+              #This line may need to be changed since we changed the tennent and exp type
               expect_equal(nrow(rawData$entity),96,all=verbose)
               
               #assay data is in assay data
                 
-              ad<-CoreAPIV2::getExperimentSamplesAssayData(coreApi = con$coreApi,assayType = "BIOCHEMICAL DOSE RESPONSE ASSAY",
+              ad<-CoreAPIV2::getExperimentSamplesAssayData(coreApi = con$coreApi,assayType = "CONC ANALYSIS EXPERIMENT",
                                                         experimentSamplebarcode = exptSamples$entity[1])
               
               

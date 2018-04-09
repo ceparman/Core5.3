@@ -4,7 +4,7 @@
   "values": [
     {
       "key": "tenant",
-      "value": "PFS Marketplace",
+      "value": "R-Integration_Baseline",
       "type": "text",
       "enabled": true
     },
@@ -32,7 +32,7 @@
     },
     {
       "key": "username",
-      "value": "john",
+      "value": "lims",
       "type": "text",
       "name": "nameadmin",
       "enabled": true,
