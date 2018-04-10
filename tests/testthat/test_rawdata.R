@@ -44,7 +44,7 @@ instance <<- "test_environments/beer2.json"
               rawData <- getExperimentSamplesRawData(con$coreApi, exptContainer$entity[1],useVerbose = FALSE)
                   
               
-              expect_equal(nrow(rawData$entity),96,all=verbose)
+              expect_equal(nrow(rawData$entity),2,all=verbose)
               
               #update raw data
               
@@ -86,16 +86,16 @@ instance <<- "test_environments/beer2.json"
               #get intermediate data
               
               intermediateData <- CoreAPIV2::getExperimentSamplesIntermediateData(con$coreApi,experimentType = "BITTERNESS EXPERIMENT",
-                                                                assayType = "BTNA1",
+                                                                assayType = "BITTERNESS_ASSAY",
                                                                 experimentSamplebarcode =  exptSampleBarcode,
                                                                 dataName = "%i", useVerbose = verbose)
               
               #This line may need to be changed since we changed the tennent and exp type
-              expect_equal(nrow(rawData$entity),96,all=verbose)
+              expect_equal(nrow(rawData$entity),2,all=verbose)
               
               #assay data is in assay data
                 
-              ad<-CoreAPIV2::getExperimentSamplesAssayData(coreApi = con$coreApi,assayType = "BITTERNESS EXPERIMENT",
+              ad<-CoreAPIV2::getExperimentSamplesAssayData(coreApi = con$coreApi,assayType = "BITTERNESS_ASSAY",
                                                         experimentSamplebarcode = exptSamples$entity[1])
               
               
