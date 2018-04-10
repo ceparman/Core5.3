@@ -22,6 +22,12 @@
 #'    "value": "R-Integration_Baseline"
 #'  },
 #'  {
+#'    "key": "TenantShortName",
+#'    "value": "bp2",
+#'    "type": "text",
+#'    "enabled": true
+#'  },
+#'  {
 #'    "key": "scheme",
 #'    "value": "https"
 #'  },
