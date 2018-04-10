@@ -31,9 +31,11 @@ buildUrl <-
   {
     
     #Concat account and odata
-    if (!is.null(coreApi$account)){
+    if (!is.null(coreApi$account) && is.null(coreApi$TenantShortName)){
       odat <- paste0("/", ODATAcleanName(coreApi$account), "/odata/")
-    }else{ 
+    }else if (!is.null(coreApi$TenantShortName)){
+      odat <- paste0("/", ODATAcleanName(coreApi$TenantShortName), "/odata/")
+      }else{ 
       odat <- "/odata/" 
     }
     

@@ -60,6 +60,7 @@ coreAPI <- function(CoreAccountInfo)
       user = accountinfo$value[accountinfo$key == "username"],
       pwd = accountinfo$value[accountinfo$key == "password"],
       account = accountinfo$value[accountinfo$key == "tenant"],
+      TenantShortName = accountinfo$value[accountinfo$key == "TenantShortName"],
       coreUrl = accountinfo$value[accountinfo$key == "host"],
       port = accountinfo$value[accountinfo$key == "port"],
       scheme = accountinfo$value[accountinfo$key == "scheme"],

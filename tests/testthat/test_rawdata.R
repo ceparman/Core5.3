@@ -8,7 +8,7 @@ verbose <- FALSE
 
 #setup to work with environment
 
-instance <<- "test_environments/dose.json"
+instance <<- "test_environments/beer2.json"
 
 
 
@@ -27,16 +27,16 @@ instance <<- "test_environments/dose.json"
               
               #get the experiment
               
-              expt <- CoreAPIV2::getEntityByBarcode(con$coreApi,"API TEST EXPERIMENT",barcode = "ATE1",useVerbose = verbose)
+              expt <- CoreAPIV2::getEntityByBarcode(con$coreApi,"BITTERNESS EXPERIMENT",barcode = "BTXP2",useVerbose = verbose)
               
-              expect_match(expt$entity$Barcode,"ATE1",all=verbose)
+              expect_match(expt$entity$Barcode,"BTXP2",all=verbose)
               
-              exptSamples <- CoreAPIV2::getExperimentSamples(con$coreApi,"API TEST EXPERIMENT",barcode = "ATE1",
+              exptSamples <- CoreAPIV2::getExperimentSamples(con$coreApi,"BITTERNESS EXPERIMENT",barcode = "BTXP2",
                                                                useVerbose = verbose)
               
               exptSampleBarcode = exptSamples$entity[1]
               # get expt. container
-              exptContainer <- CoreAPIV2::getExperimentContainers(con$coreApi,"API TEST EXPERIMENT",barcode = "ATE1",
+              exptContainer <- CoreAPIV2::getExperimentContainers(con$coreApi,"BITTERNESS EXPERIMENT",barcode = "BTXP2",
                                                                   useVerbose = verbose)
               
               #get raw data
@@ -85,8 +85,8 @@ instance <<- "test_environments/dose.json"
               
               #get intermediate data
               
-              intermediateData <- CoreAPIV2::getExperimentSamplesIntermediateData(con$coreApi,experimentType = "CONC ANALYSIS EXPERIMENT",
-                                                                assayType = "CONC ANALYSIS EXPERIMENT",
+              intermediateData <- CoreAPIV2::getExperimentSamplesIntermediateData(con$coreApi,experimentType = "BITTERNESS EXPERIMENT",
+                                                                assayType = "BTNA1",
                                                                 experimentSamplebarcode =  exptSampleBarcode,
                                                                 dataName = "%i", useVerbose = verbose)
               
@@ -95,7 +95,7 @@ instance <<- "test_environments/dose.json"
               
               #assay data is in assay data
                 
-              ad<-CoreAPIV2::getExperimentSamplesAssayData(coreApi = con$coreApi,assayType = "CONC ANALYSIS EXPERIMENT",
+              ad<-CoreAPIV2::getExperimentSamplesAssayData(coreApi = con$coreApi,assayType = "BITTERNESS EXPERIMENT",
                                                         experimentSamplebarcode = exptSamples$entity[1])
               
               
