@@ -2,7 +2,9 @@
 title: "Build and Test Enviroment"
 author: "Craig Parman"
 date: "10/5/2016"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -67,8 +69,12 @@ library('testthat')
 
  
 log<-capture.output(tr<-test_dir("../tests/testthat"))
- 
-kable(as.data.frame(tr))
+
+fr <- as.data.frame(tr)  
+
+fr
+
+kable(as.data.frame(tr),longtable = TRUE,font_size = 7)
 
 ```
 

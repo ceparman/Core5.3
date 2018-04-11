@@ -112,13 +112,15 @@ instance <<- "test_environments/5-2-2.json"
                  
                  
                  assayType<-"SIMPLE_ASSAY"
-                 experimentSamplebarcode<-"XPX84"
+                 experimentSamplebarcode<-"XPX85"
                  attributeName <-"ci_file"
                  
                  
                  response<-   CoreAPIV2::getExperimentSamplesAssayFileData(con$coreApi,assayType,
                                           experimentSamplebarcode, attributeName,useVerbose = verbose)
-                 expect_equal( httr::status_code(response$response),200)
+                
+                 
+                  expect_equal( httr::status_code(response$response),200)
                  
                  filename<-paste0(tempdir(),"/myfile.png")
                  writeBin(response$entity, filename)
@@ -144,14 +146,14 @@ instance <<- "test_environments/5-2-2.json"
                  
                  
                  assayType<-"SIMPLE_ASSAY"
-                 experimentSamplebarcode<-"XPX84"
+                 experimentSamplebarcode<-"XPX85"
                  attributeName <-"ci_file"
                  
                  
                  
                  filepath <-"test_files/stocks.txt"
                  response<-CoreAPIV2::setExperimentSamplesAssayFileData(con$coreApi,assayType,
-                                                                        "XPX84","CI_FILE",filepath,useVerbose = verbose)
+                                                                        "XPX85","CI_FILE",filepath,useVerbose = verbose)
         
                  expect_equal( httr::status_code(response$response),204)
                  

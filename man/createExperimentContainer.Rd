@@ -25,7 +25,7 @@ RETURN returns a list $entity contains entity information, $response contains th
 }
 \description{
 \code{createExperimentContainer}Creates a new experiment container by adding an exiting container 
-to an experiment.  Uses the JSON API not the ODATA interface.
+to an experiment.
 }
 \details{
 \code{createExperimentContainer} Creates a new experiment container by adding an exiting container to an experiment.
