@@ -35,6 +35,10 @@ createEntity <- function (coreApi,
   
   entityType <- CoreAPIV2::ODATAcleanName(entityType)
   
+  #scrub unused fields from the body
+  body <- body[!body %in% ""]
+  
+  
   headers <-
     c('Content-Type' = "application/json;odata.metadata=full", accept = "application/json")
   

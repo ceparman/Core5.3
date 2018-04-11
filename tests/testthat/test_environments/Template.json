@@ -4,7 +4,13 @@
   "values": [
     {
       "key": "tenant",
-      "value": "PFS Marketplace",
+      "value": "FULLNAMEOFTENANT",
+      "type": "text",
+      "enabled": true
+    },    
+    {
+      "key": "TenantShortName",
+      "value": "SHORTNAMEINURL",
       "type": "text",
       "enabled": true
     },
@@ -18,7 +24,7 @@
     },
     {
       "key": "host",
-      "value": "dev-5.coredev.cloud",
+      "value": "HOSTNAME",
       "type": "text",
       "name": "host",
       "enabled": true,
@@ -32,7 +38,7 @@
     },
     {
       "key": "username",
-      "value": "john",
+      "value": "USER",
       "type": "text",
       "name": "nameadmin",
       "enabled": true,
@@ -40,7 +46,7 @@
     },
     {
       "key": "password",
-      "value": "lims#1",
+      "value": "PASSWORD",
       "type": "text",
       "name": "passwordadmin",
       "enabled": true,

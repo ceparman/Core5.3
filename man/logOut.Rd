@@ -30,4 +30,3 @@ logOut <- CoreAPIV2::logOut(response$coreApi,useVerbose=TRUE )
 \author{
 Craig Parman ngsAnalytics, ngsanalytics.com
 }
-

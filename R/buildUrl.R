@@ -21,6 +21,7 @@
 
 
 
+
 buildUrl <-
   function(coreApi,
            resource = NULL,
@@ -28,6 +29,17 @@ buildUrl <-
            special = NULL,
            useVerbose = FALSE)
   {
+    
+    #Concat account and odata
+    if (!is.null(coreApi$account) && is.null(coreApi$TenantShortName)){
+      odat <- paste0("/", ODATAcleanName(coreApi$account), "/odata/")
+    }else if (!is.null(coreApi$TenantShortName)){
+      odat <- paste0("/", ODATAcleanName(coreApi$TenantShortName), "/odata/")
+      }else{ 
+      odat <- "/odata/" 
+    }
+    
+    
     if (is.null(special)) {
       sdk_url <-
         paste(
@@ -36,7 +48,7 @@ buildUrl <-
           coreApi$coreUrl,
           ":",
           coreApi$port,
-          "/odata/",
+          odat,
           resource,
           query,
           sep = ""

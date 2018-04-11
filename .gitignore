@@ -8,3 +8,5 @@ inst/doc
 /beer/*
 Test%205.2.postman_environment.json
 /old_testthat/*
+tests/testthat/test_environments/*
+!tests/testthat/test_environments/Template.json

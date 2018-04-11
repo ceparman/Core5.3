@@ -42,4 +42,3 @@ CoreAPIV2::logOut(login$coreApi ) response<- CoreAPI::authBasic(coreApi)
 \author{
 Craig Parman ngsAnalytics, ngsanalytics.com
 }
-
