@@ -32,6 +32,12 @@ The json must include the fields shown below.
    "value": "R-Integration_Baseline"
  },
  {
+   "key": "TenantShortName",
+   "value": "bp2",
+   "type": "text",
+   "enabled": true
+ },
+ {
    "key": "scheme",
    "value": "https"
  },
