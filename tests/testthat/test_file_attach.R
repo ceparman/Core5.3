@@ -163,4 +163,40 @@ instance <<- "test_environments/5-2-2.json"
                })
      
      
+     
+     
+     test_that(paste("reteive a attached file", instance),
+               {
+                 
+                 verbose <- FALSE
+                 api <- CoreAPIV2::coreAPI(instance)
+                 
+                 
+                 con<- CoreAPIV2::authBasic(api,useVerbose=verbose)
+                 
+                 entityType <- "PATIENT SAMPLE"
+                 barcode <- "PS2"
+                 attribute <- "CI_FILE"
+                 useVerbose <- TRUE
+                 
+                 t<- getAttachedFile(con$coreApi,entityType,barcode,attribute,useVerbose = verbose)
+                 expect_equal(rawToChar(t$entity), "Text File")
+                 
+      
+                 CoreAPIV2::logOut(con$coreApi)
+                 
+                 
+                 
+               })
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
     
