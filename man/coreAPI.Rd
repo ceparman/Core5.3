@@ -32,6 +32,12 @@ The json must include the fields shown below.
    "value": "R-Integration_Baseline"
  },
  {
+   "key": "TenantShortName",
+   "value": "bp2",
+   "type": "text",
+   "enabled": true
+ },
+ {
    "key": "scheme",
    "value": "https"
  },
@@ -69,3 +75,4 @@ api<-CoreAPIV2::coreAPI("/home/environment.json")
 \author{
 Craig Parman ngsAnalytics, ngsanalytics.com
 }
+
