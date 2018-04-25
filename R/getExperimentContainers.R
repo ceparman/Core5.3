@@ -35,7 +35,7 @@ getExperimentContainers <-
     query   <-
       paste0("('",
              barcode,
-             "')/EXPERIMENT_CONTAINERS")
+             "')/REV_CONTAINER_EXPERIMENT_EXPERIMENT_CONTAINER")
     
     
     header <-
