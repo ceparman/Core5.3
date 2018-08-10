@@ -6,7 +6,7 @@ http://www.coreinformatics.com/
 
 **Installation:**
 
-TBD
+snap shjot of the V2 package for pakrat install
 
 
 **Usage:**
