@@ -1,4 +1,4 @@
-# CoreAPIV@
+# CoreAPIV2
 **R package to interact with the Core Informatics API** 
 
 http://www.coreinformatics.com/
