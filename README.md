@@ -6,7 +6,7 @@ http://www.coreinformatics.com/
 
 **Installation:**
 
-snap shjot of the V2 package for packrat install
+snap shot of the V2 package for packrat install
 
 
 **Usage:**
